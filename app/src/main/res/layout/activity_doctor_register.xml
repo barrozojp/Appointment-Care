@@ -20,7 +20,7 @@
   <androidx.cardview.widget.CardView
       android:id="@+id/cardviewRegisterDoctor"
       android:layout_width="350dp"
-      android:layout_height="480dp"
+      android:layout_height="520dp"
       app:cardCornerRadius="12dp"
       app:cardElevation="8dp"
       android:backgroundTint="#FFF"
@@ -44,47 +44,82 @@
           android:textColor="#6EAB36"/>
 
       <EditText
-          android:id="@+id/nameregisterDoctor"
+          android:id="@+id/FNameRegisterDoctor"
           android:layout_width="350dp"
-          android:layout_height="50dp"
+          android:layout_height="40dp"
           android:inputType="text"
           android:layout_below="@id/doctor_register"
           android:layout_centerHorizontal="true"
-          android:layout_marginTop="20dp"
-          android:hint="@string/full_name"/>
+          android:layout_marginTop="10dp"
+          android:hint="First Name"/>
+
+      <EditText
+          android:id="@+id/LNameRegisterDoctor"
+          android:layout_width="350dp"
+          android:layout_height="40dp"
+          android:inputType="text"
+          android:layout_below="@id/FNameRegisterDoctor"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="10dp"
+          android:hint="Last Name"/>
+
+      <EditText
+          android:id="@+id/numberRegister"
+          android:layout_width="350dp"
+          android:layout_height="40dp"
+          android:inputType="number"
+          android:layout_below="@id/LNameRegisterDoctor"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="10dp"
+          android:hint="Phone Number (+63)"
+          />
+
+
+      <Spinner
+          android:id="@+id/genderSpinner"
+          android:layout_width="350dp"
+          android:layout_height="40dp"
+          android:layout_below="@id/numberRegister"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="10dp" />
+
+
       <EditText
           android:id="@+id/emailregisterDoctor"
           android:layout_width="350dp"
-          android:layout_height="50dp"
+          android:layout_height="40dp"
           android:inputType="textEmailAddress"
-          android:layout_below="@id/nameregisterDoctor"
+          android:layout_below="@id/genderSpinner"
           android:layout_centerHorizontal="true"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="10dp"
           android:hint="@string/e_mail_register"/>
+      <EditText
+          android:id="@+id/ageRegister"
+          android:layout_width="350dp"
+          android:layout_height="40dp"
+          android:inputType="number"
+          android:layout_below="@id/emailregisterDoctor"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="10dp"
+          android:hint="Age"
+          />
 
       <EditText
           android:id="@+id/passwordRegister"
           android:layout_width="350dp"
-          android:layout_height="50dp"
-          android:layout_below="@id/emailregisterDoctor"
+          android:layout_height="40dp"
+          android:inputType="textPassword"
+          android:layout_below="@id/ageRegister"
           android:layout_centerHorizontal="true"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="10dp"
           android:hint="@string/password_login"/>
-      <EditText
-          android:id="@+id/confirmpasswordRegister"
-          android:layout_width="350dp"
-          android:layout_height="50dp"
-          android:layout_below="@id/passwordRegister"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="20dp"
-          android:hint="@string/confirm_password"/>
 
 
       <Button
           android:id="@+id/btn_SignInLogIn"
           android:layout_width="350dp"
           android:layout_height="80dp"
-          android:layout_below="@id/confirmpasswordRegister"
+          android:layout_below="@id/passwordRegister"
           android:layout_centerHorizontal="true"
           android:layout_marginTop="20dp"
           android:backgroundTint="#007E85"

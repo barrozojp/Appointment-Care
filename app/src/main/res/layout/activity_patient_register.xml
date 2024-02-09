@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PatientRegister"
-    android:background="#fff">
+    android:background="#FFF">
 
     <ImageView
         android:id="@+id/img_logo_login"
@@ -17,9 +18,9 @@
         android:layout_marginTop="30dp"
         />
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardviewRegister"
+        android:id="@+id/cardviewRegisterPatient"
         android:layout_width="350dp"
-        android:layout_height="480dp"
+        android:layout_height="520dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="8dp"
         android:backgroundTint="#FFF"
@@ -33,57 +34,92 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/patient_register"
+                android:id="@+id/doctor_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/patient_register"
+                android:text="Patient Register"
                 android:textAlignment="center"
                 android:textSize="40sp"
                 android:textStyle="bold"
                 android:textColor="#6EAB36"/>
 
             <EditText
-                android:id="@+id/nameregisterPatient"
+                android:id="@+id/FNameRegisterPatient"
                 android:layout_width="350dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:inputType="text"
-                android:layout_below="@id/patient_register"
+                android:layout_below="@id/doctor_register"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:hint="@string/full_name"/>
+                android:layout_marginTop="10dp"
+                android:hint="First Name"/>
+
+            <EditText
+                android:id="@+id/LNameRegisterPatient"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:inputType="text"
+                android:layout_below="@id/FNameRegisterPatient"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:hint="Last Name"/>
+
+            <EditText
+                android:id="@+id/numberRegister"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:inputType="number"
+                android:layout_below="@id/LNameRegisterPatient"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:hint="Phone Number (+63)"
+                />
+
+
+            <Spinner
+                android:id="@+id/genderSpinner"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/numberRegister"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
+
+
             <EditText
                 android:id="@+id/emailregisterPatient"
                 android:layout_width="350dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:inputType="textEmailAddress"
-                android:layout_below="@id/nameregisterPatient"
+                android:layout_below="@id/genderSpinner"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:hint="@string/e_mail_register"/>
+            <EditText
+                android:id="@+id/ageRegister"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:inputType="number"
+                android:layout_below="@id/emailregisterPatient"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:hint="Age"
+                />
 
             <EditText
                 android:id="@+id/passwordRegister"
                 android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/emailregisterPatient"
+                android:layout_height="40dp"
+                android:inputType="textPassword"
+                android:layout_below="@id/ageRegister"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:hint="@string/password_login"/>
-            <EditText
-                android:id="@+id/confirmpasswordRegister"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_below="@id/passwordRegister"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:hint="@string/confirm_password"/>
 
 
             <Button
                 android:id="@+id/btn_SignInLogIn"
                 android:layout_width="350dp"
                 android:layout_height="80dp"
-                android:layout_below="@id/confirmpasswordRegister"
+                android:layout_below="@id/passwordRegister"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#007E85"
@@ -98,7 +134,7 @@
         android:id="@+id/alreadyhaveaccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cardviewRegister"
+        android:layout_below="@id/cardviewRegisterPatient"
         android:text="@string/already_have_an_account"
         android:layout_marginTop="10dp"
         android:textAlignment="center"

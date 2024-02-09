@@ -14,8 +14,8 @@
 
     <item
         android:id="@+id/bottom_appointments"
-        android:title="D's Page"
-        android:icon="@drawable/baseline_feed_24" />
+        android:title="Appointments"
+        android:icon="@drawable/baseline_calendar_month_24" />
 
     <item
         android:id="@+id/bottom_search"
