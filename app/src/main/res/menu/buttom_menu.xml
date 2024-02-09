@@ -8,12 +8,12 @@
         />
 
     <item
-        android:id="@+id/bottom_subjects"
-        android:title="Subjects"
+        android:id="@+id/bottom_services"
+        android:title="Services"
         android:icon="@drawable/baseline_library_books_24"/>
 
     <item
-        android:id="@+id/bottom_appointments"
+        android:id="@+id/bottom_drpage"
         android:title="D's Page"
         android:icon="@drawable/baseline_feed_24" />
 
