@@ -41,6 +41,31 @@
 
     <string name="FAQ5">Is AppointCare safe to use?</string>
     <string name="FAQDes5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    /* END OF FAQS*/
+
+    /*Strings for Services*/
+
+    <string name="ServiceDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+
+    <string name="Service1">Diagnosis</string>
+    <string name="ServiceDes1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <string name="Service2">Fractures and Injury</string>
+    <string name="ServiceDes2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <string name="Service3">Xray Check-up</string>
+    <string name="ServiceDes3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <string name="Service4">Specialist Consultations</string>
+    <string name="ServiceDes4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <string name="Service5">Treatments</string>
+    <string name="ServiceDes5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <string name="Service6">Eye Care</string>
+    <string name="ServiceDes6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    /* END OF SERVICES*/
 
 
 
