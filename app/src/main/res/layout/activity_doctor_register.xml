@@ -74,14 +74,27 @@
           android:hint="Phone Number (+63)"
           />
 
+      <LinearLayout
+          android:id="@+id/genderchoice"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/numberRegister">
 
-      <Spinner
-          android:id="@+id/genderSpinner"
-          android:layout_width="350dp"
-          android:layout_height="40dp"
-          android:layout_below="@id/numberRegister"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="10dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Role:"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"/>
+
+        <Spinner
+            android:id="@+id/genderSpinner"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+      </LinearLayout>
 
 
       <EditText
@@ -89,7 +102,7 @@
           android:layout_width="350dp"
           android:layout_height="40dp"
           android:inputType="textEmailAddress"
-          android:layout_below="@id/genderSpinner"
+          android:layout_below="@id/genderchoice"
           android:layout_centerHorizontal="true"
           android:layout_marginTop="10dp"
           android:hint="@string/e_mail_register"/>
