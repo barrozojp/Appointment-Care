@@ -11,16 +11,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.codeofduty.appointcare.databinding.ActivityMainBinding
+import com.codeofduty.appointcare.databinding.ActivityMainPatientBinding
 import com.google.android.material.navigation.NavigationView
 
 class MainActivityPatient : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var fragmentManager: FragmentManager
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainPatientBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainPatientBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 

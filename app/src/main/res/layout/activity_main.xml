@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#fff">
+    android:background="#fff"
+    android:theme="@style/ThemeOverlay.AppCompat.Light">
 
 
     <RelativeLayout
@@ -49,6 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
+                    app:itemIconTint="#fff"
                     app:itemTextColor="@color/white"
                     app:labelVisibilityMode="labeled"
                     app:menu="@menu/buttom_menu"/>
@@ -64,9 +66,9 @@
         android:layout_height="match_parent"
         android:id="@+id/navigation_drawer"
         android:layout_gravity="start"
-        android:background="#fff"
-        app:itemIconTint="#007E85"
-        app:itemTextColor="#007E85"
+        android:background="#007E85"
+        app:itemIconTint="#FFF"
+        app:itemTextColor="#FFF"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"/>
 
