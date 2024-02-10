@@ -26,4 +26,22 @@
     <string name="nav_open">Open Navigation Drawer</string>
     <string name="nav_close">Close Navigation Drawer</string>
 
+    /*Strings for FAQs*/
+    <string name="FAQ1">What is AppointCare for?</string>
+    <string name="FAQDes1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <string name="FAQ2">How to book an Appointment?</string>
+    <string name="FAQDes2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <string name="FAQ3">How does the online consultation work?</string>
+    <string name="FAQDes3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <string name="FAQ4">What if I need to cancel or reschedule my appointment??</string>
+    <string name="FAQDes4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+    <string name="FAQ5">Is AppointCare safe to use?</string>
+    <string name="FAQDes5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
+
+
 </resources>
