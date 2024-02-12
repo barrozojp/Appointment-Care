@@ -52,6 +52,10 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
 
+    // FOR VALIDATIONS //
+    implementation("io.reactivex.rxjava2:rxjava:2.2.19")
+    implementation("com.jakewharton.rxbinding2:rxbinding:2.0.0")
+    // ~~ //
 
 
 

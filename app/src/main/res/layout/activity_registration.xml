@@ -100,7 +100,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/FNameEditText"
+                    android:id="@+id/FNameRegEditText"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:lines="1"
@@ -358,7 +358,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/cardviewRegistration"
         android:text="@string/already_have_an_account"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textColor="#007E85"
@@ -368,7 +368,9 @@
         android:id="@+id/haveAccBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/alreadyhaveaccount"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
         android:text="@string/log_in_register"
         android:textAlignment="center"
         android:textColor="#007E85"
