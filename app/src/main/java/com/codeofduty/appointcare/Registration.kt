@@ -5,13 +5,18 @@ import android.os.Bundle
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import com.codeofduty.appointcare.databinding.ActivityRegistrationBinding
 
 
 class Registration : AppCompatActivity() {
 
+    private lateinit var binding: ActivityRegistrationBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registration)
+        binding = ActivityRegistrationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
 
 
 
@@ -56,7 +61,6 @@ class Registration : AppCompatActivity() {
         }
 
     }
-
     private fun showToast(gender: String) {
         Toast.makeText(this, "You chose $gender", Toast.LENGTH_SHORT).show()
     }
