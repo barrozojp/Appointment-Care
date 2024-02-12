@@ -3,4 +3,7 @@
     <style name="Base.Theme.AppointCare" parent="Theme.Material3.DayNight.NoActionBar"/>
 
     <style name="Theme.AppointCare" parent="Base.Theme.AppointCare" />
+
+
+
 </resources>
