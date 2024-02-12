@@ -337,6 +337,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnRegister"
                 android:layout_width="350dp"
