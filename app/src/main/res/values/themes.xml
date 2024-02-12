@@ -4,6 +4,15 @@
 
     <style name="Theme.AppointCare" parent="Base.Theme.AppointCare" />
 
+    <style name="ButtonColor3">
+        <item name="android:background">@drawable/bg_button</item>
+        <item name="backgroundTint">#807F7D</item>
+        <item name="android:enabled">false</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 
 </resources>
