@@ -14,7 +14,7 @@
 
     <item
         android:id="@+id/bottom_drpage"
-        android:title="D's Page"
+        android:title="Dr's Page"
         android:icon="@drawable/baseline_feed_24" />
 
     <item

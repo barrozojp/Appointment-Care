@@ -20,12 +20,14 @@
     <androidx.cardview.widget.CardView
         android:layout_width="350dp"
         android:layout_height="500dp"
+        android:layout_below="@+id/img_logo_login"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:backgroundTint="#E9EFEF"
+        android:layout_marginBottom="136dp"
         app:cardCornerRadius="12dp"
-        app:cardElevation="8dp"
-        android:backgroundTint="#FFF"
-        android:layout_marginTop="30dp"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/img_logo_login">
+        app:cardElevation="8dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -42,39 +44,81 @@
                 android:textStyle="bold"
                 android:textColor="#6EAB36"/>
 
-            <EditText
-                android:id="@+id/emaillogin"
-                android:layout_width="350dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailLOGINLayout"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:inputType="textEmailAddress"
                 android:layout_below="@id/login_login"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:hint="@string/e_mail_login"/>
+                android:layout_marginTop="50dp"
+                android:background="#fff"
+                android:textColorHint="#80016D73"
 
-            <EditText
-                android:id="@+id/passwordlogin"
-                android:layout_width="350dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailLOGINEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:lines="1"
+                    android:inputType="textEmailAddress"
+                    android:drawableLeft="@drawable/baseline_email_24"
+                    android:background="#fff"
+                    android:paddingStart="10dp"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#007E85"
+                    android:hint="e-Mail"
+                    android:textColor="#016D73"
+                    android:paddingTop="5dp"
+                    />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/PasswordLOGINLayout"
+                android:layout_below="@id/emailLOGINLayout"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@id/emaillogin"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:hint="@string/password_login"/>
+                android:layout_marginTop="10dp"
+                android:background="#fff"
+                android:textColorHint="#80016D73"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#016D73"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PasswordLOGINEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:lines="1"
+                    android:maxLength="16"
+                    android:inputType="textPassword"
+                    android:drawableLeft="@drawable/baseline_lock_24"
+                    android:background="#fff"
+                    android:paddingStart="10dp"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#007E85"
+                    android:hint="Password"
+                    android:textColor="#016D73"
+                    android:paddingTop="5dp"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/forgotpass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/passwordlogin"
-                android:layout_marginEnd="20dp"
+                android:layout_below="@id/PasswordLOGINLayout"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/forgot_password"
                 android:textAlignment="viewEnd"
-                android:textColor="#007E85"/>
+                android:textColor="#007E85" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_DoctorLogIn"
                 android:layout_width="350dp"
+                style="@style/ButtonColor3"
                 android:layout_height="80dp"
                 android:layout_below="@id/forgotpass"
                 android:layout_centerHorizontal="true"
@@ -85,14 +129,15 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/registerTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btn_DoctorLogIn"
+                android:layout_below="@id/btn_PatientLogIn"
                 android:layout_marginTop="15dp"
                 android:text="@string/register"
                 android:textAlignment="center"
                 android:textColor="#007E85"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
