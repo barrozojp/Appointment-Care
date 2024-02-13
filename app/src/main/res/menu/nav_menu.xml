@@ -10,35 +10,35 @@
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/baseline_account_circle_24"
-            android:title="Profile"
+            android:title="@string/profile_navmenu"
             />
 
 
         <item
             android:id="@+id/nav_services"
             android:icon="@drawable/baseline_library_books_24"
-            android:title="Services"
+            android:title="@string/services_navmenu"
             />
 
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/baseline_search_24"
-            android:title="Search"
+            android:title="@string/search_navmenu"
             />
         <item
             android:id="@+id/nav_faqs"
             android:icon="@drawable/baseline_question_mark_24"
-            android:title="FAQs"
+            android:title="@string/faqs_navmenu"
             />
         <item
             android:id="@+id/nav_contact"
             android:icon="@drawable/baseline_phone_24"
-            android:title="Contact Us"
+            android:title="@string/contact_us_navmenu"
             />
         <item
             android:id="@+id/nav_aboutus"
             android:icon="@drawable/baseline_people_alt_24"
-            android:title="About Us"
+            android:title="@string/about_us_navmenu"
             />
 
 

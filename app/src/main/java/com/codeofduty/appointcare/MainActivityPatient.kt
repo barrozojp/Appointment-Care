@@ -2,6 +2,7 @@ package com.codeofduty.appointcare
 
 import AboutUsFragment
 import ContactFragment
+import HomeFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem

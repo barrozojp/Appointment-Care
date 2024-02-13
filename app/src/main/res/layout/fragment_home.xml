@@ -1,24 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/animationContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="296dp"
-            android:layout_marginBottom="416dp"
-            android:textAlignment="center"
-            android:text="Home" />
+            android:layout_height="wrap_content">
 
-    </RelativeLayout>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/ltAnimation"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/greenline_animation" />
 
-</FrameLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/welcomeCARD"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="130dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="#FCFFF9"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:contentPadding="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/ltAnimation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.028">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/welcomeHome"
+                            android:layout_width="200dp"
+                            android:layout_height="120dp"
+                            android:text="Welcome to Appointment Care"
+                            android:textAlignment="center"
+                            android:textColor="#007E85"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/visitWEB"
+                            android:layout_width="200dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/welcomeHome"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@drawable/rounded_background_home"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:text="Visit Website ↗"
+                            android:textAlignment="center"
+                            android:textColor="#FFF"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/doctor_picture" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/hospitalIMGCARD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintTop_toBottomOf="@id/welcomeCARD"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:src="@drawable/hospital_pic"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/TVQoute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Discover the essence of our app. Explore its wonders and possibilities today."
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textColor="#002A2C"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/shortbaby"
+                app:layout_constraintTop_toBottomOf="@id/hospitalIMGCARD"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/servicesCARD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="#FCFFF9"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                android:layout_marginBottom="80dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVQoute">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ServicesText"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:padding="15dp"
+                        android:text="Services"
+                        android:textAlignment="center"
+                        android:textColor="#007E85"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <ViewFlipper
+                        android:id="@+id/viewFlipper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:autoStart="true"
+                        android:flipInterval="2000"
+                        android:inAnimation="@android:anim/slide_in_left"
+                        android:outAnimation="@android:anim/slide_out_right">
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="4dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintTop_toTopOf="@id/ServicesText">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/service1" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="4dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/service2" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="4dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/service3" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="4dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/service4" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="4dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/service5" />
+                        </androidx.cardview.widget.CardView>
+
+                    </ViewFlipper>
+
+                    <Button
+                        android:id="@+id/btn_learnMoreServices"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginRight="100dp"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="#6EAB36"
+                        android:text="Learn More ↗"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

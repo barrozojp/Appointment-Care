@@ -65,6 +65,12 @@
 
     <string name="Service6">Eye Care</string>
     <string name="ServiceDes6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="about_us_navmenu">About Us</string>
+    <string name="contact_us_navmenu">Contact Us</string>
+    <string name="faqs_navmenu">FAQs</string>
+    <string name="search_navmenu">Search</string>
+    <string name="services_navmenu">Services</string>
+    <string name="profile_navmenu">Profile</string>
     /* END OF SERVICES*/
 
 

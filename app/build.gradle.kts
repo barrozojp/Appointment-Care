@@ -57,6 +57,7 @@ dependencies {
     implementation("com.jakewharton.rxbinding2:rxbinding:2.0.0")
     // ~~ //
 
+    implementation("com.airbnb.android:lottie:5.2.0")
 
 
 }
