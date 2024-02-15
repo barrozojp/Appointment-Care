@@ -38,7 +38,7 @@
                 android:id="@+id/registrationTITLE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Registration"
+                android:text="@string/tv_title_registration"
                 android:textAlignment="center"
                 android:textSize="40sp"
                 android:textStyle="bold"
@@ -60,7 +60,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="   Role:"
+                        android:text="@string/role_tv"
                         android:textColor="#016D73"
                         android:layout_marginRight="38dp"
                         android:textSize="18sp"/>
@@ -70,7 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
-                        android:text="Doctor"
+                        android:text="@string/doctor_rg"
                         android:textColor="#016D73"
                         android:onClick="checkButton" />
 
@@ -78,7 +78,7 @@
                         android:id="@+id/regPATIENT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Patient"
+                        android:text="@string/patient_rg"
                         android:textColor="#016D73"
                         android:onClick="checkButton"/>
 
@@ -110,7 +110,7 @@
                     android:paddingStart="10dp"
                     android:drawablePadding="10dp"
                     android:drawableTint="#007E85"
-                    android:hint="First Name"
+                    android:hint="@string/first_name_tv"
                     android:textColor="#016D73"
                     android:paddingTop="5dp"
                     />
@@ -141,7 +141,7 @@
                     android:paddingStart="10dp"
                     android:drawablePadding="10dp"
                     android:drawableTint="#007E85"
-                    android:hint="Last Name"
+                    android:hint="@string/last_name_tf"
                     android:textColor="#016D73"
                     android:paddingTop="5dp"
                     />
@@ -170,7 +170,7 @@
                     android:paddingStart="10dp"
                     android:drawablePadding="10dp"
                     android:drawableTint="#007E85"
-                    android:hint="Phone Number (+63)"
+                    android:hint="@string/phone_number_63_tf"
                     android:textColor="#016D73"
                     android:paddingTop="5dp"
                     />
@@ -192,7 +192,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="   Gender:"
+                        android:text="@string/gender_rg"
                         android:textColor="#016D73"
                         android:layout_marginRight="38dp"
                         android:textSize="18sp"/>
@@ -242,7 +242,7 @@
                     android:paddingStart="10dp"
                     android:drawablePadding="10dp"
                     android:drawableTint="#007E85"
-                    android:hint="e-Mail"
+                    android:hint="@string/e_mail_tv"
                     android:textColor="#016D73"
                     android:paddingTop="5dp"
                     />
@@ -271,7 +271,7 @@
                     android:paddingStart="10dp"
                     android:drawablePadding="10dp"
                     android:drawableTint="#007E85"
-                    android:hint="Age"
+                    android:hint="@string/age_tf"
                     android:textColor="#016D73"
                     android:paddingTop="5dp"
                     />
@@ -301,7 +301,7 @@
                     android:paddingStart="10dp"
                     android:drawablePadding="10dp"
                     android:drawableTint="#007E85"
-                    android:hint="Password"
+                    android:hint="@string/password_tf"
                     android:textColor="#016D73"
                     android:paddingTop="5dp"
                     />
@@ -330,7 +330,7 @@
                     android:paddingStart="10dp"
                     android:drawablePadding="10dp"
                     android:drawableTint="#007E85"
-                    android:hint="Confirm Password"
+                    android:hint="@string/confirm_password_tf"
                     android:textColor="#016D73"
                     android:paddingTop="5dp"
                     />

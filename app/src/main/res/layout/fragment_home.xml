@@ -67,7 +67,7 @@
                             android:id="@+id/welcomeHome"
                             android:layout_width="200dp"
                             android:layout_height="120dp"
-                            android:text="Welcome to Appointment Care"
+                            android:text="@string/welcome_to_appointment_care_tv"
                             android:textAlignment="center"
                             android:textColor="#007E85"
                             android:textSize="30sp"
@@ -127,7 +127,7 @@
                 android:id="@+id/TVQoute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Discover the essence of our app. Explore its wonders and possibilities today."
+                android:text="@string/discover_the_essence_of_our_app_explore_its_wonders_and_possibilities_today_tv"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textColor="#002A2C"
@@ -265,7 +265,7 @@
                         android:layout_marginRight="100dp"
                         android:layout_marginBottom="10dp"
                         android:backgroundTint="#6EAB36"
-                        android:text="Learn More ↗"
+                        android:text="@string/learn_more_tv"
                         android:textColor="#fff"
                         android:textStyle="bold" />
 

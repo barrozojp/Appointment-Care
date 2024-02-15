@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_logo_register"
         android:layout_marginTop="30dp"
-        android:text="Log In"
+        android:text="@string/tv_log_in"
         android:textAlignment="center"
         android:textColor="#6EAB36"
         android:textSize="40sp"
@@ -41,7 +41,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="30dp"
         android:backgroundTint="#007E85"
-        android:text="Log-In as Doctor"
+        android:text="@string/tv_log_in_as_doctor"
         android:textColor="#FFF"
         android:textSize="20sp" />
 
@@ -66,7 +66,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:backgroundTint="#007E85"
-        android:text="Log-In as Patient"
+        android:text="@string/tv_log_in_as_patient"
         android:textColor="#FFF"
         android:textSize="20sp" />
 
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_LogInPatient"
         android:layout_marginTop="133dp"
-        android:text="Dont have an account yet?"
+        android:text="@string/tv_dont_have_an_account_yet"
         android:textAlignment="center"
         android:textColor="#007E85"
         android:textSize="16sp" />
@@ -87,7 +87,7 @@
         android:layout_below="@+id/alreadyhaveaccount"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="84dp"
-        android:text="Register"
+        android:text="@string/tv_register"
         android:textAlignment="center"
         android:textColor="#007E85"
         android:textSize="25sp"

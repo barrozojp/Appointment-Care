@@ -38,7 +38,7 @@
                 android:id="@+id/login_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Doctor Login"
+                android:text="@string/tvDoctorLogin"
                 android:textAlignment="center"
                 android:textSize="40sp"
                 android:textStyle="bold"

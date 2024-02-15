@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/img_logo_register"
-                android:text="Frequently Asked Questions"
+                android:text="@string/frequently_asked_questions_tv"
                 android:textAlignment="center"
                 android:textSize="25sp"
                 android:textStyle="bold"
