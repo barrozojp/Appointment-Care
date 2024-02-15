@@ -17,7 +17,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/animationContainer"
+            android:id="@+id/HomeContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
