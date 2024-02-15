@@ -65,6 +65,8 @@
 
     <string name="Service6">Eye Care</string>
     <string name="ServiceDes6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    /* END OF SERVICES*/
+
     <string name="about_us_navmenu">About Us</string>
     <string name="contact_us_navmenu">Contact Us</string>
     <string name="faqs_navmenu">FAQs</string>
@@ -98,7 +100,8 @@
     <string name="services_tv">Services</string>
     <string name="btn_learn_more">Learn More</string>
     <string name="learn_more_btn">Learn More</string>
-    /* END OF SERVICES*/
+    <string name="top_doctors_tv">Top Doctors ⭐</string>
+
 
 
 </resources>
