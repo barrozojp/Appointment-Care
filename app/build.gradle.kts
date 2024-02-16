@@ -57,7 +57,14 @@ dependencies {
     implementation("com.jakewharton.rxbinding2:rxbinding:2.0.0")
     // ~~ //
 
+    // LOTTIE ANIMATION
     implementation("com.airbnb.android:lottie:5.2.0")
+
+    //RETROFIT
+    implementation("com.squareup.retrofit2:retrofit:2.5.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.5.0")
+
+
 
 
 }

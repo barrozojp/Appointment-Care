@@ -72,7 +72,7 @@
                         android:layout_marginRight="25dp"
                         android:text="@string/doctor_rg"
                         android:textColor="#016D73"
-                        android:onClick="checkButton" />
+                        android:onClick="checkButtonDoctor" />
 
                     <RadioButton
                         android:id="@+id/regPATIENT"
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/patient_rg"
                         android:textColor="#016D73"
-                        android:onClick="checkButton"/>
+                        android:onClick="checkButtonPatient"/>
 
                 </LinearLayout>
 
@@ -204,7 +204,7 @@
                         android:layout_marginRight="25dp"
                         android:text="Male"
                         android:textColor="#016D73"
-                        android:onClick="checkButton" />
+                        android:onClick="checkButtonMale" />
 
                     <RadioButton
                         android:id="@+id/genderfemale"
@@ -212,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:text="Female"
                         android:textColor="#016D73"
-                        android:onClick="checkButton"/>
+                        android:onClick="checkButtonFemale"/>
 
                 </LinearLayout>
 
