@@ -1,10 +1,11 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.codeofduty.appointcare.R
 
 class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,9 +1,10 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import com.codeofduty.appointcare.R
 
 class DoctorRegister : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
 data class SearchData(
     val title: String,

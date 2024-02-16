@@ -1,4 +1,4 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,19 +8,20 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Button
 import androidx.core.content.ContextCompat
-import com.codeofduty.appointcare.databinding.ActivityPatientLogInBinding
+import com.codeofduty.appointcare.R
+import com.codeofduty.appointcare.databinding.ActivityDoctorLogInBinding
 import com.google.android.material.textfield.TextInputLayout
 import com.jakewharton.rxbinding2.widget.RxTextView
 
 
 @SuppressLint("CheckResult")
-class PatientLogIn : AppCompatActivity() {
+class DoctorLogIn : AppCompatActivity() {
 
-    private lateinit var binding: ActivityPatientLogInBinding
+    private lateinit var binding: ActivityDoctorLogInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPatientLogInBinding.inflate(layoutInflater)
+        binding = ActivityDoctorLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //EMAIL VALIDATION
@@ -52,33 +53,31 @@ class PatientLogIn : AppCompatActivity() {
             })
         invalidFieldStream.subscribe { isValid ->
             if (isValid) {
-                binding.btnPatientLogIn.isEnabled = true
-                binding.btnPatientLogIn.backgroundTintList = ContextCompat.getColorStateList(this, R.color.primarycolor)
+                binding.btnDoctorLogIn.isEnabled = true
+                binding.btnDoctorLogIn.backgroundTintList = ContextCompat.getColorStateList(this,
+                    R.color.primarycolor
+                )
             } else {
-                binding.btnPatientLogIn.isEnabled = false
-                binding.btnPatientLogIn.backgroundTintList = ContextCompat.getColorStateList(this, android.R.color.darker_gray)
+                binding.btnDoctorLogIn.isEnabled = false
+                binding.btnDoctorLogIn.backgroundTintList = ContextCompat.getColorStateList(this, android.R.color.darker_gray)
             }
         }
 
 
-        val btnLogIn: Button = findViewById(R.id.btn_PatientLogIn)
+        val btnLogIn: Button = findViewById(R.id.btn_DoctorLogIn)
 
         btnLogIn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 // Launch the Main activity for Patient
-                val intent = Intent(this@PatientLogIn, MainActivityPatient::class.java)
+                val intent = Intent(this@DoctorLogIn, MainActivity::class.java)
                 startActivity(intent)
             }
         })
         binding.registerTV.setOnClickListener{
             startActivity(Intent(this, LogIn::class.java))
         }
-
-
-
-
-
     }
+
     // EMAIL ALERT
     private fun showEMAILExistAlert(isNotValid: Boolean){
         binding.emailLOGINEditText.error = if (isNotValid) "Invalid eMAIL" else null

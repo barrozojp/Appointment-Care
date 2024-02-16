@@ -13,37 +13,37 @@
         android:theme="@style/Theme.AppointCare"
         tools:targetApi="31">
         <activity
-            android:name=".Registration"
+            android:name=".activities.Registration"
             android:exported="false" />
         <activity
-            android:name=".MainActivityPatient"
+            android:name=".activities.MainActivityPatient"
             android:exported="false" />
         <activity
-            android:name=".PatientLogIn"
+            android:name=".activities.PatientLogIn"
             android:exported="false" />
         <activity
-            android:name=".LogIn"
+            android:name=".activities.LogIn"
             android:exported="false" />
         <activity
-            android:name=".DoctorRegister"
+            android:name=".activities.DoctorRegister"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name=".activities.Register"
             android:exported="false" />
         <activity
-            android:name=".PatientRegister"
+            android:name=".activities.PatientRegister"
             android:exported="false" />
         <activity
-            android:name=".DoctorLogIn"
+            android:name=".activities.DoctorLogIn"
             android:exported="false" />
         <activity
-            android:name=".SignInRegister"
+            android:name=".activities.SignInRegister"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".activities.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

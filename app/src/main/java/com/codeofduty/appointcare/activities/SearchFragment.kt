@@ -1,4 +1,4 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.codeofduty.appointcare.R
 import java.util.*
 
 class SearchFragment : Fragment() {

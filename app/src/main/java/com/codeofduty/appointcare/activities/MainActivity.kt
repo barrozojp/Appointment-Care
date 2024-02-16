@@ -1,8 +1,5 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
-import AboutUsFragment
-import ContactFragment
-import HomeFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -11,24 +8,27 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.codeofduty.appointcare.R
 import com.codeofduty.appointcare.databinding.ActivityMainBinding
-import com.codeofduty.appointcare.databinding.ActivityMainPatientBinding
 import com.google.android.material.navigation.NavigationView
 
-class MainActivityPatient : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var fragmentManager: FragmentManager
-    private lateinit var binding: ActivityMainPatientBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainPatientBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
         setSupportActionBar(binding.toolbar)
 
-        val toggle = ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbar, R.string.nav_open, R.string.nav_close)
+        val toggle = ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbar,
+            R.string.nav_open,
+            R.string.nav_close
+        )
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -39,7 +39,7 @@ class MainActivityPatient : AppCompatActivity(), NavigationView.OnNavigationItem
             when(item.itemId){
                 R.id.bottom_home -> openFragment(HomeFragment())
                 R.id.bottom_services -> openFragment(ServicesFragment())
-                R.id.bottom_appointments -> openFragment(AppointmentsFragment())
+                R.id.bottom_drpage -> openFragment(DoctorsPageFragment())
                 R.id.bottom_search -> openFragment(SearchFragment())
                 R.id.bottom_profile -> openFragment(ProfileFragment())
             }

@@ -1,4 +1,4 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
 import android.animation.LayoutTransition
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import com.codeofduty.appointcare.R
 
 
 class FAQsFragment : Fragment() {

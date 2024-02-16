@@ -1,4 +1,4 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.codeofduty.appointcare.R
 
 class SearchAdapter(var mList: List<SearchData>) :
     RecyclerView.Adapter<SearchAdapter.LanguageViewHolder>() {

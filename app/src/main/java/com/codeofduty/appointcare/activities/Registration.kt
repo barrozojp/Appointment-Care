@@ -1,4 +1,4 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.codeofduty.appointcare.R
 import com.google.android.material.textfield.TextInputLayout
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.codeofduty.appointcare.databinding.ActivityRegistrationBinding
@@ -182,7 +183,9 @@ class Registration : AppCompatActivity() {
         invalidFieldStream.subscribe { isValid ->
             if (isValid) {
                 binding.btnRegister.isEnabled = true
-                binding.btnRegister.backgroundTintList = ContextCompat.getColorStateList(this, R.color.primarycolor)
+                binding.btnRegister.backgroundTintList = ContextCompat.getColorStateList(this,
+                    R.color.primarycolor
+                )
             } else {
                 binding.btnRegister.isEnabled = false
                 binding.btnRegister.backgroundTintList = ContextCompat.getColorStateList(this, android.R.color.darker_gray)

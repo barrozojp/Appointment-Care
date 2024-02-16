@@ -1,9 +1,10 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.codeofduty.appointcare.R
 
 class SplashScreen : AppCompatActivity() {
 

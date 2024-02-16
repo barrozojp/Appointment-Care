@@ -1,7 +1,8 @@
-package com.codeofduty.appointcare
+package com.codeofduty.appointcare.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.codeofduty.appointcare.R
 
 class PatientRegister : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
