@@ -195,7 +195,27 @@ class Registration : AppCompatActivity() {
 
 // CLICK
         binding.btnRegister.setOnClickListener{
-            startActivity(Intent(this, LogIn::class.java))
+
+            val lname = binding.LNameRegEditText.text.toString().trim()
+            val phoneNumber = binding.PhoneNumRegEditText.text.toString().trim()
+            val email = binding.emailRegEditText.text.toString().trim()
+            val age = binding.AgeRegEditText.text.toString().trim()
+            val password = binding.PasswordRegEditText.text.toString().trim()
+            val confirmPassword = binding.ConfirmPasswordRegEditText.text.toString().trim()
+
+// Selected values from radio groups
+            val gender = when {
+                binding.gendermale.isChecked -> "Male"
+                binding.genderfemale.isChecked -> "Female"
+                else -> "null" // Handle default case if no gender is selected
+            }
+
+            val registerAs = when {
+                binding.regDOCTOR.isChecked -> "Doctor"
+                binding.regPATIENT.isChecked -> "Patient"
+                else -> "null" // Handle default case if neither doctor nor patient is selected
+            }
+
         }
         binding.haveAccBTN.setOnClickListener{
             startActivity(Intent(this, LogIn::class.java))

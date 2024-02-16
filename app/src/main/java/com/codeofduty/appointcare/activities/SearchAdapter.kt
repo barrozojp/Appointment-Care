@@ -3,6 +3,7 @@ package com.codeofduty.appointcare.activities
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,9 @@ class SearchAdapter(var mList: List<SearchData>) :
         val logo: ImageView = itemView.findViewById(R.id.logoIv)
         val titleTv: TextView = itemView.findViewById(R.id.titleTv)
         val searchDesc: TextView = itemView.findViewById(R.id.langDesc)
+        val viewProfileBTN: Button = itemView.findViewById(R.id.viewProfileBTN)
+        val appointmentBTN: Button = itemView.findViewById(R.id.appointmentBTN)
+
 
         init {
             searchDesc.visibility = View.GONE
@@ -25,6 +29,10 @@ class SearchAdapter(var mList: List<SearchData>) :
             titleTv.text = searchData.title
             searchDesc.text = searchData.desc
             searchDesc.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
+            viewProfileBTN.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
+            appointmentBTN.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
+
+
 
             itemView.setOnClickListener {
                 val expanded = searchData.isExpandable

@@ -1,5 +1,7 @@
 package com.codeofduty.appointcare.activities
 
+import android.widget.Button
+
 data class SearchData(
     val title: String,
     val logo: Int,
