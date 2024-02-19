@@ -27,7 +27,7 @@ class SignInRegister : AppCompatActivity() {
         btnRegister.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 // Launch the Register activity
-                val intent = Intent(this@SignInRegister, Registration::class.java)
+                val intent = Intent(this@SignInRegister, Register::class.java)
                 startActivity(intent)
             }
         })

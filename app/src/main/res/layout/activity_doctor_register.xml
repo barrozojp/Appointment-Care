@@ -10,20 +10,21 @@
 
   <ImageView
       android:id="@+id/img_logo_login"
-      android:layout_width="150dp"
-      android:layout_height="150dp"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
       android:src="@drawable/splashscreenlogo"
       android:layout_alignParentStart="true"
       android:layout_alignParentEnd="true"
       android:layout_marginTop="30dp"
+      android:layout_marginBottom="10dp"
       />
   <androidx.cardview.widget.CardView
-      android:id="@+id/cardviewRegisterDoctor"
+      android:id="@+id/cardviewRegistration"
       android:layout_width="350dp"
-      android:layout_height="520dp"
+      android:layout_height="wrap_content"
       app:cardCornerRadius="12dp"
       app:cardElevation="8dp"
-      android:backgroundTint="#FFF"
+      android:backgroundTint="#E9EFEF"
       android:layout_marginTop="0dp"
       android:layout_centerInParent="true"
       android:layout_below="@id/img_logo_login">
@@ -34,109 +35,275 @@
         android:padding="16dp">
 
       <TextView
-          android:id="@+id/doctor_register"
+          android:id="@+id/registrationTITLE"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="@string/doctor_register"
+          android:text="Doctor Registration"
           android:textAlignment="center"
-          android:textSize="40sp"
+          android:textSize="35sp"
           android:textStyle="bold"
           android:textColor="#6EAB36"/>
 
-      <EditText
-          android:id="@+id/FNameRegisterDoctor"
-          android:layout_width="350dp"
-          android:layout_height="40dp"
-          android:inputType="text"
-          android:layout_below="@id/doctor_register"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="10dp"
-          android:hint="First Name"/>
 
-      <EditText
-          android:id="@+id/LNameRegisterDoctor"
-          android:layout_width="350dp"
-          android:layout_height="40dp"
-          android:inputType="text"
-          android:layout_below="@id/FNameRegisterDoctor"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="10dp"
-          android:hint="Last Name"/>
 
-      <EditText
-          android:id="@+id/numberRegister"
-          android:layout_width="350dp"
-          android:layout_height="40dp"
-          android:inputType="number"
-          android:layout_below="@id/LNameRegisterDoctor"
-          android:layout_centerHorizontal="true"
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/FNameRegLayout"
+          android:layout_below="@id/registrationTITLE"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"
           android:layout_marginTop="10dp"
-          android:hint="Phone Number (+63)"
-          />
+          android:background="#fff"
+          android:textColorHint="#80016D73"
 
-      <LinearLayout
-          android:id="@+id/genderchoice"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/FNameRegEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:lines="1"
+            android:inputType="textPersonName"
+            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:background="#fff"
+            android:paddingStart="10dp"
+            android:drawablePadding="10dp"
+            android:drawableTint="#007E85"
+            android:hint="@string/first_name_tv"
+            android:textColor="#016D73"
+            android:paddingTop="5dp"
+            />
+
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/LNameRegLayout"
+          android:layout_below="@id/FNameRegLayout"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"
+          android:layout_marginTop="10dp"
+          android:background="#fff"
+          android:textColorHint="#80016D73"
+
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/LNameRegEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:lines="1"
+            android:inputType="textPersonName"
+            android:drawableLeft="@drawable/baseline_account_circle_24"
+            android:background="#fff"
+            android:paddingStart="10dp"
+            android:drawablePadding="10dp"
+            android:drawableTint="#007E85"
+            android:hint="@string/last_name_tf"
+            android:textColor="#016D73"
+            android:paddingTop="5dp"
+            />
+
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/PhoneNumRegLayout"
+          android:layout_below="@id/LNameRegLayout"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"
+          android:layout_marginTop="10dp"
+          android:background="#fff"
+          android:textColorHint="#80016D73"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/PhoneNumRegEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:lines="1"
+            android:inputType="phone"
+            android:drawableLeft="@drawable/baseline_phone_24"
+            android:background="#fff"
+            android:paddingStart="10dp"
+            android:drawablePadding="10dp"
+            android:drawableTint="#007E85"
+            android:hint="@string/phone_number_63_tf"
+            android:textColor="#016D73"
+            android:paddingTop="5dp"
+            />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <RadioGroup
+          android:id="@+id/gender"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_below="@id/numberRegister">
+          android:layout_below="@id/PhoneNumRegLayout"
+          android:layout_marginTop="10dp"
+          android:background="#fff">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Role:"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:textSize="18sp"/>
+            android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/genderSpinner"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp" />
-      </LinearLayout>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/gender_rg"
+              android:textColor="#016D73"
+              android:layout_marginRight="38dp"
+              android:textSize="18sp"/>
+
+          <RadioButton
+              android:id="@+id/gendermale"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="25dp"
+              android:text="Male"
+              android:textColor="#016D73"
+              android:onClick="checkButtonMale" />
+
+          <RadioButton
+              android:id="@+id/genderfemale"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Female"
+              android:textColor="#016D73"
+              android:onClick="checkButtonFemale"/>
+
+        </LinearLayout>
 
 
-      <EditText
-          android:id="@+id/emailregisterDoctor"
-          android:layout_width="350dp"
-          android:layout_height="40dp"
-          android:inputType="textEmailAddress"
-          android:layout_below="@id/genderchoice"
-          android:layout_centerHorizontal="true"
+      </RadioGroup>
+
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/emailRegLayout"
+          android:layout_below="@id/gender"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"
           android:layout_marginTop="10dp"
-          android:hint="@string/e_mail_register"/>
-      <EditText
-          android:id="@+id/ageRegister"
-          android:layout_width="350dp"
-          android:layout_height="40dp"
-          android:inputType="number"
-          android:layout_below="@id/emailregisterDoctor"
-          android:layout_centerHorizontal="true"
+          android:background="#fff"
+          android:textColorHint="#80016D73"
+
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailRegEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:lines="1"
+            android:inputType="textEmailAddress"
+            android:drawableLeft="@drawable/baseline_email_24"
+            android:background="#fff"
+            android:paddingStart="10dp"
+            android:drawablePadding="10dp"
+            android:drawableTint="#007E85"
+            android:hint="@string/e_mail_tv"
+            android:textColor="#016D73"
+            android:paddingTop="5dp"
+            />
+
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/AgeRegLayout"
+          android:layout_below="@id/emailRegLayout"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"
           android:layout_marginTop="10dp"
-          android:hint="Age"
-          />
+          android:background="#fff"
+          android:textColorHint="#80016D73"
+          >
 
-      <EditText
-          android:id="@+id/passwordRegister"
-          android:layout_width="350dp"
-          android:layout_height="40dp"
-          android:inputType="textPassword"
-          android:layout_below="@id/ageRegister"
-          android:layout_centerHorizontal="true"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/AgeRegEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:lines="1"
+            android:inputType="number"
+            android:drawableLeft="@drawable/baseline_escalator_warning_24"
+            android:background="#fff"
+            android:paddingStart="10dp"
+            android:drawablePadding="10dp"
+            android:drawableTint="#007E85"
+            android:hint="@string/age_tf"
+            android:textColor="#016D73"
+            android:paddingTop="5dp"
+            />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/PasswordRegLayout"
+          android:layout_below="@id/AgeRegLayout"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"
           android:layout_marginTop="10dp"
-          android:hint="@string/password_login"/>
+          android:background="#fff"
+          android:textColorHint="#80016D73"
+          app:passwordToggleEnabled="true"
+          app:passwordToggleTint="#016D73"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/PasswordRegEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:lines="1"
+            android:maxLength="16"
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/baseline_lock_24"
+            android:background="#fff"
+            android:paddingStart="10dp"
+            android:drawablePadding="10dp"
+            android:drawableTint="#007E85"
+            android:hint="@string/password_tf"
+            android:textColor="#016D73"
+            android:paddingTop="5dp"
+            />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/ConfirmPasswordRegLayout"
+          android:layout_below="@id/PasswordRegLayout"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"
+          android:layout_marginTop="10dp"
+          android:background="#fff"
+          android:textColorHint="#80016D73"
+          app:passwordToggleEnabled="true"
+          app:passwordToggleTint="#016D73"
+          >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ConfirmPasswordRegEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:lines="1"
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/baseline_lock_24"
+            android:background="#fff"
+            android:paddingStart="10dp"
+            android:drawablePadding="10dp"
+            android:drawableTint="#007E85"
+            android:hint="@string/confirm_password_tf"
+            android:textColor="#016D73"
+            android:paddingTop="5dp"
+            />
+      </com.google.android.material.textfield.TextInputLayout>
 
 
-      <Button
-          android:id="@+id/btn_SignInLogIn"
+
+      <androidx.appcompat.widget.AppCompatButton
+          android:id="@+id/btnRegister"
           android:layout_width="350dp"
           android:layout_height="80dp"
-          android:layout_below="@id/passwordRegister"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="20dp"
-          android:backgroundTint="#007E85"
+          android:layout_below="@id/ConfirmPasswordRegLayout"
+          android:layout_marginTop="11dp"
           android:text="@string/register"
+          style="@style/ButtonColor3"
           android:textColor="#FFF"
           android:textSize="20sp" />
 
@@ -147,24 +314,25 @@
       android:id="@+id/alreadyhaveaccount"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/cardviewRegisterDoctor"
+      android:layout_below="@id/cardviewRegistration"
       android:text="@string/already_have_an_account"
-      android:layout_marginTop="10dp"
+      android:layout_marginTop="15dp"
       android:textAlignment="center"
       android:textSize="16sp"
       android:textColor="#007E85"
       />
 
   <TextView
+      android:id="@+id/haveAccBTN"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/alreadyhaveaccount"
+      android:layout_below="@+id/alreadyhaveaccount"
       android:layout_alignParentBottom="true"
-      android:layout_marginTop="5dp"
+      android:layout_marginTop="10dp"
       android:text="@string/log_in_register"
       android:textAlignment="center"
       android:textColor="#007E85"
-      android:textSize="25sp"
+      android:textSize="20sp"
       android:textStyle="bold" />
 
 
