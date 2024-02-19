@@ -12,7 +12,6 @@ import com.codeofduty.appointcare.R
 import com.codeofduty.appointcare.activities.SearchAdapter
 import com.codeofduty.appointcare.activities.SearchData
 import com.codeofduty.appointcare.api.RetrofitClient
-import com.codeofduty.appointcare.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

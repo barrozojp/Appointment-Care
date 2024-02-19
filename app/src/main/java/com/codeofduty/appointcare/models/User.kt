@@ -1,14 +1,33 @@
-package com.codeofduty.appointcare.model
+import com.google.gson.annotations.SerializedName
 
 data class User(
-    val _id: String,
+    @SerializedName("_id")
+    val id: String? = null,
+
+    @SerializedName("role")
     val role: String,
+
+    @SerializedName("Fname")
     val Fname: String,
+
+    @SerializedName("Lname")
     val Lname: String,
+
+    @SerializedName("number")
     val number: String,
+
+    @SerializedName("gender")
     val gender: String,
+
+    @SerializedName("age")
     val age: Int,
+
+    @SerializedName("email")
     val email: String,
+
+    @SerializedName("password")
     val password: String,
-    val __v: Int
+
+    @SerializedName("__v")
+    val version: Int? = null
 )

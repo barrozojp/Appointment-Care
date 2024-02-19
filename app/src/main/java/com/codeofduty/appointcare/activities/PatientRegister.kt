@@ -1,19 +1,21 @@
 package com.codeofduty.appointcare.activities
 
+import User
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
-import android.widget.ArrayAdapter
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.codeofduty.appointcare.R
+import com.codeofduty.appointcare.api.RetrofitClient
 import com.codeofduty.appointcare.databinding.ActivityPatientRegisterBinding
 import com.google.android.material.textfield.TextInputLayout
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.Observable
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PatientRegister : AppCompatActivity() {
     private lateinit var binding: ActivityPatientRegisterBinding
@@ -22,27 +24,6 @@ class PatientRegister : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPatientRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // RADIO GROUP//
-        val radioGroup = findViewById<RadioGroup>(R.id.gender)
-        val maleRadioButton = findViewById<RadioButton>(R.id.gendermale)
-        val femaleRadioButton = findViewById<RadioButton>(R.id.genderfemale)
-
-        // Set OnClickListener for male radio button
-        maleRadioButton.setOnClickListener {
-            if (femaleRadioButton.isChecked) {
-                femaleRadioButton.isChecked = false
-            }
-            showToast("Male")
-        }
-
-        // Set OnClickListener for female radio button
-        femaleRadioButton.setOnClickListener {
-            if (maleRadioButton.isChecked) {
-                maleRadioButton.isChecked = false
-            }
-            showToast("Female")
-        }
 
 
         //First Name Validation//
@@ -76,15 +57,16 @@ class PatientRegister : AppCompatActivity() {
         phoneNumberStream.subscribe {
             showPhoneNumExistAlert(it)
         }
-        // Gender Validation
-        val genderStream = Observable.create<Boolean> { emitter ->
-            binding.gender.setOnCheckedChangeListener { group, checkedId ->
-                val isValid = checkedId != -1
-                emitter.onNext(isValid)
+
+        //GENDER VALIDATION
+
+        val genderStream = RxTextView.textChanges(binding.genderEditText)
+            .skipInitialValue()
+            .map { gender ->
+                gender.toString() !in listOf("Male", "Female")
             }
-        }
-        genderStream.subscribe { isValid ->
-            showGenderAlert(!isValid)
+        genderStream.subscribe {
+            showgenderExistAlert(it)
         }
 
 
@@ -103,7 +85,7 @@ class PatientRegister : AppCompatActivity() {
         val AgeStream = RxTextView.textChanges(binding.AgeRegEditText)
             .skipInitialValue()
             .map { age ->
-                age.isEmpty()
+                age.length > 2
             }
         AgeStream.subscribe {
             showAgeExistAlert(it)
@@ -164,15 +146,52 @@ class PatientRegister : AppCompatActivity() {
 
 // CLICK
         binding.btnRegister.setOnClickListener {
-            startActivity(Intent(this, LogIn::class.java))
-
-
+            registerDoctor()
         }
         binding.haveAccBTN.setOnClickListener {
             startActivity(Intent(this, LogIn::class.java))
         }
 
     }
+    private fun registerDoctor() {
+
+        val FName = binding.FNameRegEditText.text.toString().trim()
+        val LName = binding.LNameRegEditText.text.toString().trim()
+        val phoneNumber = binding.PhoneNumRegEditText.text.toString().trim()
+        val gender = binding.genderEditText.text.toString().trim()
+        val email = binding.emailRegEditText.text.toString().trim()
+        val age = binding.AgeRegEditText.text.toString().trim().toInt()
+        val password = binding.PasswordRegEditText.text.toString().trim()
+
+        val user = User(
+            role = "Patient",
+            Fname = FName,
+            Lname = LName,
+            number = phoneNumber,
+            gender = gender,
+            age = age,
+            email = email,
+            password = password
+        )
+
+        val call = RetrofitClient.getService().registerUser(user)
+        call.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@PatientRegister, "Patient registered successfully", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@PatientRegister, LogIn::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(this@PatientRegister, "Registration failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Toast.makeText(this@PatientRegister, "Registration failed", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
 
     private fun showToast(gender: String) {
         Toast.makeText(this, "You chose $gender", Toast.LENGTH_SHORT).show()
@@ -195,6 +214,11 @@ class PatientRegister : AppCompatActivity() {
     // NUMBER ALERT
     private fun showPhoneNumExistAlert(isNotValid: Boolean) {
         binding.PhoneNumRegEditText.error = if (isNotValid) "Cannot exceed 10 characters" else null
+    }
+
+    // GENDER ALERT
+    private fun showgenderExistAlert(isNotValid: Boolean) {
+        binding.genderEditText.error = if (isNotValid) "Invalid Gender (Male or Female)" else null
     }
 
     // EMAIL ALERT
