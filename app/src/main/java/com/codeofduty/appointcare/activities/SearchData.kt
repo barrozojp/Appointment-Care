@@ -5,6 +5,7 @@ import android.widget.Button
 data class SearchData(
     val title: String,
     val logo: Int,
-    val desc: String,
+    val num: String,
+    val email: String,
     var isExpandable: Boolean = false
 )

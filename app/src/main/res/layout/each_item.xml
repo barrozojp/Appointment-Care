@@ -59,18 +59,35 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/langDesc"
-            android:layout_width="0dp"
+            android:id="@+id/phonenum"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/baseline_phone_24"
+            android:gravity="center"
             android:padding="8dp"
+            android:drawablePadding="10dp"
+            android:text="+639467352176"
             android:textColor="#000"
-            android:textAlignment="center"
             android:textSize="16sp"
-            android:text="Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible."
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/constraintLayout" />
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/baseline_email_24"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="example@gmail.com"
+            android:drawablePadding="10dp"
+            android:textColor="#000"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phonenum" />
 
         <Button
             android:id="@+id/viewProfileBTN"
@@ -84,7 +101,7 @@
             android:textColor="#fff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/langDesc"
+            app:layout_constraintTop_toBottomOf="@+id/email"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button

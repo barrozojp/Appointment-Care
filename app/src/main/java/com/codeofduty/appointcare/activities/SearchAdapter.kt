@@ -15,20 +15,25 @@ class SearchAdapter(var mList: List<SearchData>) :
     inner class LanguageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val logo: ImageView = itemView.findViewById(R.id.logoIv)
         val titleTv: TextView = itemView.findViewById(R.id.titleTv)
-        val searchDesc: TextView = itemView.findViewById(R.id.langDesc)
+        val searchNum: TextView = itemView.findViewById(R.id.phonenum)
+        val searchemail: TextView = itemView.findViewById(R.id.email)
         val viewProfileBTN: Button = itemView.findViewById(R.id.viewProfileBTN)
         val appointmentBTN: Button = itemView.findViewById(R.id.appointmentBTN)
 
 
         init {
-            searchDesc.visibility = View.GONE
+            searchNum.visibility = View.GONE
+            searchemail.visibility = View.GONE
+
         }
 
         fun bind(searchData: SearchData) {
             logo.setImageResource(searchData.logo)
             titleTv.text = searchData.title
-            searchDesc.text = searchData.desc
-            searchDesc.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
+            searchNum.text = searchData.num
+            searchemail.text = searchData.email
+            searchNum.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
+            searchemail.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
             viewProfileBTN.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
             appointmentBTN.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
 

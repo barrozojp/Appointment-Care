@@ -196,12 +196,12 @@ class Registration : AppCompatActivity() {
 // CLICK
         binding.btnRegister.setOnClickListener{
 
-            val lname = binding.LNameRegEditText.text.toString().trim()
-            val phoneNumber = binding.PhoneNumRegEditText.text.toString().trim()
+            val Fname = binding.FNameRegEditText.text.toString().trim()
+            val Lname = binding.LNameRegEditText.text.toString().trim()
+            val number = binding.PhoneNumRegEditText.text.toString().trim()
             val email = binding.emailRegEditText.text.toString().trim()
             val age = binding.AgeRegEditText.text.toString().trim()
             val password = binding.PasswordRegEditText.text.toString().trim()
-            val confirmPassword = binding.ConfirmPasswordRegEditText.text.toString().trim()
 
 // Selected values from radio groups
             val gender = when {
@@ -210,7 +210,7 @@ class Registration : AppCompatActivity() {
                 else -> "null" // Handle default case if no gender is selected
             }
 
-            val registerAs = when {
+            val task = when {
                 binding.regDOCTOR.isChecked -> "Doctor"
                 binding.regPATIENT.isChecked -> "Patient"
                 else -> "null" // Handle default case if neither doctor nor patient is selected

@@ -1,37 +1,19 @@
 package com.codeofduty.appointcare.api
 
-import android.util.Base64
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+interface RetrofitClient {
+    companion object {
+        private const val BASE_URL = "https://appointment-care-api.vercel.app/api/v1/auth/"
 
-object RetrofitClient {
+        fun getService(): ApiService {
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
-    private val AUTH = "Basic"+ Base64.encodeToString("janpol@gmail.com:12345678".toByteArray(), Base64.NO_WRAP)
-
-    private const val BASE_URL = "http://localhost:3001/api/v1/auth/"
-
-    private val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor { chain ->
-            val original = chain.request()
-
-            val requestBuilder = original.newBuilder()
-                .addHeader("Authorization", AUTH)
-                .method(original.method(), original.body())
-
-            val request = requestBuilder.build()
-            chain.proceed(request)
-        }.build()
-
-    val instance: Api by lazy {
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-
-        retrofit.create(Api::class.java)
+            return retrofit.create(ApiService::class.java)
+        }
     }
 
 }

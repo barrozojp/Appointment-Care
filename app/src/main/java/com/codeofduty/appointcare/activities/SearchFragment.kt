@@ -1,5 +1,3 @@
-package com.codeofduty.appointcare.activities
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +9,21 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codeofduty.appointcare.R
+import com.codeofduty.appointcare.activities.SearchAdapter
+import com.codeofduty.appointcare.activities.SearchData
+import com.codeofduty.appointcare.api.RetrofitClient
+import com.codeofduty.appointcare.model.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class SearchFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
-    private var mList = ArrayList<SearchData>()
     private lateinit var adapter: SearchAdapter
+    private var mList = ArrayList<SearchData>()
     private lateinit var topDoctorsLayout: View
 
     override fun onCreateView(
@@ -33,7 +38,6 @@ class SearchFragment : Fragment() {
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        addDataToList()
         adapter = SearchAdapter(mList)
         recyclerView.adapter = adapter
 
@@ -67,7 +71,46 @@ class SearchFragment : Fragment() {
             false
         }
 
+        fetchData()
+
         return view
+    }
+
+    private fun fetchData() {
+        val service = RetrofitClient.getService()
+        val call = service.getUsersWithDoctorRole()
+
+        call.enqueue(object : Callback<List<User>> {
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                if (response.isSuccessful) {
+                    val users = response.body()
+                    if (users != null) {
+                        populateList(users)
+                    }
+                } else {
+                    // Handle unsuccessful response
+                }
+            }
+
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                // Handle failure
+            }
+        })
+    }
+
+    private fun populateList(users: List<User>) {
+        val doctorUsers = users.filter { it.role == "Doctor" }
+        for (user in doctorUsers) {
+            mList.add(
+                SearchData(
+                    "${user.Fname} ${user.Lname}",
+                    R.drawable.doctor_profile,
+                    "Phone: ${user.number}",
+                    "Email: ${user.email}"
+                )
+            )
+        }
+        adapter.notifyDataSetChanged()
     }
 
     private fun filterList(query: String?) {
@@ -89,73 +132,5 @@ class SearchFragment : Fragment() {
         } else {
             recyclerView.visibility = View.GONE // Hide RecyclerView when search query is empty
         }
-    }
-
-    private fun addDataToList() {
-        mList.add(
-            SearchData(
-                "Dr.Java",
-                R.drawable.doctor_profile,
-                "Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible."
-
-            )
-        )
-        mList.add(
-            SearchData(
-                "Dr.Kotlin",
-                R.drawable.doctor_profile,
-                "Kotlin is a cross-platform, statically typed, general-purpose programming language with type inference. Kotlin is designed to interoperate fully with Java, and the JVM version of Kotlin's standard library depends on the Java Class Library, but type inference allows its syntax to be more concise."
-
-            )
-        )
-        mList.add(
-            SearchData(
-                "Dr.HTML",
-                R.drawable.doctor_profile,
-                "The HyperText Markup Language or HTML is the standard markup language for documents designed to be displayed in a web browser."
-
-            )
-        )
-        mList.add(
-            SearchData(
-                "Dr.Python",
-                R.drawable.doctor_profile,
-                "Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation."
-
-            )
-        )
-        mList.add(
-            SearchData(
-                "Dr.C++",
-                R.drawable.doctor_profile,
-                "C++ is a high-level general-purpose programming language created by Danish computer scientist Bjarne Stroustrup as an extension of the C programming language, or C with Classes."
-
-
-            )
-        )
-        mList.add(
-            SearchData(
-                "Dr.Swift",
-                R.drawable.doctor_profile,
-                "Swift is a general-purpose, multi-paradigm, compiled programming language developed by Apple Inc. and the open-source community."
-
-            )
-        )
-        mList.add(
-            SearchData(
-                "Dr.JavaScript",
-                R.drawable.doctor_profile,
-                "JavaScript, often abbreviated as JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS. As of 2022, 98% of websites use JavaScript on the client side for webpage behavior, often incorporating third-party libraries."
-
-            )
-        )
-        mList.add(
-            SearchData(
-                "Dr.C#",
-                R.drawable.doctor_profile,
-                "C# is a general-purpose, high-level multi-paradigm programming language. C# encompasses static typing, strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented, and component-oriented programming disciplines."
-
-            )
-        )
     }
 }
