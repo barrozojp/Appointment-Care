@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
-import android.widget.ProgressBar
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.codeofduty.appointcare.R
@@ -145,6 +145,8 @@ class DoctorRegister : AppCompatActivity() {
 
 // CLICK
         binding.btnRegister.setOnClickListener {
+            Toast.makeText(this@DoctorRegister, "Please wait...", Toast.LENGTH_SHORT).show()
+
             registerDoctor()
         }
         binding.haveAccBTN.setOnClickListener {
@@ -153,7 +155,6 @@ class DoctorRegister : AppCompatActivity() {
 
     }
     private fun registerDoctor() {
-
         val FName = binding.FNameRegEditText.text.toString().trim()
         val LName = binding.LNameRegEditText.text.toString().trim()
         val phoneNumber = binding.PhoneNumRegEditText.text.toString().trim()
@@ -249,20 +250,6 @@ class DoctorRegister : AppCompatActivity() {
         } else {
             binding.ConfirmPasswordRegLayout.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
             null
-        }
-    }
-
-    // Show Register As Alert
-    private fun showRegisterAsAlert(isNotValid: Boolean) {
-        if (isNotValid) {
-            Toast.makeText(this, "Please select a role", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    // Show Gender Alert
-    private fun showGenderAlert(isNotValid: Boolean) {
-        if (isNotValid) {
-            Toast.makeText(this, "Please select your gender", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -146,6 +146,8 @@ class PatientRegister : AppCompatActivity() {
 
 // CLICK
         binding.btnRegister.setOnClickListener {
+            Toast.makeText(this@PatientRegister, "Please wait...", Toast.LENGTH_SHORT).show()
+
             registerDoctor()
         }
         binding.haveAccBTN.setOnClickListener {
@@ -250,20 +252,6 @@ class PatientRegister : AppCompatActivity() {
         } else {
             binding.ConfirmPasswordRegLayout.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
             null
-        }
-    }
-
-    // Show Register As Alert
-    private fun showRegisterAsAlert(isNotValid: Boolean) {
-        if (isNotValid) {
-            Toast.makeText(this, "Please select a role", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    // Show Gender Alert
-    private fun showGenderAlert(isNotValid: Boolean) {
-        if (isNotValid) {
-            Toast.makeText(this, "Please select your gender", Toast.LENGTH_SHORT).show()
         }
     }
 }
