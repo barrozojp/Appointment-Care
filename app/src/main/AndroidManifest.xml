@@ -15,6 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppointCare"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/googleMap_API"/>
+
         <activity
             android:name=".activities.Registration"
             android:exported="false" />
