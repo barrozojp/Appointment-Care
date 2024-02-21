@@ -15,8 +15,11 @@ class SearchAdapter(var mList: List<SearchData>) :
     inner class LanguageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val logo: ImageView = itemView.findViewById(R.id.logoIv)
         val titleTv: TextView = itemView.findViewById(R.id.titleTv)
+        val speciality: TextView = itemView.findViewById(R.id.specialityTv)
         val searchNum: TextView = itemView.findViewById(R.id.phonenum)
         val searchemail: TextView = itemView.findViewById(R.id.email)
+        val searchlocation: TextView = itemView.findViewById(R.id.location)
+        val cnsltPrice: TextView = itemView.findViewById(R.id.cnsltPrice)
         val viewProfileBTN: Button = itemView.findViewById(R.id.viewProfileBTN)
         val appointmentBTN: Button = itemView.findViewById(R.id.appointmentBTN)
 
@@ -24,16 +27,23 @@ class SearchAdapter(var mList: List<SearchData>) :
         init {
             searchNum.visibility = View.GONE
             searchemail.visibility = View.GONE
+            searchlocation.visibility = View.GONE
+            cnsltPrice.visibility = View.GONE
 
         }
 
         fun bind(searchData: SearchData) {
             logo.setImageResource(searchData.logo)
             titleTv.text = searchData.title
+            speciality.text = searchData.specialty
             searchNum.text = searchData.num
             searchemail.text = searchData.email
+            searchlocation.text = searchData.location
+            cnsltPrice.text = searchData.cnsltPrice
             searchNum.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
             searchemail.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
+            searchlocation.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
+            cnsltPrice.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
             viewProfileBTN.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
             appointmentBTN.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
 

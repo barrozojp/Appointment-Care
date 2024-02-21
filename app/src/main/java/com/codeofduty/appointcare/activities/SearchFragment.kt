@@ -98,14 +98,17 @@ class SearchFragment : Fragment() {
     }
 
     private fun populateList(users: List<DoctorUsers>) {
-        val doctorUsers = users.filter { it.role == "Doctor" }
+        val doctorUsers = users.filter { it.role == "Doctor" && it.status == "Accepted" }
         for (user in doctorUsers) {
             mList.add(
                 SearchData(
                     "${user.Fname} ${user.Lname}",
+                    "Speciality: ${user.specialty}",
                     R.drawable.doctor_profile,
                     "Phone: ${user.number}",
-                    "Email: ${user.email}"
+                    "Email: ${user.email}",
+                    "${user.hn} ${user.barangay} , ${user.municipality} ${user.province}",
+                    "Consultation Price: ${user.consultPrice}"
                 )
             )
         }

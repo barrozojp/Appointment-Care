@@ -56,12 +56,26 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardView"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/specialityTv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Speciality"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardView"
+                app:layout_constraintTop_toBottomOf="@+id/titleTv" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/phonenum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableTint="#FF1010"
             android:drawableStart="@drawable/baseline_phone_24"
             android:gravity="center"
             android:padding="8dp"
@@ -77,6 +91,7 @@
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableTint="#016D73"
             android:drawableStart="@drawable/baseline_email_24"
             android:gravity="center"
             android:padding="8dp"
@@ -88,6 +103,39 @@
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/phonenum" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/baseline_location_pin_24"
+            android:drawableTint="#F44336"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Location"
+            android:drawablePadding="10dp"
+            android:textColor="#000"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email" />
+
+        <TextView
+            android:id="@+id/cnsltPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/baseline_money_24"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="PHP 0000"
+            android:drawablePadding="10dp"
+            android:textColor="#000"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location" />
 
         <Button
             android:id="@+id/viewProfileBTN"
@@ -101,7 +149,7 @@
             android:textColor="#fff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/cnsltPrice"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
