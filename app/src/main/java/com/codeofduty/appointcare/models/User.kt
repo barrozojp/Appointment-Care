@@ -28,11 +28,20 @@ data class User(
     @SerializedName("password")
     val password: String,
 
-    @SerializedName("__v")
-    val version: Int? = null,
-
     @SerializedName("imageData")
     val imageData: String? = null,
+
+    @SerializedName("hn")
+    val hn: Int? = null,
+
+    @SerializedName("barangay")
+    val barangay: String? = null,
+
+    @SerializedName("municipality")
+    val municipality: String? = null,
+
+    @SerializedName("province")
+    val province: String? = null,
 
     @SerializedName("status")
     val status: String? = null,
@@ -41,7 +50,7 @@ data class User(
     val specialty: String? = null,
 
     @SerializedName("md")
-    val md: String? = null,
+    val md: Int? = null,
 
     @SerializedName("consultPrice")
     val consultPrice: Int? = null,
@@ -50,5 +59,8 @@ data class User(
     val f2f: Boolean? = null,
 
     @SerializedName("online")
-    val online: Boolean? = null
+    val online: Boolean? = null,
+
+    @SerializedName("__v")
+    val version: Int? = null,
 )

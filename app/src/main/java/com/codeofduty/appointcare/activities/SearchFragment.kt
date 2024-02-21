@@ -79,8 +79,8 @@ class SearchFragment : Fragment() {
         val service = RetrofitClient.getService()
         val call = service.getUsersWithDoctorRole()
 
-        call.enqueue(object : Callback<List<User>> {
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+        call.enqueue(object : Callback<List<DoctorUsers>> {
+            override fun onResponse(call: Call<List<DoctorUsers>>, response: Response<List<DoctorUsers>>) {
                 if (response.isSuccessful) {
                     val users = response.body()
                     if (users != null) {
@@ -91,13 +91,13 @@ class SearchFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+            override fun onFailure(call: Call<List<DoctorUsers>>, t: Throwable) {
                 // Handle failure
             }
         })
     }
 
-    private fun populateList(users: List<User>) {
+    private fun populateList(users: List<DoctorUsers>) {
         val doctorUsers = users.filter { it.role == "Doctor" }
         for (user in doctorUsers) {
             mList.add(
