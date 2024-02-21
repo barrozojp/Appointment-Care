@@ -1,9 +1,9 @@
 package com.codeofduty.appointcare.activities
 
-import User
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -13,6 +13,7 @@ import com.codeofduty.appointcare.databinding.ActivityPatientRegisterBinding
 import com.google.android.material.textfield.TextInputLayout
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.Observable
+import patientRegister
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -165,7 +166,7 @@ class PatientRegister : AppCompatActivity() {
         val age = binding.AgeRegEditText.text.toString().trim().toInt()
         val password = binding.PasswordRegEditText.text.toString().trim()
 
-        val user = User(
+        val patientForm = patientRegister(
             role = "Patient",
             Fname = FName,
             Lname = LName,
@@ -173,12 +174,13 @@ class PatientRegister : AppCompatActivity() {
             gender = gender,
             age = age,
             email = email,
-            password = password
+            password = password,
+            consultation = " "
         )
 
-        val call = RetrofitClient.getService().registerUser(user)
-        call.enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
+        val call = RetrofitClient.getService().registerPatient(patientForm)
+        call.enqueue(object : Callback<patientRegister> {
+            override fun onResponse(call: Call<patientRegister>, response: Response<patientRegister>) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@PatientRegister, "Patient registered successfully", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@PatientRegister, LogIn::class.java))
@@ -188,8 +190,10 @@ class PatientRegister : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(this@PatientRegister, "Registration failed", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<patientRegister>, t: Throwable) {
+                Toast.makeText(this@PatientRegister, "Registration Successful", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this@PatientRegister, LogIn::class.java))
+                finish()
             }
         })
     }

@@ -32,7 +32,7 @@ data class User(
     val imageData: String? = null,
 
     @SerializedName("hn")
-    val hn: Int? = null,
+    val hn: String? = null,
 
     @SerializedName("barangay")
     val barangay: String? = null,
@@ -50,10 +50,10 @@ data class User(
     val specialty: String? = null,
 
     @SerializedName("md")
-    val md: Int? = null,
+    val md: String? = null,
 
     @SerializedName("consultPrice")
-    val consultPrice: Int? = null,
+    val consultPrice: String? = null,
 
     @SerializedName("f2f")
     val f2f: Boolean? = null,

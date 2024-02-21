@@ -3,6 +3,7 @@ package com.codeofduty.appointcare.api
 import DoctorUsers
 import User
 import com.codeofduty.appointcare.models.LoginUser
+import patientRegister
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -14,9 +15,14 @@ interface ApiService {
     @GET("person/users")
     fun getUsersWithDoctorRole(): Call<List<DoctorUsers>>
 
-    // SIGN UP
+    // SIGN UP DOCTOR
     @POST("auth/Signup")
-    fun registerUser(@Body user: User): Call<User>
+    fun registerDoctor(@Body user: User): Call<User>
+
+    // SIGN UP PATIENT
+    @POST("auth/Signup")
+    fun registerPatient(@Body patientForm: patientRegister): Call<patientRegister>
+
 
     //SIGN IN
     @POST("auth/Login")

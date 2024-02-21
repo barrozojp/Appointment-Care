@@ -19,6 +19,8 @@ import retrofit2.Callback
 import retrofit2.Response
 class DoctorRegister : AppCompatActivity() {
     private lateinit var binding: ActivityDoctorRegisterBinding
+    private var f2fChecked = false
+    private var onlineChecked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +92,73 @@ class DoctorRegister : AppCompatActivity() {
             showAgeExistAlert(it)
         }
 
+        //SPECIALITY
+        val specialityStream = RxTextView.textChanges(binding.specialityEditText)
+            .skipInitialValue()
+            .map { speciality ->
+                speciality.isEmpty()
+            }
+        specialityStream.subscribe {
+            showSpecialityExistAlert(it)
+        }
+
+        //MD YEAR
+        val mdStream = RxTextView.textChanges(binding.mdEditText)
+            .skipInitialValue()
+            .map { md ->
+                md.length == 5
+            }
+        mdStream.subscribe {
+            showmdExistAlert(it)
+        }
+        //CONSTULTATION PRICE
+        val cnsltStream = RxTextView.textChanges(binding.cnsltPriceEditText)
+            .skipInitialValue()
+            .map { cnslt ->
+                cnslt.isEmpty()
+            }
+        cnsltStream.subscribe {
+            cnsltExistAlert(it)
+        }
+        //PROVINCE
+        val ProvinceStream = RxTextView.textChanges(binding.provinceEditText)
+            .skipInitialValue()
+            .map { province ->
+                province.isEmpty()
+            }
+        ProvinceStream.subscribe {
+            provinceExistAlert(it)
+        }
+        //MUNICIPALITY
+        val municipalityStream = RxTextView.textChanges(binding.municipalityEditText)
+            .skipInitialValue()
+            .map { municipality ->
+                municipality.isEmpty()
+            }
+        municipalityStream.subscribe {
+            municipalityExistAlert(it)
+        }
+        //BARANGGAY
+        val brngyStream = RxTextView.textChanges(binding.municipalityEditText)
+            .skipInitialValue()
+            .map { brngy ->
+                brngy.isEmpty()
+            }
+        brngyStream.subscribe {
+            brngyExistAlert(it)
+        }
+
+        //HOUSE NUMBER
+        val hnStream = RxTextView.textChanges(binding.hnEditText)
+            .skipInitialValue()
+            .map { hn ->
+                hn.isEmpty()
+            }
+        hnStream.subscribe {
+            hnExistAlert(it)
+        }
+
+
         //PASSWORD VALIDATION
         val passwordStream = RxTextView.textChanges(binding.PasswordRegEditText)
             .skipInitialValue()
@@ -123,12 +192,37 @@ class DoctorRegister : AppCompatActivity() {
             phoneNumberStream,
             EMAILStream,
             AgeStream,
+            specialityStream,
+            mdStream,
             passwordStream,
             confirmPasswordStream,
-            { FnameInvalid: Boolean, LnameInvalid: Boolean, phonenumInvalid: Boolean, emailInvalid: Boolean, ageInvalid: Boolean, passwordInvalid: Boolean, confirmPassInvalid: Boolean ->
-                !FnameInvalid && !LnameInvalid && !phonenumInvalid && !emailInvalid && !ageInvalid && !passwordInvalid && !confirmPassInvalid
+            { FnameInvalid: Boolean, LnameInvalid: Boolean, phonenumInvalid: Boolean, emailInvalid: Boolean, ageInvalid: Boolean, specialityInvalid: Boolean, mdInvalid: Boolean,  passwordInvalid: Boolean, confirmPassInvalid: Boolean ->
+                !FnameInvalid && !LnameInvalid && !phonenumInvalid && !emailInvalid && !ageInvalid && !specialityInvalid && !mdInvalid &&  !passwordInvalid && !confirmPassInvalid
             })
         invalidFieldStream.subscribe { isValid ->
+            if (isValid) {
+                binding.btnRegister.isEnabled = true
+                binding.btnRegister.backgroundTintList = ContextCompat.getColorStateList(
+                    this,
+                    R.color.primarycolor
+                )
+            } else {
+                binding.btnRegister.isEnabled = false
+                binding.btnRegister.backgroundTintList =
+                    ContextCompat.getColorStateList(this, android.R.color.darker_gray)
+            }
+        }
+
+        val invalidFieldStream2 = io.reactivex.Observable.combineLatest(
+            cnsltStream,
+            ProvinceStream,
+            municipalityStream,
+            brngyStream,
+            hnStream,
+            { cnsltInvalid: Boolean, provinceInvalid: Boolean, municipalityInvalid: Boolean, brngyInvalid: Boolean, hnInvalid: Boolean ->
+                !cnsltInvalid && !provinceInvalid && !municipalityInvalid && !brngyInvalid && !hnInvalid
+            })
+        invalidFieldStream2.subscribe { isValid ->
             if (isValid) {
                 binding.btnRegister.isEnabled = true
                 binding.btnRegister.backgroundTintList = ContextCompat.getColorStateList(
@@ -153,6 +247,17 @@ class DoctorRegister : AppCompatActivity() {
             startActivity(Intent(this, LogIn::class.java))
         }
 
+
+        // Checkboxes setup
+        binding.checkboxF2f.setOnCheckedChangeListener { _, isChecked ->
+            f2fChecked = isChecked
+        }
+
+        binding.checkboxOnline.setOnCheckedChangeListener { _, isChecked ->
+            onlineChecked = isChecked
+        }
+
+
     }
     private fun registerDoctor() {
         val FName = binding.FNameRegEditText.text.toString().trim()
@@ -161,6 +266,13 @@ class DoctorRegister : AppCompatActivity() {
         val gender = binding.genderEditText.text.toString().trim()
         val email = binding.emailRegEditText.text.toString().trim()
         val age = binding.AgeRegEditText.text.toString().trim().toInt()
+        val speciality = binding.specialityEditText.text.toString().trim()
+        val md = binding.mdEditText.text.toString().trim()
+        val consultPrice = binding.cnsltPriceEditText.text.toString().trim()
+        val province = binding.provinceEditText.text.toString().trim()
+        val municipality = binding.municipalityEditText.text.toString().trim()
+        val barangay = binding.brgyEditText.text.toString().trim()
+        val hn = binding.hnEditText.text.toString().trim()
         val password = binding.PasswordRegEditText.text.toString().trim()
 
         val user = User(
@@ -170,11 +282,21 @@ class DoctorRegister : AppCompatActivity() {
             number = phoneNumber,
             gender = gender,
             age = age,
+            specialty = speciality,
+            md = md,
+            consultPrice = consultPrice,
+            province = province,
+            municipality = municipality,
+            barangay = barangay,
+            hn = hn,
             email = email,
-            password = password
+            password = password,
+            f2f = f2fChecked,
+            online = onlineChecked,
+            status = "Pending"
         )
 
-        val call = RetrofitClient.getService().registerUser(user)
+        val call = RetrofitClient.getService().registerDoctor(user)
         call.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
@@ -187,7 +309,9 @@ class DoctorRegister : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(this@DoctorRegister, "Registration failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@DoctorRegister, "Registration Successful", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this@DoctorRegister, LogIn::class.java))
+                finish()
             }
         })
     }
@@ -230,6 +354,37 @@ class DoctorRegister : AppCompatActivity() {
     private fun showAgeExistAlert(isNotValid: Boolean) {
         binding.AgeRegEditText.error = if (isNotValid) "Invalid Age" else null
     }
+
+    // SPECIALITY ALERT
+    private fun showSpecialityExistAlert(isNotValid: Boolean) {
+        binding.specialityEditText.error = if (isNotValid) "Invalid Speciality" else null
+    }
+    // MD ALERT
+    private fun showmdExistAlert(isNotValid: Boolean) {
+        binding.mdEditText.error = if (isNotValid) "Invalid MD Year" else null
+    }
+    // CONSULT ALERT
+    private fun cnsltExistAlert(isNotValid: Boolean) {
+        binding.cnsltPriceEditText.error = if (isNotValid) "Invalid Consultation Price" else null
+    }
+    // PROVINCE ALERT
+    private fun provinceExistAlert(isNotValid: Boolean) {
+        binding.provinceEditText.error = if (isNotValid) "Invalid Province" else null
+    }
+    // MUNICIPALITY ALERT
+    private fun municipalityExistAlert(isNotValid: Boolean) {
+        binding.municipalityEditText.error = if (isNotValid) "Invalid Municipality" else null
+    }
+    // BARANGGAY ALERT
+    private fun brngyExistAlert(isNotValid: Boolean) {
+        binding.brgyEditText.error = if (isNotValid) "Invalid Baranggay" else null
+    }
+    // HOUSE NUMBER ALERT
+    private fun hnExistAlert(isNotValid: Boolean) {
+        binding.hnEditText.error = if (isNotValid) "Invalid House Number" else null
+    }
+
+
 
     // PASSWORD ALERT
     private fun showPasswordAlert(isNotValid: Boolean) {
