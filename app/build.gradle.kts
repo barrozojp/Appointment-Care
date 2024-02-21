@@ -65,6 +65,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.5.0")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
 
+    //LOCATION
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
 
 
 
