@@ -266,7 +266,7 @@ class DoctorRegister : AppCompatActivity() {
         val gender = binding.genderEditText.text.toString().trim()
         val email = binding.emailRegEditText.text.toString().trim()
         val age = binding.AgeRegEditText.text.toString().trim().toInt()
-        val speciality = binding.specialityEditText.text.toString().trim()
+        val specialty = binding.specialityEditText.text.toString().trim()
         val md = binding.mdEditText.text.toString().trim()
         val consultPrice = binding.cnsltPriceEditText.text.toString().trim()
         val province = binding.provinceEditText.text.toString().trim()
@@ -282,7 +282,7 @@ class DoctorRegister : AppCompatActivity() {
             number = phoneNumber,
             gender = gender,
             age = age,
-            specialty = speciality,
+            specialty = specialty,
             md = md,
             consultPrice = consultPrice,
             province = province,

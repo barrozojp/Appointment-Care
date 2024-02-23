@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 
 
 interface RetrofitClient {
@@ -56,12 +57,32 @@ interface RetrofitClient {
 
         private class AuthInterceptor(val context: Context) : Interceptor {
             override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
-                val token = TokenManger.getToken() ?: ""
+                val token = getToken(context)
+                val role = getRoleFromSharedPreferences(context)
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization", "Bearer $token")
-                    .build()
-                return chain.proceed(request)
+
+                // Add token to the request headers if available
+                token?.let {
+                    request.addHeader("Authorization", "Bearer $token")
+                }
+                // Add role to the request headers if available
+                role?.let {
+                    request.addHeader("Role", role)
+                }
+
+
+                return chain.proceed(request.build())
             }
+        }
+        // Function to retrieve role from SharedPreferences
+        private fun getRoleFromSharedPreferences(context: Context): String? {
+            val sharedPreferences = context.getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+            return sharedPreferences.getString("role", null)
+        }
+        fun logout(context: Context) {
+            val prefs: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+            prefs.edit().clear().apply()
+
         }
     }
 }
