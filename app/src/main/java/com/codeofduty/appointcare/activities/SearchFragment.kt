@@ -3,8 +3,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +32,12 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
+
+        // Initialize searchView first
+        searchView = view.findViewById(R.id.searchView)
+        val searchText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        searchText.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
+        searchText.setHintTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
 
         recyclerView = view.findViewById(R.id.recyclerViewSearch)
         searchView = view.findViewById(R.id.searchView)
