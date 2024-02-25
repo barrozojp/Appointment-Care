@@ -101,9 +101,8 @@
     <string name="btn_learn_more">Learn More</string>
     <string name="learn_more_btn">Learn More</string>
     <string name="top_doctors_tv">Top Doctors ⭐</string>
-    
-    <string name="googleMap_API">AIzaSyDfferTN0U_Bx6Llfl9Y4O-XGVFvzatouY</string>
 
+    <string name="googleMap_API">AIzaSyDfferTN0U_Bx6Llfl9Y4O-XGVFvzatouY</string>
 
 
 </resources>
