@@ -39,6 +39,7 @@ class ProfileFragment : Fragment() {
             tvYourNumber.text = user.number
         }
 
+
         logoutButton = view.findViewById(R.id.btn_logout)
         logoutButton.setOnClickListener {
             // Call the logout function
