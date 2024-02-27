@@ -156,7 +156,7 @@ class UserLogin : AppCompatActivity() {
         editor.putString("barangay", user.barangay)
         editor.putInt("consultPrice", user.consultPrice ?: -1)
         editor.putString("email", user.email)
-        editor.putBoolean("f2f", user.f2f ?: false) // Using false as a default value for nullable Boolean
+        editor.putBoolean("f2f", user.f2f ?: false)
         editor.putString("gender", user.gender)
         editor.putInt("hn", user.hn ?: -1)
         editor.putInt("md", user.md ?: -1)

@@ -86,12 +86,12 @@
                     android:text="Your Name"
                     android:textColor="#000"
                     android:background="@drawable/rounded_corners"
-                    android:textAlignment="center"
                     android:textSize="20sp"
                     android:layout_below="@id/cardIMG"
                     android:layout_marginTop="20dp"
                     app:drawableTint="#007E85"
                     app:drawableLeftCompat="@drawable/baseline_account_circle_24"
+                    android:drawablePadding="10dp"
                     android:paddingStart="10dp"
                     />
                 <TextView
@@ -102,12 +102,12 @@
                     android:text="Your eMail"
                     android:textColor="#000"
                     android:background="@drawable/rounded_corners"
-                    android:textAlignment="center"
                     android:textSize="20sp"
                     android:layout_below="@id/tv_yourName"
                     android:layout_marginTop="20dp"
                     app:drawableTint="#007E85"
                     app:drawableLeftCompat="@drawable/baseline_email_24"
+                    android:drawablePadding="10dp"
                     android:paddingStart="10dp"
                     />
                 <TextView
@@ -118,12 +118,12 @@
                     android:text="Your Number"
                     android:textColor="#000"
                     android:background="@drawable/rounded_corners"
-                    android:textAlignment="center"
                     android:textSize="20sp"
                     android:layout_below="@id/tv_yourEmail"
                     android:layout_marginTop="20dp"
                     app:drawableTint="#007E85"
                     app:drawableLeftCompat="@drawable/baseline_phone_24"
+                    android:drawablePadding="10dp"
                     android:paddingStart="10dp"/>
 
                 <Button

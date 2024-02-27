@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primarycolor">#007E85</color>
     <color name="darker_gray">#FF0000</color>
+    <color name="reddish">#FFA8A2</color>
+    <color name="neongreen">#9DFF43</color>
 </resources>
