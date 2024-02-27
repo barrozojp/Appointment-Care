@@ -42,7 +42,7 @@
             android:name=".activities.PatientRegister"
             android:exported="false" />
         <activity
-            android:name=".activities.DoctorLogIn"
+            android:name=".activities.UserLogin"
             android:exported="false" />
         <activity
             android:name=".activities.SignInRegister"

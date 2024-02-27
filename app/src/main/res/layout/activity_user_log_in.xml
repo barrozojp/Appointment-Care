@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.DoctorLogIn"
+    tools:context=".activities.UserLogin"
     android:background="#fff">
 
     <ImageView
@@ -38,7 +38,7 @@
                 android:id="@+id/login_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tvDoctorLogin"
+                android:text="Login Account"
                 android:textAlignment="center"
                 android:textSize="40sp"
                 android:textStyle="bold"

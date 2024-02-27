@@ -244,7 +244,7 @@ class DoctorRegister : AppCompatActivity() {
             registerDoctor()
         }
         binding.haveAccBTN.setOnClickListener {
-            startActivity(Intent(this, LogIn::class.java))
+            startActivity(Intent(this, UserLogin::class.java))
         }
 
 
@@ -301,7 +301,7 @@ class DoctorRegister : AppCompatActivity() {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@DoctorRegister, "Doctor registered successfully", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@DoctorRegister, LogIn::class.java))
+                    startActivity(Intent(this@DoctorRegister, UserLogin::class.java))
                     finish()
                 } else {
                     Toast.makeText(this@DoctorRegister, "Registration failed", Toast.LENGTH_SHORT).show()
@@ -310,7 +310,7 @@ class DoctorRegister : AppCompatActivity() {
 
             override fun onFailure(call: Call<User>, t: Throwable) {
                 Toast.makeText(this@DoctorRegister, "Registration Successful", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@DoctorRegister, LogIn::class.java))
+                startActivity(Intent(this@DoctorRegister, UserLogin::class.java))
                 finish()
             }
         })

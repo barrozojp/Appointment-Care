@@ -1,5 +1,6 @@
 package com.codeofduty.appointcare.activities
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.codeofduty.appointcare.R
+import com.codeofduty.appointcare.models.UserX
 
 class HomeFragment : Fragment() {
 
@@ -19,6 +21,18 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+
+        // Retrieve user data from SharedPreferences
+        val userData = getUserData()
+
+        // Set the text of tv_nameUser TextView
+        val tvNameUser: TextView = view.findViewById(R.id.tv_nameUser)
+        userData?.let { user ->
+            val fullName = "Hello ${user.Fname} ${user.Lname} !"
+            tvNameUser.text = fullName
+        }
+
 
 
         val visitWebTextView: TextView = view.findViewById(R.id.visitWEB)
@@ -48,5 +62,18 @@ class HomeFragment : Fragment() {
             transaction.commit()
         }
         return view
+    }
+    // Retrieve user data from SharedPreferences
+    private fun getUserData(): UserX? {
+        val sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        val fname = sharedPreferences.getString("fname", null)
+        val lname = sharedPreferences.getString("lname", null)
+        // Retrieve other user data as needed
+
+        return if (fname != null && lname != null) {
+            UserX(Fname = fname, Lname = lname)
+        } else {
+            null
+        }
     }
 }

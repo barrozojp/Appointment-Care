@@ -1,6 +1,5 @@
 package com.codeofduty.appointcare.activities
 
-import User
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -11,9 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.codeofduty.appointcare.R
 import com.codeofduty.appointcare.api.RetrofitClient
-import com.codeofduty.appointcare.databinding.ActivityDoctorLogInBinding
-import com.codeofduty.appointcare.models.LoginResponse
+import com.codeofduty.appointcare.databinding.ActivityUserLogInBinding
+import com.codeofduty.appointcare.models.UserLoginResponse
 import com.codeofduty.appointcare.models.LoginUser
+import com.codeofduty.appointcare.models.UserX
 import com.google.android.material.textfield.TextInputLayout
 import com.jakewharton.rxbinding2.widget.RxTextView
 import retrofit2.Call
@@ -22,13 +22,13 @@ import retrofit2.Response
 
 
 @SuppressLint("CheckResult")
-class DoctorLogIn : AppCompatActivity() {
+class UserLogin : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDoctorLogInBinding
+    private lateinit var binding: ActivityUserLogInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDoctorLogInBinding.inflate(layoutInflater)
+        binding = ActivityUserLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //EMAIL VALIDATION
@@ -73,14 +73,14 @@ class DoctorLogIn : AppCompatActivity() {
 // Handle login button click
         binding.btnDoctorLogIn.setOnClickListener {
             // Show "Please wait" message
-            Toast.makeText(this@DoctorLogIn, "Please wait...", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@UserLogin, "Please wait...", Toast.LENGTH_SHORT).show()
 
             // Call the login function
             loginUser()
         }
 
         binding.registerTV.setOnClickListener{
-            startActivity(Intent(this, LogIn::class.java))
+            startActivity(Intent(this, UserLogin::class.java))
         }
     }
 
@@ -103,9 +103,9 @@ class DoctorLogIn : AppCompatActivity() {
         val email = binding.emailLOGINEditText.text.toString().trim()
         val password = binding.PasswordLOGINEditText.text.toString().trim()
 
-        val call = RetrofitClient.getService().signinUser(LoginUser(role = "Doctor", email = email, password = password))
-        call.enqueue(object : Callback<LoginResponse> {
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+        val call = RetrofitClient.getService().signinUser(LoginUser(email = email, password = password))
+        call.enqueue(object : Callback<UserLoginResponse> {
+            override fun onResponse(call: Call<UserLoginResponse>, response: Response<UserLoginResponse>) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     loginResponse?.let { login ->
@@ -116,39 +116,69 @@ class DoctorLogIn : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+            override fun onFailure(call: Call<UserLoginResponse>, t: Throwable) {
                 showError("Failed to connect to server. Please try again later.")
             }
         })
     }
 
-    private fun handleSuccessfulLogin(login: LoginResponse) {
+    private fun handleSuccessfulLogin(login: UserLoginResponse) {
         // Save the token securely
-        RetrofitClient.saveToken(this@DoctorLogIn, login.token)
+        RetrofitClient.saveToken(this@UserLogin, login.token)
 
-        // Login successful, navigate to main activity
-        startActivity(Intent(this@DoctorLogIn, MainActivity::class.java))
+        // Save user data
+        saveUserData(login.user)
+
+        // Redirect based on user's role
+        val targetActivity = when (login.user.role) {
+            "Doctor" -> MainActivity::class.java
+            "Patient" -> MainActivityPatient::class.java
+            else -> SignInRegister::class.java // Handle other roles or no role specified
+        }
+        // Navigate to the appropriate activity
+        startActivity(Intent(this@UserLogin, targetActivity))
         finish()
         Toast.makeText(
-            this@DoctorLogIn,
+            this@UserLogin,
             "Login successful!",
             Toast.LENGTH_SHORT
         ).show()
     }
 
-    private fun saveUserData(user: User) {
+
+    private fun saveUserData(user: UserX) {
         val sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("fname", user.Fname)
         editor.putString("lname", user.Lname)
-        // Save other user data as needed
+        editor.putString("_id", user._id)
+        editor.putInt("age", user.age ?: -1)
+        editor.putString("barangay", user.barangay)
+        editor.putInt("consultPrice", user.consultPrice ?: -1)
+        editor.putString("email", user.email)
+        editor.putBoolean("f2f", user.f2f ?: false) // Using false as a default value for nullable Boolean
+        editor.putString("gender", user.gender)
+        editor.putInt("hn", user.hn ?: -1)
+        editor.putInt("md", user.md ?: -1)
+        editor.putString("municipality", user.municipality)
+        editor.putString("number", user.number)
+        editor.putBoolean("online", user.online ?: false)
+        editor.putString("password", user.password)
+        editor.putString("province", user.province)
+        editor.putString("role", user.role)
+        editor.putString("specialty", user.specialty)
+        editor.putString("status", user.status)
+        editor.putString("consultation", user.consultation)
         editor.apply()
     }
 
 
+
+
+
     private fun showError(message: String) {
         Toast.makeText(
-            this@DoctorLogIn,
+            this@UserLogin,
             message,
             Toast.LENGTH_SHORT
         ).show()

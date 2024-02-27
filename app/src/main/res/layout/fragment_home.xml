@@ -69,7 +69,7 @@
                             android:layout_height="wrap_content"
                             android:text="Hello User"
                             android:textAlignment="center"
-                            android:textColor="#007E85"
+                            android:textColor="#027CFF"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 

@@ -2,11 +2,11 @@ package com.codeofduty.appointcare.activities
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.codeofduty.appointcare.R
+import com.codeofduty.appointcare.models.UserX
 
 class SplashScreen : AppCompatActivity() {
 
@@ -18,10 +18,10 @@ class SplashScreen : AppCompatActivity() {
 
         Handler().postDelayed({
             // Check if the user is already logged in
-            val (isLoggedIn, role) = isLoggedIn()
+            val userData = getUserData()
             val targetActivity = when {
-                isLoggedIn -> {
-                    if (role == "Doctor") MainActivity::class.java
+                userData != null -> {
+                    if (userData.role == "Doctor") MainActivity::class.java
                     else MainActivityPatient::class.java
                 }
                 else -> SignInRegister::class.java
@@ -31,11 +31,13 @@ class SplashScreen : AppCompatActivity() {
         }, SPLASH_TIME)
     }
 
-    private fun isLoggedIn(): Pair<Boolean, String?> {
-        val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
-        val token = sharedPreferences.getString("token", null)
+    private fun getUserData(): UserX? {
+        val sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE)
         val role = sharedPreferences.getString("role", null)
-        Log.d("Role", "Role: $role") // Log the role for debugging purposes
-        return Pair(!token.isNullOrEmpty(), role)
+        return if (!role.isNullOrEmpty()) {
+            UserX(role = role)
+        } else {
+            null
+        }
     }
 }

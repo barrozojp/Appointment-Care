@@ -218,7 +218,7 @@ class Registration : AppCompatActivity() {
 
         }
         binding.haveAccBTN.setOnClickListener{
-            startActivity(Intent(this, LogIn::class.java))
+            startActivity(Intent(this, UserLogin::class.java))
         }
 
     }

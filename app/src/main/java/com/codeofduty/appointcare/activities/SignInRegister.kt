@@ -17,7 +17,7 @@ class SignInRegister : AppCompatActivity() {
         btnSignIn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 // Launch the LogIn activity
-                val intent = Intent(this@SignInRegister, LogIn::class.java)
+                val intent = Intent(this@SignInRegister, UserLogin::class.java)
                 startActivity(intent)
             }
         })
