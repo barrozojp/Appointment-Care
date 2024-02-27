@@ -80,7 +80,7 @@ interface RetrofitClient {
             return sharedPreferences.getString("role", null)
         }
         fun logout(context: Context) {
-            val prefs: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+            val prefs: SharedPreferences = context.getSharedPreferences("UserData", Context.MODE_PRIVATE)
             prefs.edit().clear().apply()
 
         }

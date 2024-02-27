@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
         // Set the text of tv_nameUser TextView
         val tvNameUser: TextView = view.findViewById(R.id.tv_nameUser)
         userData?.let { user ->
-            val fullName = "Hello ${user.Fname} ${user.Lname} !"
+            val fullName = "Hello, ${user.Fname} ${user.Lname} !"
             tvNameUser.text = fullName
         }
 

@@ -1,6 +1,7 @@
 package com.codeofduty.appointcare.activities
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -100,12 +101,19 @@ class UserLogin : AppCompatActivity() {
     }
     // Method to handle user login
     private fun loginUser() {
+        // Show loading dialog
+        val loadingDialog = createLoadingDialog()
+        loadingDialog.show()
+
         val email = binding.emailLOGINEditText.text.toString().trim()
         val password = binding.PasswordLOGINEditText.text.toString().trim()
 
         val call = RetrofitClient.getService().signinUser(LoginUser(email = email, password = password))
         call.enqueue(object : Callback<UserLoginResponse> {
             override fun onResponse(call: Call<UserLoginResponse>, response: Response<UserLoginResponse>) {
+                // Dismiss loading dialog
+                loadingDialog.dismiss()
+
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     loginResponse?.let { login ->
@@ -117,10 +125,30 @@ class UserLogin : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<UserLoginResponse>, t: Throwable) {
+                // Dismiss loading dialog
+                loadingDialog.dismiss()
+
                 showError("Failed to connect to server. Please try again later.")
             }
         })
     }
+    // Function to create the loading dialog
+    private fun createLoadingDialog(): AlertDialog {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_loading, null)
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false) // Prevent dialog dismissal on outside touch or back press
+
+        val alertDialog = builder.create()
+
+        alertDialog.window?.setBackgroundDrawableResource(R.drawable.dialog_loading_background)
+
+
+        return alertDialog
+
+
+    }
+
 
     private fun handleSuccessfulLogin(login: UserLoginResponse) {
         // Save the token securely
