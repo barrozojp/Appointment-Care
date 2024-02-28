@@ -1,14 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".activities.EditProfileDoctorFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_accSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account Settings"
+                android:textColor="#007E85"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_marginTop="80dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/generalCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fff"
+                app:cardCornerRadius="10dp"
+                android:layout_below="@id/tv_accSettings"
+                android:layout_margin="15dp"
+                app:cardElevation="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- TextView -->
+                    <TextView
+                        android:id="@+id/tv_general"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="General"
+                        android:textColor="#000"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <!-- TextInputLayout -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/FnameEditLayout"
+                        android:layout_below="@id/tv_general"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/FNameEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:lines="1"
+                            android:inputType="textPersonName"
+                            android:background="#00FFFFFF"
+                            android:paddingStart="10dp"
+                            android:drawablePadding="10dp"
+                            android:hint="@string/first_name_tv"
+                            android:textColor="#016D73"
+                            android:paddingTop="5dp"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/LnameEditLayout"
+                        android:layout_below="@id/FnameEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/LnameEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:lines="1"
+                            android:inputType="textPersonName"
+                            android:background="#00FFFFFF"
+                            android:paddingStart="10dp"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#007E85"
+                            android:hint="Last Name"
+                            android:textColor="#016D73"
+                            android:paddingTop="5dp"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/AgeEditLayout"
+                        android:layout_below="@id/LnameEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/AgeEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:lines="1"
+                            android:inputType="number"
+                            android:background="#00FFFFFF"
+                            android:paddingStart="10dp"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#007E85"
+                            android:hint="Age"
+                            android:textColor="#016D73"
+                            android:paddingTop="5dp"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/GenderEditLayout"
+                        android:layout_below="@id/AgeEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/GenderEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:lines="1"
+                            android:inputType="text"
+                            android:background="#00FFFFFF"
+                            android:paddingStart="10dp"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#007E85"
+                            android:hint="Gender"
+                            android:textColor="#016D73"
+                            android:paddingTop="5dp"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/NumberEditLayout"
+                        android:layout_below="@id/GenderEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/NumberEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:lines="1"
+                            android:inputType="text"
+                            android:background="#00FFFFFF"
+                            android:paddingStart="10dp"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#007E85"
+                            android:hint="Number (+63)"
+                            android:textColor="#016D73"
+                            android:paddingTop="5dp"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/emailEditLayout"
+                        android:layout_below="@id/NumberEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/emailEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:lines="1"
+                            android:inputType="text"
+                            android:background="#00FFFFFF"
+                            android:paddingStart="10dp"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#007E85"
+                            android:hint="Gender"
+                            android:textColor="#016D73"
+                            android:paddingTop="5dp"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/emailEditLayout"
+                        android:gravity="center_horizontal">
+
+                        <Button
+                            android:id="@+id/btn_Save"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:textColor="#fff"
+                            android:backgroundTint="#007E85"
+                            android:text="Save"/>
+
+                        <Button
+                            android:id="@+id/btn_cancel"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:backgroundTint="#DFDFDF"
+                            android:text="Cancel"
+                            android:textColor="#000"/>
+
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+</ScrollView>

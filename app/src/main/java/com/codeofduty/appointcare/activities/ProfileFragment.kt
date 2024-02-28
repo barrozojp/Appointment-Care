@@ -19,6 +19,7 @@ import com.codeofduty.appointcare.models.UserX
 class ProfileFragment : Fragment() {
 
     private lateinit var logoutButton: Button
+    private lateinit var editProfileButton: Button
 
 
     override fun onCreateView(
@@ -32,6 +33,8 @@ class ProfileFragment : Fragment() {
         val tvYourName: TextView = view.findViewById(R.id.tv_yourName)
         val tvYourEmail: TextView = view.findViewById(R.id.tv_yourEmail)
         val tvYourNumber: TextView = view.findViewById(R.id.tv_yourNumber)
+        val tvYourGender: TextView = view.findViewById(R.id.tv_yourGender)
+
 
         // Set the text of TextViews
         userData?.let { user ->
@@ -39,6 +42,19 @@ class ProfileFragment : Fragment() {
             tvYourName.text = fullName
             tvYourEmail.text = user.email
             tvYourNumber.text = user.number
+            tvYourGender.text = user.gender
+        }
+
+        editProfileButton = view.findViewById(R.id.btn_editProfile)
+
+        // Set OnClickListener for the Edit Profile button
+        editProfileButton.setOnClickListener {
+            // Navigate to EditProfileDoctorFragment
+            val fragment = EditProfileDoctorFragment()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
         }
 
 
@@ -91,10 +107,11 @@ class ProfileFragment : Fragment() {
         val lname = sharedPreferences.getString("lname", null)
         val email = sharedPreferences.getString("email", null)
         val number = sharedPreferences.getString("number", null)
+        val gender = sharedPreferences.getString("gender", null)
         // Retrieve other user data as needed
 
-        return if (fname != null && lname != null && email != null && number != null) {
-            UserX(Fname = fname, Lname = lname, email = email, number = number)
+        return if (fname != null && lname != null && email != null && number != null && gender !=null) {
+            UserX(Fname = fname, Lname = lname, email = email, number = number, gender = gender)
         } else {
             null
         }
