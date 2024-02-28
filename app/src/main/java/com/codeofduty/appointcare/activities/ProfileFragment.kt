@@ -47,15 +47,41 @@ class ProfileFragment : Fragment() {
 
         editProfileButton = view.findViewById(R.id.btn_editProfile)
 
-        // Set OnClickListener for the Edit Profile button
         editProfileButton.setOnClickListener {
-            // Navigate to EditProfileDoctorFragment
-            val fragment = EditProfileDoctorFragment()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                .commit()
+            // Retrieve user data from SharedPreferences
+            val userData = getUserData()
+
+            // Check if userData is not null and if it contains the role information
+            if (userData != null && userData.role != null) {
+                val role = userData.role
+
+                // Check the user role and navigate accordingly
+                if (role == "Doctor") {
+                    // Navigate to EditProfileDoctorFragment
+                    val fragment = EditProfileDoctorFragment()
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                } else if (role == "Patient") {
+                    // Navigate to EditProfilePatientFragment
+                    val fragment = EditProfilePatientFragmet()
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                } else {
+                    // Handle other roles or scenarios
+                    // You can show a toast message or handle it as per your requirement
+                    Toast.makeText(requireContext(), "Unsupported role", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                // Handle the case where userData or role is null
+                // You can show a toast message or handle it as per your requirement
+                Toast.makeText(requireContext(), "User data or role not found", Toast.LENGTH_SHORT).show()
+            }
         }
+
 
 
         logoutButton = view.findViewById(R.id.btn_logout)
@@ -108,10 +134,12 @@ class ProfileFragment : Fragment() {
         val email = sharedPreferences.getString("email", null)
         val number = sharedPreferences.getString("number", null)
         val gender = sharedPreferences.getString("gender", null)
+        val role = sharedPreferences.getString("role", null)
+
         // Retrieve other user data as needed
 
-        return if (fname != null && lname != null && email != null && number != null && gender !=null) {
-            UserX(Fname = fname, Lname = lname, email = email, number = number, gender = gender)
+        return if (fname != null && lname != null && email != null && number != null && gender !=null && role !=null) {
+            UserX(Fname = fname, Lname = lname, email = email, number = number, gender = gender, role = role)
         } else {
             null
         }

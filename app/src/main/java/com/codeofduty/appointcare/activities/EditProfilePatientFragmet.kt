@@ -18,11 +18,11 @@ import com.codeofduty.appointcare.models.UserX
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.codeofduty.appointcare.databinding.FragmentEditProfileDoctorBinding
+import com.codeofduty.appointcare.databinding.FragmentEditProfilePatientBinding
 
-class EditProfileDoctorFragment : Fragment() {
+class EditProfilePatientFragmet : Fragment() {
 
-    private lateinit var binding: FragmentEditProfileDoctorBinding
+    private lateinit var binding: FragmentEditProfilePatientBinding
 
     private lateinit var FNameEditText: EditText
     private lateinit var LnameEditText: EditText
@@ -31,12 +31,13 @@ class EditProfileDoctorFragment : Fragment() {
     private lateinit var NumberEditText: EditText
     private lateinit var emailEditText: EditText
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment using data binding
-        binding = FragmentEditProfileDoctorBinding.inflate(inflater, container, false)
+        // Inflate the layout for this fragment
+        binding = FragmentEditProfilePatientBinding.inflate(inflater, container, false)
 
         // Initialize EditText fields
         FNameEditText = binding.root.findViewById(R.id.FNameEditText)
@@ -49,12 +50,12 @@ class EditProfileDoctorFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Retrieve user data from SharedPreferences
-        val sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        val sharedPreferences =
+            requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
         val fname = sharedPreferences.getString("fname", null)
         val lname = sharedPreferences.getString("lname", null)
         val age = sharedPreferences.getInt("age", -1)
@@ -89,11 +90,12 @@ class EditProfileDoctorFragment : Fragment() {
                 )
 
                 // Retrieve user ID from SharedPreferences
-                val sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+                val sharedPreferences =
+                    requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
                 val userId = sharedPreferences.getString("_id", null)
 
                 userId?.let { id ->
-                    updateDoctorProfile(id, updatedUser)
+                    updatePatientProfile(id, updatedUser)
                     // Navigate back to ProfileFragment after saving
                 }
             }
@@ -109,25 +111,32 @@ class EditProfileDoctorFragment : Fragment() {
             dialog.setOnShowListener {
                 val positiveButton = (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
                 val negativeButton = (dialog as AlertDialog).getButton(AlertDialog.BUTTON_NEGATIVE)
-                positiveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.reddish))
-                negativeButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.neongreen))
+                positiveButton.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.reddish
+                    )
+                )
+                negativeButton.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.neongreen
+                    )
+                )
             }
 
             dialog.show()
 
         }
 
-
         binding.btnCancel.setOnClickListener {
             // Navigate back to ProfileFragment
             requireActivity().supportFragmentManager.popBackStack()
         }
-
-
     }
 
-    private fun updateDoctorProfile(userId: String, user: UserX) {
-        val call = RetrofitClient.getService().updateDoctorProfile(userId, user)
+    private fun updatePatientProfile(userId: String, user: UserX) {
+        val call = RetrofitClient.getService().updatePatientProfile(userId, user)
         call.enqueue(object : Callback<UserX> {
             override fun onResponse(call: Call<UserX>, response: Response<UserX>) {
                 if (response.isSuccessful) {
@@ -166,4 +175,3 @@ class EditProfileDoctorFragment : Fragment() {
     }
 
 }
-

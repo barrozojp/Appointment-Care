@@ -34,4 +34,8 @@ interface ApiService {
     // EDIT DOCTOR PROFILE
     @PUT("person/users/{userId}")
     fun updateDoctorProfile(@Path("userId") userId: String, @Body user: UserX): Call<UserX>
+
+    // EDIT Patient PROFILE
+    @PUT("person/users/{userId}")
+    fun updatePatientProfile(@Path("userId") userId: String, @Body user: UserX): Call<UserX>
 }
