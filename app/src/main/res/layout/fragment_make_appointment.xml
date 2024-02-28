@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".activities.MakeAppointment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/ltAnimation"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="10dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/greenline_animation" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/doctorCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ltAnimation"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="#fff"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:contentPadding="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/ltAnimation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_nameUser"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:text="FName + Lname"
+                            android:textAlignment="center"
+                            android:textColor="#001123"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_Specialty"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_nameUser"
+                            android:text="Specialty"
+                            android:textAlignment="center"
+                            android:textColor="#007E85"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_mdYEAR"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_Specialty"
+                            android:text="MD since YEAR"
+                            android:textAlignment="center"
+                            android:textColor="#474747"
+                            android:textSize="20sp" />
+
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="right"
+                        android:src="@drawable/baseline_account_circle_24" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/appointmentCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/doctorCard"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="100dp"
+                android:backgroundTint="#fff"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:contentPadding="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_book"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Book an Appointment"
+                        android:textAlignment="center"
+                        android:textColor="#000"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/NameEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/tv_book"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/NameEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="#00FFFFFF"
+                            android:drawablePadding="10dp"
+                            android:hint="Full Name"
+                            android:inputType="textPersonName"
+                            android:lines="1"
+                            android:paddingStart="10dp"
+                            android:paddingTop="5dp"
+                            android:textColor="#016D73" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/emailEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/NameEditLayout"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/emailEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="#00FFFFFF"
+                            android:drawablePadding="10dp"
+                            android:hint="eMail"
+                            android:inputType="textEmailAddress"
+                            android:lines="1"
+                            android:paddingStart="10dp"
+                            android:paddingTop="5dp"
+                            android:textColor="#016D73" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/phoneEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/emailEditLayout"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/phoneEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="#00FFFFFF"
+                            android:drawablePadding="10dp"
+                            android:hint="Phone Number"
+                            android:inputType="textEmailAddress"
+                            android:lines="1"
+                            android:paddingStart="10dp"
+                            android:paddingTop="5dp"
+                            android:textColor="#016D73" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/dateEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/phoneEditLayout"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dateEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="#00FFFFFF"
+                            android:drawableEnd="@drawable/baseline_edit_calendar_24"
+                            android:drawablePadding="10dp"
+                            android:hint="Date (dd/mm/yyyy)"
+                            android:inputType="date"
+                            android:lines="1"
+                            android:paddingStart="10dp"
+                            android:paddingTop="5dp"
+                            android:textColor="#016D73"
+                            android:textColorHint="#000" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/timeEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/dateEditLayout"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/timeEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="#00FFFFFF"
+                            android:drawableEnd="@drawable/baseline_access_time_24"
+                            android:drawablePadding="10dp"
+                            android:hint="Time"
+                            android:inputType="time"
+                            android:lines="1"
+                            android:paddingStart="10dp"
+                            android:paddingTop="5dp"
+                            android:textColor="#016D73"
+                            android:textColorHint="#000" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/f2fonline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_below="@id/timeEditLayout"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Appointment Type: "
+                            android:textColor="#016D73"
+                            android:textStyle="bold"/>
+
+                        <CheckBox
+                            android:id="@+id/checkbox_f2f"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="F2F"
+                            android:checked="true"
+                            android:textColor="#016D73"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="16dp" />
+
+                        <CheckBox
+                            android:id="@+id/checkbox_online"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Online"
+                            android:checked="true"
+                            android:textColor="#016D73"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/buttons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_below="@id/f2fonline"
+                        android:layout_marginTop="10dp">
+
+                        <Button
+                            android:id="@+id/cancel_btn"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#E8E8E8"
+                            android:text="Cancel"
+                            android:layout_margin="10dp"
+                            android:textColor="#000"/>
+                        <Button
+                            android:id="@+id/bookAppoint_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#007E85"
+                            android:text="Book Appointment"
+                            android:layout_margin="10dp"
+                            android:textColor="#fff"
+                            />
+
+
+                    </LinearLayout>
+
+
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+</ScrollView>

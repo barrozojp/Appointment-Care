@@ -2,7 +2,7 @@ import com.google.gson.annotations.SerializedName
 
 data class DoctorUsers(
     @SerializedName("_id")
-    val id: String? = null,
+    val _id: String? = null,
 
     @SerializedName("role")
     val role: String,

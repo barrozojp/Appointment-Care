@@ -111,6 +111,7 @@ class SearchFragment : Fragment() {
             mList.add(
                 SearchData(
                     "${user.Fname} ${user.Lname}",
+                    "${user._id}",
                     "Speciality: ${user.specialty}",
                     R.drawable.doctor_profile,
                     "Phone: ${user.number}",

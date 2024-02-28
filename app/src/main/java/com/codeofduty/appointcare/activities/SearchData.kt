@@ -4,6 +4,7 @@ import android.widget.Button
 
 data class SearchData(
     val title: String,
+    val _id: String,
     val specialty: String,
     val logo: Int,
     val num: String,

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.codeofduty.appointcare.R
 
@@ -29,6 +30,17 @@ class SearchAdapter(var mList: List<SearchData>) :
             searchemail.visibility = View.GONE
             searchlocation.visibility = View.GONE
             cnsltPrice.visibility = View.GONE
+
+
+            appointmentBTN.setOnClickListener {
+                // Start MakeAppointment fragment using fragment's context
+                val fragment = MakeAppointment()
+                val fragmentManager = (itemView.context as AppCompatActivity).supportFragmentManager
+                fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
 
         }
 
