@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codeofduty.appointcare.R
+import com.codeofduty.appointcare.activities.AppointmentClickListener
+import com.codeofduty.appointcare.activities.MakeAppointment
 import com.codeofduty.appointcare.activities.SearchAdapter
 import com.codeofduty.appointcare.activities.SearchData
 import com.codeofduty.appointcare.api.RetrofitClient
@@ -19,13 +21,31 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), AppointmentClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
     private lateinit var adapter: SearchAdapter
     private var mList = ArrayList<SearchData>()
     private lateinit var topDoctorsLayout: View
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Initialize and set the adapter with the click listener
+        adapter = SearchAdapter(mList, this) // Pass 'this' as the AppointmentClickListener
+        recyclerView.adapter = adapter
+    }
+
+    override fun onAppointmentClick(_id: String) {
+        val makeAppointmentFragment = MakeAppointment.newInstance(_id)
+
+        // Navigate to the MakeAppointment fragment
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, makeAppointmentFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +65,7 @@ class SearchFragment : Fragment() {
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = SearchAdapter(mList)
+        adapter = SearchAdapter(mList, this)
         recyclerView.adapter = adapter
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

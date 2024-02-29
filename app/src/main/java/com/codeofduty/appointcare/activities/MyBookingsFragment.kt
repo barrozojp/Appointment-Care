@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.codeofduty.appointcare.R
-import com.codeofduty.appointcare.databinding.FragmentAppointmentsBinding
+import com.codeofduty.appointcare.databinding.FragmentMyBookingsBinding
 
-class AppointmentsFragment : Fragment() {
+class MyBookingsFragment : Fragment() {
 
     private val locations = arrayOf("Select Location: ↓ ", "San Fabian", "Dagupan", "San Carlos", "Calasiao")
     private val times = arrayOf("Select Time: ", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM")
@@ -19,7 +19,7 @@ class AppointmentsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout using view binding
-        val binding = FragmentAppointmentsBinding.inflate(inflater, container, false)
+        val binding = FragmentMyBookingsBinding.inflate(inflater, container, false)
 
         // Set up the Spinner with location choices
         val adapter = ArrayAdapter(requireContext(), R.layout.spinner_item_layout, locations)

@@ -19,6 +19,10 @@ interface ApiService {
     @GET("person/users")
     fun getUsersWithDoctorRole(): Call<List<DoctorUsers>>
 
+    @GET("person/users/{userId}")
+    fun appointDoctorDetails(@Path("userId") userId: String): Call<DoctorUsers>
+
+
     // SIGN UP DOCTOR
     @POST("auth/Signup")
     fun registerDoctor(@Body user: User): Call<User>

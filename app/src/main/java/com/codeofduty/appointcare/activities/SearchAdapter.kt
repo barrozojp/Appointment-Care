@@ -1,5 +1,6 @@
 package com.codeofduty.appointcare.activities
 
+import SearchFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.codeofduty.appointcare.R
 
-class SearchAdapter(var mList: List<SearchData>) :
+class SearchAdapter(var mList: List<SearchData>,
+                    private val appointmentClickListener: AppointmentClickListener) :
     RecyclerView.Adapter<SearchAdapter.LanguageViewHolder>() {
 
     inner class LanguageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -58,6 +60,11 @@ class SearchAdapter(var mList: List<SearchData>) :
             cnsltPrice.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
             viewProfileBTN.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
             appointmentBTN.visibility = if (searchData.isExpandable) View.VISIBLE else View.GONE
+
+            appointmentBTN.setOnClickListener {
+                // Pass the doctor's _id to the fragment when appointment button is clicked
+                appointmentClickListener.onAppointmentClick(searchData._id)
+            }
 
 
 

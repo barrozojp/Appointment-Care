@@ -5,38 +5,48 @@ data class DoctorUsers(
     val _id: String? = null,
 
     @SerializedName("role")
-    val role: String,
+    val role: String? = null,
 
     @SerializedName("Fname")
-    val Fname: String,
+    val Fname: String? = null,
 
     @SerializedName("Lname")
-    val Lname: String,
+    val Lname: String? = null,
 
     @SerializedName("specialty")
-    val specialty: String,
+    val specialty: String? = null,
+
+    @SerializedName("md")
+    val md: String? = null,
 
     @SerializedName("number")
-    val number: String,
+    val number: String? = null,
 
     @SerializedName("email")
-    val email: String,
+    val email: String? = null,
 
     @SerializedName("hn")
-    val hn: String,
+    val hn: String? = null,
 
     @SerializedName("barangay")
-    val barangay: String,
+    val barangay: String? = null,
 
     @SerializedName("municipality")
-    val municipality: String,
+    val municipality: String? = null,
 
     @SerializedName("province")
-    val province: String,
+    val province: String? = null,
 
     @SerializedName("consultPrice")
-    val consultPrice: String,
+    val consultPrice: String? = null,
 
     @SerializedName("status")
-    val status: String
+    val status: String? = null,
+
+    @SerializedName("f2f")
+    val f2f: Boolean? = null,
+
+    @SerializedName("online")
+    val online: Boolean? = null
+
 )

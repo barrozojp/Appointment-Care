@@ -52,7 +52,8 @@
                     <RelativeLayout
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="fill">
 
                         <TextView
                             android:id="@+id/tv_nameUser"
@@ -89,10 +90,10 @@
                     </RelativeLayout>
 
                     <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
                         android:layout_gravity="right"
-                        android:src="@drawable/baseline_account_circle_24" />
+                        android:src="@drawable/doctor_profile" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

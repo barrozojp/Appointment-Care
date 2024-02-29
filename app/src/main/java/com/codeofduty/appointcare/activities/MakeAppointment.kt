@@ -1,20 +1,116 @@
 package com.codeofduty.appointcare.activities
 
+import DoctorUsers
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import com.codeofduty.appointcare.R
+import com.codeofduty.appointcare.api.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class MakeAppointment : Fragment() {
+
+    companion object {
+        private const val ARG_DOCTOR_ID = "_id"
+
+        fun newInstance(_id: String): MakeAppointment {
+            val fragment = MakeAppointment()
+            val args = Bundle()
+            args.putString(ARG_DOCTOR_ID, _id)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    private lateinit var _id: String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            _id = it.getString(ARG_DOCTOR_ID, "")
+        }
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Retrieve the doctor's ID passed from the previous fragment
+        val _id = arguments?.getString(ARG_DOCTOR_ID)
+        // Fetch the doctor's details from the API using the doctorId
+        fetchDoctorDetails(_id)
+    }
+
+
+    private fun fetchDoctorDetails(doctorId: String?) {
+        val service = RetrofitClient.getService()
+        val call = service.appointDoctorDetails(doctorId ?: "")
+
+        call.enqueue(object : Callback<DoctorUsers> {
+            override fun onResponse(call: Call<DoctorUsers>, response: Response<DoctorUsers>) {
+                if (response.isSuccessful) {
+                    val doctorDetails = response.body()
+                    if (doctorDetails != null) {
+                        // Update the UI with the doctor's details
+                        updateDoctorDetailsUI(doctorDetails)
+                    } else {
+                        // Handle empty response (no doctor details found)
+                        Toast.makeText(requireContext(), "No doctor details found", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    // Handle unsuccessful response
+                    Toast.makeText(requireContext(), "Failed to fetch doctor details", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<DoctorUsers>, t: Throwable) {
+                // Handle failure
+                Toast.makeText(requireContext(), "Error fetching doctor details", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+
+
+
+
+    private fun updateDoctorDetailsUI(doctorDetails: DoctorUsers?) {
+        // Check if the doctor's details and the fragment view are not null
+        if (doctorDetails != null && view != null) {
+            // Find the views in the fragment's layout
+            val tvNameUser = requireView().findViewById<TextView>(R.id.tv_nameUser)
+            val tvSpecialty = requireView().findViewById<TextView>(R.id.tv_Specialty)
+            val tvmd = requireView().findViewById<TextView>(R.id.tv_mdYEAR)
+            val f2fCheckBox = requireView().findViewById<CheckBox>(R.id.checkbox_f2f)
+            val onlineCheckBox = requireView().findViewById<CheckBox>(R.id.checkbox_online)
+
+
+            // Set the doctor's details to the respective views
+            tvNameUser?.text = "${doctorDetails.Fname} ${doctorDetails.Lname}"
+            tvSpecialty?.text = "${doctorDetails.specialty}"
+            tvmd?.text = "MD since ${doctorDetails.md}"
+
+            // Set visibility of checkboxes based on doctor's availability
+            f2fCheckBox?.visibility = if (doctorDetails.f2f == false) View.VISIBLE else View.GONE
+            onlineCheckBox?.visibility = if (doctorDetails.online == false) View.VISIBLE else View.GONE
+        }
+    }
+
+
+
 
 
     override fun onCreateView(
