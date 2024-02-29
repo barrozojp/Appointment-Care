@@ -81,7 +81,7 @@ class UserLogin : AppCompatActivity() {
         }
 
         binding.registerTV.setOnClickListener{
-            startActivity(Intent(this, UserLogin::class.java))
+            startActivity(Intent(this, Register::class.java))
         }
     }
 
