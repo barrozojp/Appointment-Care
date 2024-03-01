@@ -9,4 +9,5 @@ data class BookAppointment(
     val online: String,
     val f2f: String,
     val time: String
+
 )

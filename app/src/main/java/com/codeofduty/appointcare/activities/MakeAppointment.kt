@@ -293,7 +293,7 @@ class MakeAppointment : Fragment() {
                     // Optionally, you can navigate to a different fragment or perform any other action
                 } else {
                     // Handle unsuccessful response
-                    Toast.makeText(requireContext(), "Failed to book appointment. Please try again.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "You can only book once!", Toast.LENGTH_SHORT).show()
                 }
             }
 
