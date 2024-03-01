@@ -2,6 +2,7 @@ package com.codeofduty.appointcare.api
 
 import DoctorUsers
 import User
+import com.codeofduty.appointcare.models.BookAppointment
 import com.codeofduty.appointcare.models.UserLoginResponse
 import com.codeofduty.appointcare.models.LoginUser
 import com.codeofduty.appointcare.models.UserX
@@ -42,4 +43,8 @@ interface ApiService {
     // EDIT Patient PROFILE
     @PUT("person/users/{userId}")
     fun updatePatientProfile(@Path("userId") userId: String, @Body user: UserX): Call<UserX>
+
+    @POST("appoint/request/{userId}")
+    fun bookAppointment(@Path("userId") userId: String, @Body book: BookAppointment): Call<BookAppointment>
+
 }
