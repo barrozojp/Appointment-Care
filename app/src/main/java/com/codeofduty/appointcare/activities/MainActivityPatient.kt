@@ -67,11 +67,6 @@ class MainActivityPatient : AppCompatActivity(), NavigationView.OnNavigationItem
     }
 
     override fun onBackPressed() {
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
     }
 
     private fun openFragment(fragment: Fragment){

@@ -5,6 +5,7 @@ import User
 import com.codeofduty.appointcare.models.BookAppointment
 import com.codeofduty.appointcare.models.UserLoginResponse
 import com.codeofduty.appointcare.models.LoginUser
+import com.codeofduty.appointcare.models.MyBookings
 import com.codeofduty.appointcare.models.UserX
 import patientRegister
 import retrofit2.Call
@@ -48,5 +49,12 @@ interface ApiService {
     @POST("appoint/request/{userId}")
     fun bookAppointment(@Path("userId") userId: String, @Body book: BookAppointment): Call<BookAppointment>
 
+    //GET MY BOOKINGS
+    @GET("appoint/schedule/{userId}")
+    fun getBookings(@Path("userId") userId: String): Call<MyBookings>
+
+    //GET DOCTOR DETAILS
+    @GET("person/users/{userId}")
+    fun getDoctorDetails(@Path("userId") userId: String): Call<DoctorUsers>
 
 }
