@@ -1,6 +1,7 @@
 package com.codeofduty.appointcare.activities
 
 import DoctorUsers
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
@@ -14,6 +15,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.codeofduty.appointcare.R
 import com.codeofduty.appointcare.api.RetrofitClient
 import com.codeofduty.appointcare.models.BookAppointment
@@ -239,9 +241,45 @@ class MakeAppointment : Fragment() {
     }
 
     private fun bookAppointment() {
+        // Create an AlertDialog.Builder instance
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+
+        // Set the dialog message and buttons
+        alertDialogBuilder.setMessage("Book appointment?")
+            .setCancelable(false)
+            .setPositiveButton("Yes") { dialog, _ ->
+                // Call the function to proceed with booking the appointment
+                dialog.dismiss()
+                proceedWithAppointmentBooking()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                // Dismiss the dialog
+                dialog.dismiss()
+            }
+
+        // Create the AlertDialog
+        val alertDialog = alertDialogBuilder.create()
+
+        // Set background drawable
+        alertDialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+
+        // Set custom style to the buttons
+        alertDialog.setOnShowListener {
+            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            positiveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.neongreen))
+            negativeButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.reddish))
+        }
+
+        // Show the AlertDialog
+        alertDialog.show()
+    }
+
+    private fun proceedWithAppointmentBooking() {
         // Retrieve user data from SharedPreferences
         val sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
         val userId = sharedPreferences.getString("_id", null)
+        val storedEmail = sharedPreferences.getString("email", null)
 
         // Check if the fragment's view is null
         if (view == null) {
@@ -256,6 +294,12 @@ class MakeAppointment : Fragment() {
         val date = requireView().findViewById<EditText>(R.id.dateEditText)?.text.toString().trim()
         val time = requireView().findViewById<EditText>(R.id.timeEditText)?.text.toString().trim()
 
+        // Check if the entered email matches the stored email
+        if (email != storedEmail) {
+            Toast.makeText(requireContext(), "Email does not match your email", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         // Check the state of checkboxes
         val onlineCheckBox = view?.findViewById<CheckBox>(R.id.checkbox_online)
         val f2fCheckBox = view?.findViewById<CheckBox>(R.id.checkbox_f2f)
@@ -263,7 +307,6 @@ class MakeAppointment : Fragment() {
         // Determine the value of the online parameter based on checkbox states
         val online = if (onlineCheckBox?.isChecked == true) "true" else "false"
         val f2f = if (f2fCheckBox?.isChecked == true) "true" else "false"
-
 
         // Check if any of the fields are empty
         if (fullName.isEmpty() || email.isEmpty() || number.isEmpty() || date.isEmpty() || time.isEmpty()) {
@@ -303,6 +346,7 @@ class MakeAppointment : Fragment() {
             }
         })
     }
+
 
 
 }
