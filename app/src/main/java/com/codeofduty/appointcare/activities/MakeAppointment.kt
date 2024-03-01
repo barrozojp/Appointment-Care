@@ -256,6 +256,15 @@ class MakeAppointment : Fragment() {
         val date = requireView().findViewById<EditText>(R.id.dateEditText)?.text.toString().trim()
         val time = requireView().findViewById<EditText>(R.id.timeEditText)?.text.toString().trim()
 
+        // Check the state of checkboxes
+        val onlineCheckBox = view?.findViewById<CheckBox>(R.id.checkbox_online)
+        val f2fCheckBox = view?.findViewById<CheckBox>(R.id.checkbox_f2f)
+
+        // Determine the value of the online parameter based on checkbox states
+        val online = if (onlineCheckBox?.isChecked == true) "true" else "false"
+        val f2f = if (f2fCheckBox?.isChecked == true) "true" else "false"
+
+
         // Check if any of the fields are empty
         if (fullName.isEmpty() || email.isEmpty() || number.isEmpty() || date.isEmpty() || time.isEmpty()) {
             Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
@@ -268,7 +277,8 @@ class MakeAppointment : Fragment() {
             fullName = fullName,
             email = email,
             number = number,
-            online = "true", // Assuming appointments are made online
+            online = online,
+            f2f = f2f,
             date = date,
             time = time
         )
