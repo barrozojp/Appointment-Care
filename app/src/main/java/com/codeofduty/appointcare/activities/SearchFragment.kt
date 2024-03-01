@@ -27,7 +27,6 @@ class SearchFragment : Fragment(), AppointmentClickListener {
     private lateinit var searchView: SearchView
     private lateinit var adapter: SearchAdapter
     private var mList = ArrayList<SearchData>()
-    private lateinit var topDoctorsLayout: View
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,8 +59,6 @@ class SearchFragment : Fragment(), AppointmentClickListener {
         searchText.setHintTextColor(ContextCompat.getColor(requireContext(), android.R.color.black))
 
         recyclerView = view.findViewById(R.id.recyclerViewSearch)
-        searchView = view.findViewById(R.id.searchView)
-        topDoctorsLayout = view.findViewById(R.id.linear_layout_top_doctors)
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -75,28 +72,9 @@ class SearchFragment : Fragment(), AppointmentClickListener {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 filterList(newText)
-                // Hide top doctors layout with fade animation when search view is active
-                val isSearchViewActive = newText?.isNotEmpty() ?: false
-                if (isSearchViewActive) {
-                    val fadeOut = AlphaAnimation(1f, 0f)
-                    fadeOut.duration = 300 // Adjust the duration as needed
-                    topDoctorsLayout.startAnimation(fadeOut)
-                    topDoctorsLayout.visibility = View.GONE
-                } else {
-                    val fadeIn = AlphaAnimation(0f, 1f)
-                    fadeIn.duration = 300 // Adjust the duration as needed
-                    topDoctorsLayout.startAnimation(fadeIn)
-                    topDoctorsLayout.visibility = View.VISIBLE
-                }
                 return true
             }
-
         })
-
-        searchView.setOnCloseListener {
-            recyclerView.visibility = View.GONE // Hide RecyclerView when search bar is cleared
-            false
-        }
 
         fetchData()
 
@@ -146,22 +124,11 @@ class SearchFragment : Fragment(), AppointmentClickListener {
 
     private fun filterList(query: String?) {
         if (query != null && query.isNotEmpty()) {
-            val filteredList = ArrayList<SearchData>()
-            for (i in mList) {
-                if (i.title.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT))) {
-                    filteredList.add(i)
-                }
-            }
-
-            if (filteredList.isEmpty()) {
-                Toast.makeText(requireContext(), "No Data found", Toast.LENGTH_SHORT).show()
-                recyclerView.visibility = View.GONE // Hide RecyclerView if no data found
-            } else {
-                adapter.setFilteredList(filteredList)
-                recyclerView.visibility = View.VISIBLE // Show RecyclerView if data found
-            }
+            val filteredList = mList.filter { it.title.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT)) }
+            adapter.setFilteredList(filteredList)
         } else {
-            recyclerView.visibility = View.GONE // Hide RecyclerView when search query is empty
+            adapter.setFilteredList(mList)
         }
     }
+
 }

@@ -8,19 +8,19 @@
         />
 
     <item
-        android:id="@+id/bottom_services"
-        android:title="Services"
-        android:icon="@drawable/baseline_library_books_24"/>
+        android:id="@+id/bottom_bookings_dr"
+        android:title="Bookings"
+        android:icon="@drawable/baseline_format_list_bulleted_add_24"/>
 
     <item
-        android:id="@+id/bottom_drpage"
-        android:title="Dr's Page"
-        android:icon="@drawable/baseline_feed_24" />
+        android:id="@+id/bottom_patients_dr"
+        android:title="Patients"
+        android:icon="@drawable/baseline_people_alt_24" />
 
     <item
-        android:id="@+id/bottom_search"
-        android:title="Search"
-        android:icon="@drawable/baseline_search_24"/>
+        android:id="@+id/bottom_rejected"
+        android:title="Rejected"
+        android:icon="@drawable/baseline_do_not_disturb_24"/>
 
     <item
         android:id="@+id/bottom_profile"

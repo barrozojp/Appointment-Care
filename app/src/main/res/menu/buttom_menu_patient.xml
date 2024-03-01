@@ -8,14 +8,14 @@
         />
 
     <item
-        android:id="@+id/bottom_services"
-        android:title="Services"
-        android:icon="@drawable/baseline_library_books_24"/>
-
-    <item
         android:id="@+id/bottom_bookings"
         android:title="Bookings"
-        android:icon="@drawable/baseline_calendar_month_24" />
+        android:icon="@drawable/baseline_edit_calendar_24"/>
+
+    <item
+        android:id="@+id/bottom_consultation"
+        android:title="Consultation"
+        android:icon="@drawable/baseline_health_and_safety_24" />
 
     <item
         android:id="@+id/bottom_search"

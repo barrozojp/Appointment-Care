@@ -1,205 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".activities.MyBookingsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/ltAnimation"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/greenline_animation" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/drpageCard"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#FCFFF9"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp"
-            app:contentPadding="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bookingsCARD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp"
+                android:backgroundTint="#fff">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_bookings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="280dp"
+                        android:src="@drawable/bookings_img" />
 
                     <TextView
-                        android:id="@+id/tv_appointment"
+                        android:id="@+id/tv_consultation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Book Appointment"
+                        android:layout_below="@id/img_bookings"
+                        android:text="No Bookings"
+                        android:textColor="#000"
+                        android:textStyle="bold"
                         android:textAlignment="center"
-                        android:textColor="#007E85"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:textSize="30sp" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_Name"
+                    <TextView
+                        android:id="@+id/tv_bookingsdesc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_appointment"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="#fff"
-                        app:cardCornerRadius="10dp">
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/Appoint_Name"
-                            android:layout_width="match_parent"
-                            android:layout_height="70dp"
-                            android:layout_below="@id/tv_appointment"
-                            android:background="#fff"
-                            android:textColorHint="#80016D73">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/name_ET"
-                                android:layout_width="match_parent"
-                                android:layout_height="70dp"
-                                android:background="#fff"
-                                android:drawableLeft="@drawable/baseline_account_circle_24"
-                                android:drawablePadding="10dp"
-                                android:drawableTint="#007E85"
-                                android:hint="Your Name:"
-                                android:inputType="textPersonName"
-                                android:lines="1"
-                                android:paddingStart="10dp"
-                                android:paddingTop="5dp"
-                                android:textColor="#016D73" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-
-                    </com.google.android.material.card.MaterialCardView>
-
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/card_Name"
-                        android:layout_marginTop="20dp"
-                        android:backgroundTint="#fff"
-                        app:cardCornerRadius="10dp">
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/Appoint_Email"
-                            android:layout_width="match_parent"
-                            android:layout_height="70dp"
-                            android:textColorHint="#80016D73">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/eMail_ET"
-                                android:layout_width="match_parent"
-                                android:layout_height="70dp"
-                                android:background="#fff"
-                                android:drawableLeft="@drawable/baseline_email_24"
-                                android:drawablePadding="10dp"
-                                android:drawableTint="#007E85"
-                                android:hint="Your Email:"
-                                android:inputType="textPersonName"
-                                android:lines="1"
-                                android:paddingStart="10dp"
-                                android:paddingTop="5dp"
-                                android:textColor="#016D73" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_location"
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_below="@id/card_email"
-                        android:layout_marginTop="20dp"
-                        android:backgroundTint="#fff"
-                        app:cardCornerRadius="10dp">
-
-                        <Spinner
-                            android:id="@+id/location_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="54dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="10dp"
-                            android:background="#fff"
-                            android:backgroundTint="#fff"
-                            android:hint="Select Location"
-                            android:paddingStart="5dp"
-                            android:paddingTop="5dp"
-                            android:paddingEnd="5dp"
-                            android:spinnerMode="dropdown"
-                            android:textColor="#016D73" />
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_time"
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_below="@id/card_location"
-                        android:layout_marginTop="20dp"
-                        android:backgroundTint="#fff"
-                        app:cardCornerRadius="10dp">
-
-                        <Spinner
-                            android:id="@+id/time_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="54dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="10dp"
-                            android:background="#fff"
-                            android:backgroundTint="#fff"
-                            android:hint="Select Time"
-                            android:paddingStart="5dp"
-                            android:paddingTop="5dp"
-                            android:paddingEnd="5dp"
-                            android:spinnerMode="dropdown"
-                            android:textColor="#016D73" />
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_below="@id/card_time"
-                        android:layout_marginTop="120dp"
-                        android:backgroundTint="#007E85"
-                        android:text="Book Appointment"
-                        android:textColor="#fff"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:layout_below="@id/tv_consultation"
+                        android:text="You have no bookings at the moment."
+                        android:textColor="#000"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="20dp"/>
 
                 </RelativeLayout>
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
+    </ScrollView>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

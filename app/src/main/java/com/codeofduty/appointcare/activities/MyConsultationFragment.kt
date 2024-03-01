@@ -5,21 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.codeofduty.appointcare.R
+import com.codeofduty.appointcare.databinding.FragmentMyConsultationBinding
 
-
-class MyBookingsFragment : Fragment() {
-
-
+class MyConsultationFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_my_bookings, container, false)
+        // Inflate the layout using view binding
+        val binding = FragmentMyConsultationBinding.inflate(inflater, container, false)
 
 
-        return view
+        return binding.root
     }
+
+
+
 }

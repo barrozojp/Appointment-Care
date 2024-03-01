@@ -8,14 +8,15 @@ import android.view.ViewGroup
 import com.codeofduty.appointcare.R
 
 
-class DoctorsPageFragment : Fragment() {
+class DoctorRejectedPatientsFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_doctors_page, container, false)
+        return inflater.inflate(R.layout.fragment_doctor_rejected_patients, container, false)
     }
 
 }

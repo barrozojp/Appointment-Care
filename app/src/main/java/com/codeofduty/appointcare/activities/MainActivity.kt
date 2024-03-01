@@ -39,9 +39,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId){
                 R.id.bottom_home -> openFragment(HomeFragment())
-                R.id.bottom_services -> openFragment(ServicesFragment())
-                R.id.bottom_drpage -> openFragment(DoctorsPageFragment())
-                R.id.bottom_search -> openFragment(SearchFragment())
+                R.id.bottom_bookings_dr -> openFragment(DoctorAcceptRejectFragment())
+                R.id.bottom_patients_dr -> openFragment(DoctorsPagePatientFragment())
+                R.id.bottom_rejected -> openFragment(DoctorRejectedPatientsFragment())
                 R.id.bottom_profile -> openFragment(ProfileFragment())
             }
 
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_profile -> openFragment(ProfileFragment())
-            R.id.nav_services -> openFragment(ServicesFragment())
+            R.id.nav_services -> openFragment(MyBookingsFragment())
             R.id.nav_search -> openFragment(SearchFragment())
             R.id.nav_faqs -> openFragment(FAQsFragment())
             R.id.nav_contact -> openFragment(ContactFragment())
