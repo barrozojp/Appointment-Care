@@ -140,13 +140,13 @@ class MyBookingsFragment : Fragment() {
                             }
                         } else {
                             // Handle unsuccessful response
-                            Toast.makeText(requireContext(), "Failed to fetch bookings", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "No bookings found", Toast.LENGTH_SHORT).show()
                         }
                     }
 
                     override fun onFailure(call: Call<MyBookings>, t: Throwable) {
                         // Handle failure
-                        Toast.makeText(requireContext(), "Failed to fetch bookings", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "No bookings found", Toast.LENGTH_SHORT).show()
                     }
                 })
             }

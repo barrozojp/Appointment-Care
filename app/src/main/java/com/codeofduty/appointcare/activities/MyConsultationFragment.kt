@@ -134,57 +134,62 @@ class MyConsultationFragment : Fragment() {
                         if (response.isSuccessful) {
                             val myBookings = response.body()
                             if (myBookings != null && myBookings.schedules.isNotEmpty()) {
-                                // Consultation found, make the card gone
-                                noBookingsCard.visibility = View.GONE
+                                val booking = myBookings.schedules[0]
+                                // Consultation found, make the card visible
                                 yourBookingCard.visibility = View.VISIBLE
-
-
-                                val doctorId = myBookings.schedules[0].doctorId
+                                val doctorId = booking.doctorId
                                 doctorId?.let { id ->
                                     // Fetch doctor details using the doctorId
                                     fetchDoctorDetails(id)
                                 }
 
                                 // Set visibility of F2F and Online TextViews based on response
-                                if (myBookings.schedules[0].f2f == true) {
+                                if (booking.f2f == true) {
                                     tv_F2F.visibility = View.VISIBLE
                                 } else {
                                     tv_F2F.visibility = View.GONE
                                 }
 
-                                if (myBookings.schedules[0].online == true) {
+                                if (booking.online == true) {
                                     tv_Online.visibility = View.VISIBLE
                                 } else {
                                     tv_Online.visibility = View.GONE
                                 }
 
                                 // Set time and date
-                                tv_time.text = myBookings.schedules[0].time
-                                tv_date.text = myBookings.schedules[0].date
+                                tv_time.text = booking.time
+                                tv_date.text = booking.date
 
                                 val statusLabelText = "Status: "
-                                val status = myBookings.schedules[0].status
+                                val status = booking.status
                                 val fullStatusText = "$statusLabelText$status"
                                 tv_Status.text = fullStatusText
 
-                                //SET CONSULTATION
-                                val observationLabelText = "Observation:  "
-                                val observation = myBookings.schedules[0].observation
-                                val observationText = "$observationLabelText$observation"
-                                tv_observation.text = observationText
+                                // Check if observation, symptoms, or prescription are null
+                                if (booking.observation == null || booking.symptoms == null || booking.prescription == null) {
+                                    // If any of them is null, hide the booking card
+                                    yourBookingCard.visibility = View.GONE
+                                } else {
+                                    // Otherwise, set consultation details
+                                    val observationLabelText = "Observation:  "
+                                    val observation = booking.observation
+                                    val observationText = "$observationLabelText$observation"
+                                    tv_observation.text = observationText
 
-                                val prescriptionLabelText = "Prescription:  "
-                                val prescription = myBookings.schedules[0].prescription
-                                val prescriptionText = "$prescriptionLabelText$prescription"
-                                tv_prescription.text = prescriptionText
+                                    val prescriptionLabelText = "Prescription:  "
+                                    val prescription = booking.prescription
+                                    val prescriptionText = "$prescriptionLabelText$prescription"
+                                    tv_prescription.text = prescriptionText
 
-                                // Set symptoms visibility
-                                setSymptomsVisibility(myBookings.schedules[0].symptoms)
+                                    // Set symptoms visibility
+                                    setSymptomsVisibility(booking.symptoms)
 
+                                    noBookingsCard.visibility = View.GONE
+                                }
                             } else {
-                                // No bookings found, dont hide the card
-                                noBookingsCard.visibility = View.VISIBLE
+                                // No bookings found, hide the card
                                 yourBookingCard.visibility = View.GONE
+
                             }
                         } else {
                             // Handle unsuccessful response
@@ -200,6 +205,7 @@ class MyConsultationFragment : Fragment() {
             }
         }
     }
+
     private fun fetchDoctorDetails(doctorId: String) {
         apiService.getDoctorDetails(doctorId).enqueue(object : Callback<DoctorUsers> {
             override fun onResponse(call: Call<DoctorUsers>, response: Response<DoctorUsers>) {
