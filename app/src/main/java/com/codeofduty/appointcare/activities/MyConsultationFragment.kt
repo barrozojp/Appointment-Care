@@ -169,6 +169,9 @@ class MyConsultationFragment : Fragment() {
                                 if (booking.observation == null || booking.symptoms == null || booking.prescription == null) {
                                     // If any of them is null, hide the booking card
                                     yourBookingCard.visibility = View.GONE
+
+                                    Toast.makeText(requireContext(), "No consultation found", Toast.LENGTH_SHORT).show()
+
                                 } else {
                                     // Otherwise, set consultation details
                                     val observationLabelText = "Observation:  "
@@ -185,6 +188,7 @@ class MyConsultationFragment : Fragment() {
                                     setSymptomsVisibility(booking.symptoms)
 
                                     noBookingsCard.visibility = View.GONE
+
                                 }
                             } else {
                                 // No bookings found, hide the card
@@ -193,7 +197,7 @@ class MyConsultationFragment : Fragment() {
                             }
                         } else {
                             // Handle unsuccessful response
-                            Toast.makeText(requireContext(), "Failed to fetch bookings", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "No consultation found", Toast.LENGTH_SHORT).show()
                         }
                     }
 
