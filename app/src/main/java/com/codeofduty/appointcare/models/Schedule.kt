@@ -17,7 +17,6 @@ data class Schedule(
     val time: String? = null,
 
     //CONSULTATION DETAILS
-
     val symptoms: List<String>? = null,
     val observation: String? = null,
     val prescription: String? = null

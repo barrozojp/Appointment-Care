@@ -266,6 +266,7 @@ class MyConsultationFragment : Fragment() {
         tv_phoneUser.text = number
     }
 
+
     private fun getUserData(): UserX? {
         val sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
         val _id = sharedPreferences.getString("_id", null)
