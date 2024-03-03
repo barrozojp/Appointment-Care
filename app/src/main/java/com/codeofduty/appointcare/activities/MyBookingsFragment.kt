@@ -26,6 +26,7 @@ class MyBookingsFragment : Fragment() {
     private lateinit var apiService: ApiService
     private lateinit var noBookingsCard: CardView
     private lateinit var yourBookingCard: CardView
+    private lateinit var loadingCARD: CardView
     private lateinit var tv_time: TextView
     private lateinit var tv_date: TextView
     private lateinit var tv_F2F: TextView
@@ -57,6 +58,8 @@ class MyBookingsFragment : Fragment() {
         // Find the card view
         noBookingsCard = view.findViewById(R.id.noBookingsCARD)
         yourBookingCard = view.findViewById(R.id.YourBookingsCARD)
+        loadingCARD = view.findViewById(R.id.loadingCARD)
+
 
         // Find the time and date TextViews
         tv_time = view.findViewById(R.id.tv_time)
@@ -136,17 +139,24 @@ class MyBookingsFragment : Fragment() {
                             } else {
                                 // No bookings found, dont hide the card
                                 noBookingsCard.visibility = View.VISIBLE
+                                loadingCARD.visibility = View.GONE
                                 yourBookingCard.visibility = View.GONE
                             }
                         } else {
                             // Handle unsuccessful response
                             Toast.makeText(requireContext(), "No bookings found", Toast.LENGTH_SHORT).show()
+                            noBookingsCard.visibility = View.VISIBLE
+
                         }
                     }
 
                     override fun onFailure(call: Call<MyBookings>, t: Throwable) {
                         // Handle failure
                         Toast.makeText(requireContext(), "No bookings found", Toast.LENGTH_SHORT).show()
+                        noBookingsCard.visibility = View.VISIBLE
+                        loadingCARD.visibility = View.GONE
+
+
                     }
                 })
             }

@@ -6,6 +6,7 @@ import android.view.animation.AlphaAnimation
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +27,7 @@ class SearchFragment : Fragment(), AppointmentClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
     private lateinit var adapter: SearchAdapter
+    private lateinit var loadingCARD: CardView
     private var mList = ArrayList<SearchData>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,6 +54,7 @@ class SearchFragment : Fragment(), AppointmentClickListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
+        loadingCARD = view.findViewById(R.id.loadingCARD)
         // Initialize searchView first
         searchView = view.findViewById(R.id.searchView)
         val searchText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
@@ -88,6 +91,7 @@ class SearchFragment : Fragment(), AppointmentClickListener {
         call.enqueue(object : Callback<List<DoctorUsers>> {
             override fun onResponse(call: Call<List<DoctorUsers>>, response: Response<List<DoctorUsers>>) {
                 if (response.isSuccessful) {
+                    loadingCARD.visibility = View.GONE
                     val users = response.body()
                     if (users != null) {
                         populateList(users)

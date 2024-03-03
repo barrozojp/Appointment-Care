@@ -23,8 +23,9 @@ import retrofit2.Response
 class MyConsultationFragment : Fragment() {
 
     private lateinit var apiService: ApiService
-    private lateinit var noBookingsCard: CardView
+    private lateinit var noConsultationCARD: CardView
     private lateinit var yourBookingCard: CardView
+    private lateinit var loadingCARD: CardView
     private lateinit var tv_time: TextView
     private lateinit var tv_date: TextView
     private lateinit var tv_F2F: TextView
@@ -69,8 +70,9 @@ class MyConsultationFragment : Fragment() {
         apiService = RetrofitClient.createService(requireContext())
 
         // Find the card view
-        noBookingsCard = view.findViewById(R.id.noConsultationCARD)
+        noConsultationCARD = view.findViewById(R.id.noConsultationCARD)
         yourBookingCard = view.findViewById(R.id.YourConsultationCARD)
+        loadingCARD = view.findViewById(R.id.loadingCARD)
 
         // Find the time and date TextViews
         tv_time = view.findViewById(R.id.tv_time)
@@ -169,6 +171,9 @@ class MyConsultationFragment : Fragment() {
                                 if (booking.observation == null || booking.symptoms == null || booking.prescription == null) {
                                     // If any of them is null, hide the booking card
                                     yourBookingCard.visibility = View.GONE
+                                    noConsultationCARD.visibility = View.VISIBLE
+                                    loadingCARD.visibility = View.GONE
+
 
                                     Toast.makeText(requireContext(), "No consultation found", Toast.LENGTH_SHORT).show()
 
@@ -187,7 +192,8 @@ class MyConsultationFragment : Fragment() {
                                     // Set symptoms visibility
                                     setSymptomsVisibility(booking.symptoms)
 
-                                    noBookingsCard.visibility = View.GONE
+                                    noConsultationCARD.visibility = View.GONE
+                                    loadingCARD.visibility = View.GONE
 
                                 }
                             } else {
@@ -198,6 +204,10 @@ class MyConsultationFragment : Fragment() {
                         } else {
                             // Handle unsuccessful response
                             Toast.makeText(requireContext(), "No consultation found", Toast.LENGTH_SHORT).show()
+                            noConsultationCARD.visibility = View.VISIBLE
+                            loadingCARD.visibility = View.GONE
+
+
                         }
                     }
 

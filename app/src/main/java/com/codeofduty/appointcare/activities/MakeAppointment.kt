@@ -333,7 +333,14 @@ class MakeAppointment : Fragment() {
                 if (response.isSuccessful) {
                     // Handle successful appointment booking
                     Toast.makeText(requireContext(), "Appointment booked successfully", Toast.LENGTH_SHORT).show()
-                    // Optionally, you can navigate to a different fragment or perform any other action
+
+                    // Navigate to MyBookingsFragment
+                    val myBookingsFragment = MyBookingsFragment()
+                    val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_container, myBookingsFragment)
+                    transaction.addToBackStack(null)
+                    transaction.commit()
+
                 } else {
                     // Handle unsuccessful response
                     Toast.makeText(requireContext(), "You can only book once!", Toast.LENGTH_SHORT).show()
