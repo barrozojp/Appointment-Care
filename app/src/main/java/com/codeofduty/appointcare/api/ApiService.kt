@@ -6,6 +6,7 @@ import com.codeofduty.appointcare.models.BookAppointment
 import com.codeofduty.appointcare.models.UserLoginResponse
 import com.codeofduty.appointcare.models.LoginUser
 import com.codeofduty.appointcare.models.MyBookings
+import com.codeofduty.appointcare.models.Schedule
 import com.codeofduty.appointcare.models.UserX
 import patientRegister
 import retrofit2.Call
@@ -52,6 +53,10 @@ interface ApiService {
     //GET MY BOOKINGS
     @GET("appoint/schedule/{userId}")
     fun getBookings(@Path("userId") userId: String): Call<MyBookings>
+
+    //GET PENDING BOOKINGS
+    @GET("appoint/schedule/{userId}")
+    fun getPendingBookings(@Path("userId") userId: String): Call<MyBookings>
 
     //GET DOCTOR DETAILS
     @GET("person/users/{userId}")

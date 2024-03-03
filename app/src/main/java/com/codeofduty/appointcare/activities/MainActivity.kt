@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId){
                 R.id.bottom_home -> openFragment(HomeFragment())
-                R.id.bottom_bookings_dr -> openFragment(DoctorAcceptRejectFragment())
+                R.id.bottom_bookings_dr -> openFragment(DoctorPendingAppointmentsFragment())
                 R.id.bottom_patients_dr -> openFragment(DoctorsPagePatientFragment())
                 R.id.bottom_rejected -> openFragment(DoctorRejectedPatientsFragment())
                 R.id.bottom_profile -> openFragment(ProfileFragment())
