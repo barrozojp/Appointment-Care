@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codeofduty.appointcare.R
@@ -26,6 +28,10 @@ class DoctorPendingAppointmentsFragment : Fragment() {
     private lateinit var adapter: BookingsAdapter
     private var mList = ArrayList<DoctorBookingsData>()
     private lateinit var apiService: ApiService
+    private lateinit var loadingCARD: CardView
+    private lateinit var noPendingAppointsCARD: CardView
+    private lateinit var tv_pendingAppointments: TextView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +40,10 @@ class DoctorPendingAppointmentsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_doctor_pending_appointments, container, false)
 
         recyclerView = view.findViewById(R.id.recyclerViewPendingAppoints)
+        loadingCARD = view.findViewById(R.id.loadingCARD)
+        tv_pendingAppointments = view.findViewById(R.id.tv_pendingAppointments)
+        noPendingAppointsCARD = view.findViewById(R.id.noPendingAppointsCARD)
+
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -59,15 +69,25 @@ class DoctorPendingAppointmentsFragment : Fragment() {
                             val myBookings = response.body()
                             myBookings?.let { bookings ->
                                 populateList(bookings.schedules.filter { it.status == "Pending" })
-                                showToast("Data fetched successfully")
+                                showToast("Bookings fetched successfully")
+                                loadingCARD.visibility = View.GONE
+                                recyclerView.visibility = View.VISIBLE
+                                tv_pendingAppointments.visibility = View.VISIBLE
                             }
                         } else {
-                            showToast("Failed to fetch data")
+                            showToast("No Pending Appointments")
+                            noPendingAppointsCARD.visibility = View.VISIBLE
+                            loadingCARD.visibility = View.GONE
+
                         }
                     }
 
                     override fun onFailure(call: Call<MyBookings>, t: Throwable) {
                         showToast("Failed to fetch data: ${t.message}")
+                        noPendingAppointsCARD.visibility = View.VISIBLE
+                        loadingCARD.visibility = View.GONE
+
+
                     }
 
                     private fun showToast(message: String) {
@@ -84,14 +104,19 @@ class DoctorPendingAppointmentsFragment : Fragment() {
     private fun populateList(schedules: List<Schedule>) {
         for (schedule in schedules) {
 
+            val consultationType = if (schedule.online == true) {
+                "Online Consultation"
+            } else {
+                "Face-to-Face Consultation"
+            }
+
             mList.add(
                 DoctorBookingsData(
                     "Status: ${schedule.status}",
                     "${schedule.fullName}",
                     "${schedule.number}",
                     "Email: ${schedule.email}",
-                    "Online Consultation ${schedule.online}",
-                    "Face-to-Face Consultation ${schedule.f2f}",
+                    consultationType,
                     "${schedule.date}",
                     "Time: ${schedule.time}",
                     "BookingID: ${schedule._id}",

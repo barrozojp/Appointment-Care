@@ -23,6 +23,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_pendingAppointments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1000dp"
                 android:layout_marginTop="20dp"
+                android:visibility="gone"
                 android:layout_marginBottom="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +60,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
         app:layout_constraintTop_toTopOf="@+id/scrollView2"
         tools:layout_editor_absoluteX="10dp">
@@ -70,6 +71,7 @@
             android:layout_alignParentTop="true"
             android:layout_gravity="center"
             android:layout_margin="25dp"
+            android:visibility="gone"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="#fff"
@@ -110,6 +112,38 @@
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/loadingCARD"
+            android:layout_width="match_parent"
+            android:backgroundTint="#fff"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loading Bookings..."
+                android:textAlignment="center"
+                android:textColor="@color/primarycolor"
+                android:textSize="25sp"
+                android:textStyle="bold"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/ltAnimation"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/animation_loading" />
+        </androidx.cardview.widget.CardView>
+
 
 
     </RelativeLayout>

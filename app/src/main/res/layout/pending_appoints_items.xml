@@ -54,6 +54,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 app:cardCornerRadius="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -120,14 +122,14 @@
             app:layout_constraintTop_toBottomOf="@id/phonenum" />
 
         <TextView
-            android:id="@+id/tv_online"
+            android:id="@+id/tv_consultationType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/baseline_laptop_mac_24"
+            android:drawableStart="@drawable/baseline_how_to_reg_24"
             android:drawableTint="#F44336"
             android:gravity="center"
             android:padding="8dp"
-            android:text="Online Consultation"
+            android:text="Consultation Type"
             android:drawablePadding="10dp"
             android:textColor="#000"
             android:textSize="16sp"
@@ -136,21 +138,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/email" />
 
-        <TextView
-            android:id="@+id/tv_f2f"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/baseline_people_alt_24"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="Face to Face Consultation"
-            android:drawablePadding="10dp"
-            android:textColor="#000"
-            android:textSize="16sp"
-            android:layout_marginStart="10dp"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_online" />
 
         <TextView
             android:id="@+id/tv_date"
@@ -166,7 +153,7 @@
             android:layout_marginStart="10dp"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_f2f" />
+            app:layout_constraintTop_toBottomOf="@id/tv_consultationType" />
 
         <TextView
             android:id="@+id/tv_time"
@@ -184,6 +171,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_date" />
 
+        <View
+            android:id="@+id/horizontalSeparator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#838383"
+            app:layout_constraintTop_toBottomOf="@id/tv_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
         <TextView
             android:id="@+id/tv_bookID"
             android:layout_width="wrap_content"
@@ -199,7 +196,7 @@
             android:layout_marginStart="10dp"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_time" />
+            app:layout_constraintTop_toBottomOf="@id/horizontalSeparator" />
 
 
 

@@ -6,7 +6,6 @@ data class DoctorBookingsData(
     val number: String? = null,
     val email: String? = null,
     val online: String? = null,
-    val f2f: String? = null,
     val date: String? = null,
     val time: String? = null,
     val bookingsID: String? = null,

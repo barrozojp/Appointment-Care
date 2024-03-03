@@ -18,8 +18,7 @@ class BookingsAdapter(var mList: List<DoctorBookingsData>) :
         val patientName: TextView = itemView.findViewById(R.id.patientName)
         val number: TextView = itemView.findViewById(R.id.phonenum)
         val email: TextView = itemView.findViewById(R.id.email)
-        val online: TextView = itemView.findViewById(R.id.tv_online)
-        val f2f: TextView = itemView.findViewById(R.id.tv_f2f)
+        val online: TextView = itemView.findViewById(R.id.tv_consultationType)
         val time: TextView = itemView.findViewById(R.id.tv_time)
         val date: TextView = itemView.findViewById(R.id.tv_date)
         val bookingsID: TextView = itemView.findViewById(R.id.tv_bookID)
@@ -34,7 +33,6 @@ class BookingsAdapter(var mList: List<DoctorBookingsData>) :
             number.text = doctorBookingsData.number
             email.text = doctorBookingsData.email
             online.text = doctorBookingsData.online
-            f2f.text = doctorBookingsData.f2f
             time.text = doctorBookingsData.time
             date.text = doctorBookingsData.date
             bookingsID.text = doctorBookingsData.bookingsID
