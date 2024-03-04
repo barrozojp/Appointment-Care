@@ -58,6 +58,11 @@ interface ApiService {
     @GET("appoint/schedule/{userId}")
     fun getPendingBookings(@Path("userId") userId: String): Call<MyBookings>
 
+    //GET REJECTED BOOKINGS
+    @GET("appoint/schedule/{userId}")
+    fun getRejectedBookings(@Path("userId") userId: String): Call<MyBookings>
+
+
     //GET DOCTOR DETAILS
     @GET("person/users/{userId}")
     fun getDoctorDetails(@Path("userId") userId: String): Call<DoctorUsers>

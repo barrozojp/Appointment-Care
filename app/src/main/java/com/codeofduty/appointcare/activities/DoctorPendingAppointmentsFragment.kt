@@ -68,26 +68,35 @@ class DoctorPendingAppointmentsFragment : Fragment() {
                         if (response.isSuccessful) {
                             val myBookings = response.body()
                             myBookings?.let { bookings ->
-                                populateList(bookings.schedules.filter { it.status == "Pending" })
-                                showToast("Bookings fetched successfully")
-                                loadingCARD.visibility = View.GONE
-                                recyclerView.visibility = View.VISIBLE
-                                tv_pendingAppointments.visibility = View.VISIBLE
+                                val pendingSchedules = bookings.schedules.filter { it.status == "Pending" }
+                                if (pendingSchedules.isEmpty()) {
+                                    // No pending appointments, show message
+                                    showToast("No Pending Appointments")
+                                    noPendingAppointsCARD.visibility = View.VISIBLE
+                                    loadingCARD.visibility = View.GONE
+
+                                } else {
+                                    // Pending appointments fetched, populate list
+                                    populateList(pendingSchedules)
+                                    showToast("Bookings fetched successfully")
+                                    loadingCARD.visibility = View.GONE
+                                    recyclerView.visibility = View.VISIBLE
+                                    tv_pendingAppointments.visibility = View.VISIBLE
+                                }
                             }
                         } else {
-                            showToast("No Pending Appointments")
+                            // Failed to fetch data, show message
+                            showToast("Failed to fetch data")
                             noPendingAppointsCARD.visibility = View.VISIBLE
                             loadingCARD.visibility = View.GONE
-
                         }
                     }
 
                     override fun onFailure(call: Call<MyBookings>, t: Throwable) {
+                        // Failed to fetch data, show message
                         showToast("Failed to fetch data: ${t.message}")
                         noPendingAppointsCARD.visibility = View.VISIBLE
                         loadingCARD.visibility = View.GONE
-
-
                     }
 
                     private fun showToast(message: String) {
@@ -97,6 +106,7 @@ class DoctorPendingAppointmentsFragment : Fragment() {
             }
         }
     }
+
 
 
 
