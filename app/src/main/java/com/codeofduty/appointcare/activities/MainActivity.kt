@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             when(item.itemId){
                 R.id.bottom_home -> openFragment(HomeFragment())
                 R.id.bottom_bookings_dr -> openFragment(DoctorPendingAppointmentsFragment())
-                R.id.bottom_patients_dr -> openFragment(DoctorsPagePatientFragment())
+                R.id.bottom_patients_dr -> openFragment(DoctorsAcceptedPatientFragment())
                 R.id.bottom_rejected -> openFragment(DoctorRejectedPatientsFragment())
                 R.id.bottom_profile -> openFragment(ProfileFragment())
             }

@@ -6,7 +6,7 @@
     android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".activities.DoctorsPagePatientFragment">
+    tools:context=".activities.DoctorsAcceptedPatientFragment">
 
     <ScrollView
         android:layout_width="match_parent"
