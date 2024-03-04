@@ -6,7 +6,7 @@ import com.codeofduty.appointcare.models.BookAppointment
 import com.codeofduty.appointcare.models.UserLoginResponse
 import com.codeofduty.appointcare.models.LoginUser
 import com.codeofduty.appointcare.models.MyBookings
-import com.codeofduty.appointcare.models.Schedule
+import com.codeofduty.appointcare.models.UpdateBookingStatusRequest
 import com.codeofduty.appointcare.models.UserX
 import patientRegister
 import retrofit2.Call
@@ -62,6 +62,8 @@ interface ApiService {
     @GET("appoint/schedule/{userId}")
     fun getRejectedBookings(@Path("userId") userId: String): Call<MyBookings>
 
+    @PUT("appoint/verify/{userId}")
+    fun updateBookingStatus(@Path("userId") userId: String, @Body requestBody: UpdateBookingStatusRequest): Call<MyBookings>
 
     //GET DOCTOR DETAILS
     @GET("person/users/{userId}")

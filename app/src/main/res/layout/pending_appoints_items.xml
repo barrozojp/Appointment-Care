@@ -198,6 +198,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/horizontalSeparator" />
 
+        <TextView
+            android:id="@+id/tv_patientID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/baseline_library_books_24"
+            android:drawableTint="#80000000"
+            android:gravity="center"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:text="PatientId"
+            android:drawablePadding="10dp"
+            android:textColor="#80000000"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_bookID" />
 
 
 
@@ -213,7 +230,7 @@
             android:textColor="#fff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bookID"
+            app:layout_constraintTop_toBottomOf="@+id/tv_patientID"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button

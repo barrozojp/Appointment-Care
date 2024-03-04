@@ -1,5 +1,6 @@
 package com.codeofduty.appointcare.activities
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,13 +17,14 @@ import com.codeofduty.appointcare.api.ApiService
 import com.codeofduty.appointcare.api.RetrofitClient
 import com.codeofduty.appointcare.models.MyBookings
 import com.codeofduty.appointcare.models.Schedule
+import com.codeofduty.appointcare.models.UpdateBookingStatusRequest
 import com.codeofduty.appointcare.models.UserX
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
 
-class DoctorRejectedPatientsFragment : Fragment() {
+class DoctorRejectedPatientsFragment : Fragment(),BookingStatusListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RejectedAdapter
@@ -47,7 +49,7 @@ class DoctorRejectedPatientsFragment : Fragment() {
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = RejectedAdapter(mListRejected)
+        adapter = RejectedAdapter(mListRejected, this)
         recyclerView.adapter = adapter
 
         // Initialize the ApiService
@@ -80,6 +82,8 @@ class DoctorRejectedPatientsFragment : Fragment() {
                                     showToast("No Rejected Appointments")
                                     noRejectedAppointsCARD.visibility = View.VISIBLE
                                     loadingCARD.visibility = View.GONE
+                                    adapter.notifyDataSetChanged() // Refresh the RecyclerView
+
                                 }
                             }
                         } else {
@@ -103,6 +107,48 @@ class DoctorRejectedPatientsFragment : Fragment() {
         }
     }
 
+    override fun onUpdateBookingStatus(patientId: String, status: String, loadingDialog: AlertDialog) {
+        // Create an instance of UpdateBookingStatusRequest with the provided patientId and status
+        val requestBody = UpdateBookingStatusRequest(patientId, status)
+
+        // Get the user data
+        val userData = getUserData()
+        userData?.let { user ->
+            val userId = user._id
+            userId?.let {
+                // Call the API to update the booking status
+                apiService.updateBookingStatus(it, requestBody).enqueue(object : Callback<MyBookings> {
+                    override fun onResponse(call: Call<MyBookings>, response: Response<MyBookings>) {
+                        if (response.isSuccessful) {
+                            showToast("Booking status updated successfully")
+                            navigateToHomeFragment()
+                            loadingDialog.dismiss()
+                        } else {
+                            // Update failed, show an error message
+                            showToast("Failed to update booking status")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<MyBookings>, t: Throwable) {
+                        // Failure in API call, show an error message
+                        showToast("Failed to update booking status: ${t.message}")
+                    }
+
+                    private fun showToast(message: String) {
+                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
+        }
+    }
+
+    private fun navigateToHomeFragment() {
+        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, HomeFragment())
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+    }
+
     private fun populateList(schedules: List<Schedule>) {
         for (schedule in schedules) {
 
@@ -122,7 +168,7 @@ class DoctorRejectedPatientsFragment : Fragment() {
                     "${schedule.date}",
                     "Time: ${schedule.time}",
                     "BookingID: ${schedule._id}",
-                    "",
+                    "${schedule.patientId}",
                     "",
                 )
             )
