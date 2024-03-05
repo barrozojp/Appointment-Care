@@ -1,15 +1,11 @@
 package com.codeofduty.appointcare.activities
 
-import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.codeofduty.appointcare.R
@@ -37,8 +33,21 @@ class AcceptedAdapter(var mListAccepted: List<AcceptedBookingsData>) :
                 // Get the patient ID from the current item
                 val patientId = mListAccepted[adapterPosition].patientId
 
-                // Start ConsultationFragment and pass patient ID as argument
-                val fragment = patientId?.let { it1 -> ConsultationFragment.newInstance(it1) }
+                // Start ConsultationFragment and pass patient details as arguments
+                val fragment = patientId?.let { it1 ->
+                    patientName?.let { it2 ->
+                        email?.let { it3 ->
+                            number?.let { it4 ->
+                                ConsultationFragment.newInstance(
+                                    it1,
+                                    it2.text.toString(),
+                                    it3.text.toString(),
+                                    it4.text.toString()
+                                )
+                            }
+                        }
+                    }
+                }
                 val fragmentManager = (itemView.context as AppCompatActivity).supportFragmentManager
                 if (fragment != null) {
                     fragmentManager.beginTransaction()

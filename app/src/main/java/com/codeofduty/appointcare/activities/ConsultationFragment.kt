@@ -1,5 +1,6 @@
 package com.codeofduty.appointcare.activities
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.codeofduty.appointcare.R
 import com.codeofduty.appointcare.api.ApiService
@@ -29,15 +31,23 @@ class ConsultationFragment : Fragment() {
 
     companion object {
         private const val ARG_PATIENT_ID = "patient_id"
+        private const val ARG_PATIENT_NAME = "patient_name"
+        private const val ARG_PATIENT_EMAIL = "patient_email"
+        private const val ARG_PATIENT_NUMBER = "patient_number"
 
-        fun newInstance(patientId: String): ConsultationFragment {
+        fun newInstance(patientId: String, patientName: String, patientEmail: String, patientNumber: String): ConsultationFragment {
             val fragment = ConsultationFragment()
             val args = Bundle()
             args.putString(ARG_PATIENT_ID, patientId)
+            args.putString(ARG_PATIENT_NAME, patientName)
+            args.putString(ARG_PATIENT_EMAIL, patientEmail)
+            args.putString(ARG_PATIENT_NUMBER, patientNumber)
             fragment.arguments = args
             return fragment
         }
+
     }
+
 
     private var patientId: String? = null
 
@@ -56,6 +66,17 @@ class ConsultationFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_consultation, container, false)
 
+        // Retrieve arguments
+        val patientId = arguments?.getString(ARG_PATIENT_ID)
+        val patientName = arguments?.getString(ARG_PATIENT_NAME)
+        val patientEmail = arguments?.getString(ARG_PATIENT_EMAIL)
+        val patientNumber = arguments?.getString(ARG_PATIENT_NUMBER)
+
+        // Set patient details in the layout
+        view.findViewById<TextView>(R.id.patientName).text = patientName
+        view.findViewById<TextView>(R.id.emailPatient).text = patientEmail
+        view.findViewById<TextView>(R.id.numPatient).text = patientNumber
+
         // Initialize ApiService
         apiService = RetrofitClient.getService()
 
@@ -67,11 +88,28 @@ class ConsultationFragment : Fragment() {
 
         // Set click listener for the button
         postConsultationButton.setOnClickListener {
+            // Display loading dialog
+            val loadingDialog = showLoadingDialog(requireContext())
+
             // Call the method to process the consultation
             processConsultation()
+
+            // Dismiss the loading dialog after consultation processing is complete
+            loadingDialog.dismiss()
         }
 
         return view
+    }
+    private fun showLoadingDialog(context: Context): AlertDialog {
+        val builder = AlertDialog.Builder(context)
+        val inflater = LayoutInflater.from(context)
+        val dialogView = inflater.inflate(R.layout.dialog_loading, null)
+        builder.setView(dialogView)
+        builder.setCancelable(false)
+        val dialog = builder.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
+        return dialog
     }
 
     private fun processConsultation() {
@@ -149,18 +187,29 @@ class ConsultationFragment : Fragment() {
             if (!::apiService.isInitialized) {
                 apiService = RetrofitClient.getService()
             }
+            val loadingDialog = showLoadingDialog(requireContext())
+
 
             val updateData = UpdateSympConsPres(observation, patientId, prescription, symptoms)
             apiService.addSymptomsObsAndPres(userId, updateData).enqueue(object : Callback<MyBookings> {
                 override fun onResponse(call: Call<MyBookings>, response: Response<MyBookings>) {
+                    loadingDialog.dismiss()
                     if (response.isSuccessful) {
                         showToast("Consultation updated successfully")
+
+                        // Navigate to HomeFragment
+                        val fragmentManager = requireActivity().supportFragmentManager
+                        fragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, HomeFragment())
+                            .addToBackStack(null)
+                            .commit()
                     } else {
                         showToast("Failed to update consultation")
                     }
                 }
 
                 override fun onFailure(call: Call<MyBookings>, t: Throwable) {
+                    loadingDialog.dismiss()
                     showToast("Failed to update consultation: ${t.message}")
                 }
             })
