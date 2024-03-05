@@ -7,6 +7,7 @@ import com.codeofduty.appointcare.models.UserLoginResponse
 import com.codeofduty.appointcare.models.LoginUser
 import com.codeofduty.appointcare.models.MyBookings
 import com.codeofduty.appointcare.models.UpdateBookingStatusRequest
+import com.codeofduty.appointcare.models.UpdateSympConsPres
 import com.codeofduty.appointcare.models.UserX
 import patientRegister
 import retrofit2.Call
@@ -62,8 +63,17 @@ interface ApiService {
     @GET("appoint/schedule/{userId}")
     fun getRejectedBookings(@Path("userId") userId: String): Call<MyBookings>
 
+    //GET ACCEPTED BOOKINGS
+    @GET("appoint/schedule/{userId}")
+    fun getAcceptedBookings(@Path("userId") userId: String): Call<MyBookings>
+
+    //ACCEPT, REJECT, PENDING
     @PUT("appoint/verify/{userId}")
     fun updateBookingStatus(@Path("userId") userId: String, @Body requestBody: UpdateBookingStatusRequest): Call<MyBookings>
+
+    //ADD SYMPTOMS, CONSULTATION AND PRESCRIPTION
+    @PUT("appoint/consult/{userId}")
+    fun addSymptomsObsAndPres(@Path("userId") userId: String, @Body requestBody: UpdateSympConsPres): Call<MyBookings>
 
     //GET DOCTOR DETAILS
     @GET("person/users/{userId}")
