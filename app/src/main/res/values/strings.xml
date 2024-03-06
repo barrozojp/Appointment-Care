@@ -28,43 +28,43 @@
 
     /*Strings for FAQs*/
     <string name="FAQ1">What is AppointCare for?</string>
-    <string name="FAQDes1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="FAQDes1">AppointCare is all about making appointments more flexible and easier between Patients and Doctors</string>
 
     <string name="FAQ2">How to book an Appointment?</string>
-    <string name="FAQDes2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="FAQDes2">To book an appointment, simply navigate to the "Appointments" section on the app or website, choose your preferred date and time, and follow the prompts to confirm your booking.</string>
 
     <string name="FAQ3">How does the online consultation work?</string>
-    <string name="FAQDes3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="FAQDes3">After establishing an appointment through a website or app, individuals engage in virtual meetings with healthcare professionals via video or chat, where they share their medical concerns, receive guidance or a diagnosis, and, if required, obtain prescriptions or receive further recommendations for in-person care.</string>
 
     <string name="FAQ4">What if I need to cancel or reschedule my appointment??</string>
-    <string name="FAQDes4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="FAQDes4"> If you need to cancel or reschedule your appointment, you can typically do so by accessing the online platform, navigating to your scheduled appointments, and following the provided options for rescheduling or cancellation.</string>
 
     <string name="FAQ5">Is AppointCare safe to use?</string>
-    <string name="FAQDes5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="FAQDes5">Yes, your safety is our top priority. AppointCare is built with robust security measures, including encryption and regular vulnerability assessments, to ensure your data remains protected at all times.</string>
     /* END OF FAQS*/
 
     /*Strings for Services*/
 
-    <string name="ServiceDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="ServiceDescription">Our services include diagnosing fractures and injuries, X-ray checkups, specialist consultations, eye care, and various treatments.</string>
 
 
     <string name="Service1">Diagnosis</string>
-    <string name="ServiceDes1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="ServiceDes1">Our services include diagnosing fractures and injuries, X-ray checkups, specialist consultations, eye care, and various treatments.</string>
 
     <string name="Service2">Fractures and Injury</string>
-    <string name="ServiceDes2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="ServiceDes2">Our expertise includes diagnosing and treating fractures and injuries promptly and effectively.</string>
 
     <string name="Service3">Xray Check-up</string>
-    <string name="ServiceDes3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="ServiceDes3">Benefit from our detailed X-ray examinations, offering accurate insights into your health and aiding in precise medical assessments.</string>
 
     <string name="Service4">Specialist Consultations</string>
-    <string name="ServiceDes4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="ServiceDes4">Receive specialized medical advice through our expert consultations, customized to meet your individual health needs.</string>
 
     <string name="Service5">Treatments</string>
-    <string name="ServiceDes5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="ServiceDes5">Discover a variety of treatments designed to target specific health conditions and enhance your overall well-being.</string>
 
     <string name="Service6">Eye Care</string>
-    <string name="ServiceDes6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="ServiceDes6">Prioritize your eye health with our dedicated eye care services, offering everything from routine check-ups to specialized treatments.</string>
     /* END OF SERVICES*/
 
     <string name="about_us_navmenu">About Us</string>

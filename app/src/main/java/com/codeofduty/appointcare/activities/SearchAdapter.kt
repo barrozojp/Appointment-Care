@@ -1,6 +1,7 @@
 package com.codeofduty.appointcare.activities
 
 import SearchFragment
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,14 @@ class SearchAdapter(var mList: List<SearchData>,
         }
 
         fun bind(searchData: SearchData) {
-            logo.setImageResource(searchData.logo)
+            if (searchData.imageData?.data != null) {
+                val byteArray = searchData.imageData.data.map { it.toByte() }.toByteArray()
+                val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+                logo.setImageBitmap(bitmap)
+            } else {
+                logo.setImageResource(R.drawable.baseline_account_circle_24) // Use a default image if imageData is null
+            }
+
             titleTv.text = searchData.title
             speciality.text = searchData.specialty
             searchNum.text = searchData.num
@@ -66,14 +74,13 @@ class SearchAdapter(var mList: List<SearchData>,
                 appointmentClickListener.onAppointmentClick(searchData._id)
             }
 
-
-
             itemView.setOnClickListener {
                 val expanded = searchData.isExpandable
                 searchData.isExpandable = !expanded
                 notifyItemChanged(adapterPosition)
             }
         }
+
     }
 
     fun setFilteredList(mList: List<SearchData>) {

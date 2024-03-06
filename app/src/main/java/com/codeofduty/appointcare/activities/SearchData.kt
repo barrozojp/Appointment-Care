@@ -1,12 +1,12 @@
 package com.codeofduty.appointcare.activities
 
-import android.widget.Button
+import com.codeofduty.appointcare.models.ImageData
 
 data class SearchData(
     val title: String,
     val _id: String,
     val specialty: String,
-    val logo: Int,
+    val imageData: ImageData?,
     val num: String,
     val email: String,
     val location: String,

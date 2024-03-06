@@ -1,3 +1,4 @@
+import com.codeofduty.appointcare.models.ImageData
 import com.google.gson.annotations.SerializedName
 
 data class DoctorUsers(
@@ -47,6 +48,8 @@ data class DoctorUsers(
     val f2f: Boolean? = null,
 
     @SerializedName("online")
-    val online: Boolean? = null
+    val online: Boolean? = null,
 
+    @SerializedName("imageData")
+    val imageData: ImageData? = null
 )

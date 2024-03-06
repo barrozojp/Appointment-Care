@@ -2,7 +2,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -103,7 +102,9 @@ class SearchFragment : Fragment(), AppointmentClickListener {
 
             override fun onFailure(call: Call<List<DoctorUsers>>, t: Throwable) {
                 // Handle failure
+                Toast.makeText(requireContext(), "Failed to fetch data: ${t.message}", Toast.LENGTH_SHORT).show()
             }
+
         })
     }
 
@@ -115,7 +116,7 @@ class SearchFragment : Fragment(), AppointmentClickListener {
                     "${user.Fname} ${user.Lname}",
                     "${user._id}",
                     "Speciality: ${user.specialty}",
-                    R.drawable.doctor_profile,
+                    user.imageData,
                     "Phone: ${user.number}",
                     "Email: ${user.email}",
                     "${user.hn} ${user.barangay} , ${user.municipality} ${user.province}",
