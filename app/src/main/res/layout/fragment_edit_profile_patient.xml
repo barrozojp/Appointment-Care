@@ -238,13 +238,151 @@
                             android:backgroundTint="#DFDFDF"
                             android:text="Cancel"
                             android:textColor="#000"/>
-
-
                     </LinearLayout>
                 </RelativeLayout>
-
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/PasswordCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#fff"
+                app:cardCornerRadius="10dp"
+                android:layout_below="@id/generalCard"
+                android:layout_margin="15dp"
+                app:cardElevation="20dp">
 
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- TextView -->
+                    <TextView
+                        android:id="@+id/tv_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Change Passwrod"
+                        android:textColor="#000"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <!-- TextInputLayout -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/CurrentPassEditLayout"
+                        android:layout_below="@id/tv_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/CurrentPassEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:lines="1"
+                            android:inputType="textPassword"
+                            android:background="#00FFFFFF"
+                            android:paddingStart="10dp"
+                            android:drawablePadding="10dp"
+                            android:hint="Current Password"
+                            android:textColor="#016D73"
+                            android:paddingTop="5dp"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/NewPassEditLayout"
+                        android:layout_below="@id/CurrentPassEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/NewPassEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:lines="1"
+                            android:inputType="textPassword"
+                            android:background="#00FFFFFF"
+                            android:paddingStart="10dp"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#007E85"
+                            android:hint="New Password"
+                            android:textColor="#016D73"
+                            android:paddingTop="5dp"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/ConfNewPassLayout"
+                        android:layout_below="@id/NewPassEditLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/rounded_corners"
+                        android:textColorHint="#000"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ConfNewPassEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:lines="1"
+                            android:inputType="textPassword"
+                            android:background="#00FFFFFF"
+                            android:paddingStart="10dp"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="#007E85"
+                            android:hint="Confirm New Password"
+                            android:textColor="#016D73"
+                            android:paddingTop="5dp"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ConfNewPassLayout"
+                        android:gravity="center_horizontal">
+
+                        <Button
+                            android:id="@+id/btn_SavePass"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:textColor="#fff"
+                            android:backgroundTint="#007E85"
+                            android:text="Save"/>
+
+                        <Button
+                            android:id="@+id/btn_cancelPass"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:backgroundTint="#DFDFDF"
+                            android:text="Cancel"
+                            android:textColor="#000"/>
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
+                android:layout_below="@id/PasswordCard"
+                android:text="hi"
+                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 

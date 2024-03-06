@@ -13,7 +13,6 @@ import androidx.cardview.widget.CardView
 import com.codeofduty.appointcare.R
 import com.codeofduty.appointcare.api.ApiService
 import com.codeofduty.appointcare.api.RetrofitClient
-import com.codeofduty.appointcare.databinding.FragmentMyConsultationBinding
 import com.codeofduty.appointcare.models.MyBookings
 import com.codeofduty.appointcare.models.UserX
 import retrofit2.Call

@@ -1,6 +1,5 @@
 package com.codeofduty.appointcare.activities
 
-import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,7 +16,6 @@ import com.codeofduty.appointcare.api.ApiService
 import com.codeofduty.appointcare.api.RetrofitClient
 import com.codeofduty.appointcare.models.MyBookings
 import com.codeofduty.appointcare.models.Schedule
-import com.codeofduty.appointcare.models.UpdateBookingStatusRequest
 import com.codeofduty.appointcare.models.UserX
 import retrofit2.Call
 import retrofit2.Callback
