@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -121,13 +123,25 @@ class MakeAppointment : Fragment() {
     private fun updateDoctorDetailsUI(doctorDetails: DoctorUsers?) {
         // Check if the doctor's details and the fragment view are not null
         if (doctorDetails != null && view != null) {
-            // Find the views in the fragment's layout
+            // Find the ImageView in the fragment's layout
+            val doctorProfileImageView = requireView().findViewById<ImageView>(R.id.doctorProfileImageView)
+
+            // Load the doctor's image into the ImageView if available
+            if (doctorDetails.imageData != null && doctorDetails.imageData.data?.isNotEmpty() == true) {
+                val byteArray = doctorDetails.imageData.data.map { it.toByte() }.toByteArray()
+                val bitmap = byteArray.let { BitmapFactory.decodeByteArray(byteArray, 0, it.size) }
+                doctorProfileImageView.setImageBitmap(bitmap)
+            } else {
+                // Use a default image if the doctor's image is not available
+                doctorProfileImageView.setImageResource(R.drawable.doctor_profile)
+            }
+
+            // Find the other views in the fragment's layout and set their text
             val tvNameUser = requireView().findViewById<TextView>(R.id.tv_nameUser)
             val tvSpecialty = requireView().findViewById<TextView>(R.id.tv_Specialty)
             val tvmd = requireView().findViewById<TextView>(R.id.tv_mdYEAR)
             val f2fCheckBox = requireView().findViewById<CheckBox>(R.id.checkbox_f2f)
             val onlineCheckBox = requireView().findViewById<CheckBox>(R.id.checkbox_online)
-
 
             // Set the doctor's details to the respective views
             tvNameUser?.text = "${doctorDetails.Fname} ${doctorDetails.Lname}"
@@ -139,6 +153,7 @@ class MakeAppointment : Fragment() {
             onlineCheckBox?.visibility = if (doctorDetails.online == false) View.VISIBLE else View.GONE
         }
     }
+
 
 
 

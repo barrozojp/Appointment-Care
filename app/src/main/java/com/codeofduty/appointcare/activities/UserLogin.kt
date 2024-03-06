@@ -197,6 +197,11 @@ class UserLogin : AppCompatActivity() {
         editor.putString("specialty", user.specialty)
         editor.putString("status", user.status)
         editor.putString("consultation", user.consultation)
+
+        // Convert imageData to string and save it
+        val imageDataString = user.imageData?.data?.joinToString(separator = ",")
+        editor.putString("imageData", imageDataString)
+
         editor.apply()
     }
 

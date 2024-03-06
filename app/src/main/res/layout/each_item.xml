@@ -38,7 +38,7 @@
                     android:id="@+id/logoIv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     android:background="#fff"
                     android:src="@drawable/baseline_account_circle_24" />
             </androidx.cardview.widget.CardView>

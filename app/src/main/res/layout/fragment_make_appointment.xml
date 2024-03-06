@@ -89,11 +89,23 @@
 
                     </RelativeLayout>
 
-                    <ImageView
-                        android:layout_width="140dp"
-                        android:layout_height="140dp"
-                        android:layout_gravity="right"
-                        android:src="@drawable/doctor_profile" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="130dp"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="#fff"
+                        android:layout_height="130dp"
+                        app:cardCornerRadius="70dp"
+                        app:cardElevation="4dp">
+
+                        <ImageView
+                            android:id="@+id/doctorProfileImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/doctor_profile" />
+
+                    </androidx.cardview.widget.CardView>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

@@ -2,11 +2,13 @@ package com.codeofduty.appointcare.activities
 
 import DoctorUsers
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -41,6 +43,8 @@ class MyConsultationFragment : Fragment() {
     private lateinit var tv_Status: TextView
     private lateinit var tv_observation: TextView
     private lateinit var tv_prescription: TextView
+    private lateinit var DoctorProfilePic: ImageView
+
 
     //SYMPTOMS
 
@@ -107,6 +111,9 @@ class MyConsultationFragment : Fragment() {
         tv_emailDoctor = view.findViewById(R.id.tv_emailDoctor)
         tv_numberDoctor = view.findViewById(R.id.tv_numberDoctor)
         tv_priceDoctor = view.findViewById(R.id.tv_priceDoctor)
+
+        DoctorProfilePic = view.findViewById(R.id.DoctorProfilePic)
+
 
 
         // Find the TextViews for symptoms
@@ -232,6 +239,31 @@ class MyConsultationFragment : Fragment() {
                         tv_emailDoctor.text = it.email
                         tv_numberDoctor.text = it.number
                         tv_priceDoctor.text = it.consultPrice
+
+                        // Load and set the doctor's profile image
+                        val imageData = it.imageData
+                        if (imageData != null) {
+                            val imageDataByteArray = imageData.data?.let { data ->
+                                // Convert List<Int> to ByteArray
+                                val byteArray = ByteArray(data.size)
+                                for ((index, value) in data.withIndex()) {
+                                    byteArray[index] = value.toByte()
+                                }
+                                byteArray
+                            }
+                            if (imageDataByteArray != null) {
+                                val bitmap = BitmapFactory.decodeByteArray(imageDataByteArray, 0, imageDataByteArray.size)
+                                DoctorProfilePic.setImageBitmap(bitmap)
+                            } else {
+                                // Handle null or empty imageDataByteArray
+                                Toast.makeText(requireContext(), "No image data found", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            // Handle null imageData
+                            Toast.makeText(requireContext(), "No image data found", Toast.LENGTH_SHORT).show()
+                        }
+
+
                     }
                 } else {
                     // Handle unsuccessful response
