@@ -1,4 +1,5 @@
 import com.google.gson.annotations.SerializedName
+import okhttp3.MultipartBody
 
 data class patientRegister(
 
@@ -29,9 +30,10 @@ data class patientRegister(
     @SerializedName("password")
     val password: String,
 
-    @SerializedName("consultation")
-    val consultation: String,
-
     @SerializedName("__v")
     val version: Int? = null,
+
+
+    @SerializedName("image")
+    val image: MultipartBody.Part? = null
 )
