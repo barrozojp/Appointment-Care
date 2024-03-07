@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_profile -> openFragment(ProfileFragment())
-            R.id.nav_services -> openFragment(MyBookingsFragment())
+            R.id.nav_bookings -> openFragment(MyBookingsFragment())
             R.id.nav_search -> openFragment(SearchFragment())
             R.id.nav_faqs -> openFragment(FAQsFragment())
             R.id.nav_contact -> openFragment(ContactFragment())

@@ -357,7 +357,7 @@ class MakeAppointment : Fragment() {
                     Toast.makeText(requireContext(), "Appointment booked successfully", Toast.LENGTH_SHORT).show()
 
                     // Navigate to MyBookingsFragment
-                    val myBookingsFragment = MyBookingsFragment()
+                    val myBookingsFragment = PatientBookingsFragment()
                     val transaction = requireActivity().supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.fragment_container, myBookingsFragment)
                     transaction.addToBackStack(null)

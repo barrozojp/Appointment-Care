@@ -15,9 +15,9 @@
 
 
         <item
-            android:id="@+id/nav_services"
-            android:icon="@drawable/baseline_library_books_24"
-            android:title="@string/services_navmenu"
+            android:id="@+id/nav_bookings"
+            android:icon="@drawable/baseline_edit_calendar_24"
+            android:title="My Bookings"
             />
 
         <item
