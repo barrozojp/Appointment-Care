@@ -70,7 +70,7 @@ class PatientRegister : AppCompatActivity() {
         val phoneNumberStream = RxTextView.textChanges(binding.PhoneNumRegEditText)
             .skipInitialValue()
             .map { phoneNumber ->
-                phoneNumber.length >= 11
+                phoneNumber.length >= 12
             }
         phoneNumberStream.subscribe {
             showPhoneNumExistAlert(it)
@@ -328,7 +328,7 @@ class PatientRegister : AppCompatActivity() {
 
     // NUMBER ALERT
     private fun showPhoneNumExistAlert(isNotValid: Boolean) {
-        binding.PhoneNumRegEditText.error = if (isNotValid) "Cannot exceed 10 characters" else null
+        binding.PhoneNumRegEditText.error = if (isNotValid) "Cannot exceed 11 characters" else null
     }
 
     // GENDER ALERT
