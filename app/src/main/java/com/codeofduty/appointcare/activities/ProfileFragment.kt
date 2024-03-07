@@ -1,5 +1,6 @@
 package com.codeofduty.appointcare.activities
 
+import User
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,15 +12,23 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import android.app.AlertDialog
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.codeofduty.appointcare.R
+import com.codeofduty.appointcare.api.RetrofitClient
 import com.codeofduty.appointcare.api.RetrofitClient.Companion.logout
 import com.codeofduty.appointcare.models.UserX
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ProfileFragment : Fragment() {
 
     private lateinit var logoutButton: Button
     private lateinit var editProfileButton: Button
+    private lateinit var profileImageView: ImageView
+
 
 
     override fun onCreateView(
@@ -34,6 +43,7 @@ class ProfileFragment : Fragment() {
         val tvYourEmail: TextView = view.findViewById(R.id.tv_yourEmail)
         val tvYourNumber: TextView = view.findViewById(R.id.tv_yourNumber)
         val tvYourGender: TextView = view.findViewById(R.id.tv_yourGender)
+        profileImageView = view.findViewById(R.id.profileIMG) // Initialize profileImageView
 
 
         // Set the text of TextViews
@@ -43,6 +53,9 @@ class ProfileFragment : Fragment() {
             tvYourEmail.text = user.email
             tvYourNumber.text = user.number
             tvYourGender.text = user.gender
+
+            // Load profile image using image data from SharedPreferences
+            loadProfileImage(user.imageData)
         }
 
         editProfileButton = view.findViewById(R.id.btn_editProfile)
@@ -135,13 +148,28 @@ class ProfileFragment : Fragment() {
         val number = sharedPreferences.getString("number", null)
         val gender = sharedPreferences.getString("gender", null)
         val role = sharedPreferences.getString("role", null)
+        val _id = sharedPreferences.getString("_id", null)
+        val imageData = sharedPreferences.getString("imageData", null)
 
         // Retrieve other user data as needed
 
-        return if (fname != null && lname != null && email != null && number != null && gender !=null && role !=null) {
-            UserX(Fname = fname, Lname = lname, email = email, number = number, gender = gender, role = role)
+        return if (fname != null && lname != null && email != null && number != null && gender !=null && role !=null && _id !=null && imageData !=null) {
+            UserX(Fname = fname, Lname = lname, email = email, number = number, gender = gender, role = role, _id = _id, imageData = imageData)
         } else {
             null
         }
     }
+    // Function to load profile image using API call
+    private fun loadProfileImage(imageData: String?) {
+        imageData?.let {
+            Glide.with(this@ProfileFragment)
+                .load(imageData)
+                .placeholder(R.drawable.blank_profile) // Placeholder image
+                .error(R.drawable.blank_profile) // Error image
+                .into(profileImageView)
+        }
+    }
+
+
+
 }

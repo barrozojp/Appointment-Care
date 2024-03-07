@@ -65,6 +65,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="20dp"
+                    android:backgroundTint="#fff"
                     android:background="@drawable/rounded_corners"
                     app:cardCornerRadius="100dp"
                     app:cardElevation="5dp">
@@ -74,7 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/upang_photo" />
+                        android:src="@drawable/blank_profile" />
 
                 </androidx.cardview.widget.CardView>
 
