@@ -22,6 +22,6 @@ data class UserX(
     val specialty: String? = null,
     val status: String? = null,
     val consultation: String? = null,
-    val imageData: ImageData? = null
+    val imageData: String? = null
 
 )

@@ -18,6 +18,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.codeofduty.appointcare.R
 import com.codeofduty.appointcare.api.RetrofitClient
 import com.codeofduty.appointcare.models.BookAppointment
@@ -127,10 +128,12 @@ class MakeAppointment : Fragment() {
             val doctorProfileImageView = requireView().findViewById<ImageView>(R.id.doctorProfileImageView)
 
             // Load the doctor's image into the ImageView if available
-            if (doctorDetails.imageData != null && doctorDetails.imageData.data?.isNotEmpty() == true) {
-                val byteArray = doctorDetails.imageData.data.map { it.toByte() }.toByteArray()
-                val bitmap = byteArray.let { BitmapFactory.decodeByteArray(byteArray, 0, it.size) }
-                doctorProfileImageView.setImageBitmap(bitmap)
+            if (!doctorDetails.imageData.isNullOrEmpty()) {
+                // You can directly use the imageData string
+                Glide.with(requireContext())
+                    .load(doctorDetails.imageData)
+                    .placeholder(R.drawable.doctor_profile) // Placeholder image
+                    .into(doctorProfileImageView)
             } else {
                 // Use a default image if the doctor's image is not available
                 doctorProfileImageView.setImageResource(R.drawable.doctor_profile)

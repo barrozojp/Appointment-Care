@@ -128,8 +128,10 @@ class UserLogin : AppCompatActivity() {
                 // Dismiss loading dialog
                 loadingDialog.dismiss()
 
-                showError("Failed to connect to server. Please try again later.")
+                val errorMessage = "Failed to connect to server. Please try again later. Error: ${t.message}"
+                showError(errorMessage)
             }
+
         })
     }
     // Function to create the loading dialog
@@ -197,11 +199,6 @@ class UserLogin : AppCompatActivity() {
         editor.putString("specialty", user.specialty)
         editor.putString("status", user.status)
         editor.putString("consultation", user.consultation)
-
-        // Convert imageData to string and save it
-        val imageDataString = user.imageData?.data?.joinToString(separator = ",")
-        editor.putString("imageData", imageDataString)
-
         editor.apply()
     }
 

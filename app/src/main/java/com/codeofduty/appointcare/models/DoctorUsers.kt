@@ -51,5 +51,5 @@ data class DoctorUsers(
     val online: Boolean? = null,
 
     @SerializedName("imageData")
-    val imageData: ImageData? = null
+    val imageData: String? = null
 )

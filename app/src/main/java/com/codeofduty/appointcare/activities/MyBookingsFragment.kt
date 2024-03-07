@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.bumptech.glide.Glide
 import com.codeofduty.appointcare.R
 import com.codeofduty.appointcare.api.ApiService
 import com.codeofduty.appointcare.api.RetrofitClient
@@ -184,28 +185,15 @@ class MyBookingsFragment : Fragment() {
 
                         // Load and set the doctor's profile image
                         val imageData = it.imageData
-                        if (imageData != null) {
-                            val imageDataByteArray = imageData.data?.let { data ->
-                                // Convert List<Int> to ByteArray
-                                val byteArray = ByteArray(data.size)
-                                for ((index, value) in data.withIndex()) {
-                                    byteArray[index] = value.toByte()
-                                }
-                                byteArray
-                            }
-                            if (imageDataByteArray != null) {
-                                val bitmap = BitmapFactory.decodeByteArray(imageDataByteArray, 0, imageDataByteArray.size)
-                                DoctorProfilePic.setImageBitmap(bitmap)
-                            } else {
-                                // Handle null or empty imageDataByteArray
-                                Toast.makeText(requireContext(), "No image data found", Toast.LENGTH_SHORT).show()
-                            }
+                        if (!imageData.isNullOrEmpty()) {
+                            Glide.with(requireContext())
+                                .load(imageData)
+                                .placeholder(R.drawable.doctor_profile)
+                                .into(DoctorProfilePic)
                         } else {
-                            // Handle null imageData
+                            // Handle null or empty imageData
                             Toast.makeText(requireContext(), "No image data found", Toast.LENGTH_SHORT).show()
                         }
-
-
                     }
                 } else {
                     // Handle unsuccessful response
@@ -219,6 +207,7 @@ class MyBookingsFragment : Fragment() {
             }
         })
     }
+
 
 
     private fun setUserInfo() {

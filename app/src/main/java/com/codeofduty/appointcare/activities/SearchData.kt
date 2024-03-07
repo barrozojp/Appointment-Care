@@ -6,7 +6,7 @@ data class SearchData(
     val title: String,
     val _id: String,
     val specialty: String,
-    val imageData: ImageData?,
+    val imageData: String?,
     val num: String,
     val email: String,
     val location: String,

@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.codeofduty.appointcare.R
 
 class SearchAdapter(var mList: List<SearchData>,
@@ -48,14 +49,11 @@ class SearchAdapter(var mList: List<SearchData>,
         }
 
         fun bind(searchData: SearchData) {
-            if (searchData.imageData?.data != null) {
-                val byteArray = searchData.imageData.data.map { it.toByte() }.toByteArray()
-                val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
-                logo.setImageBitmap(bitmap)
-            } else {
-                logo.setImageResource(R.drawable.baseline_account_circle_24) // Use a default image if imageData is null
-            }
-
+            // Load image using Glide
+            Glide.with(itemView)
+                .load(searchData.imageData) // Use the imageData URL directly
+                .placeholder(R.drawable.baseline_account_circle_24) // Placeholder image
+                .into(logo)
             titleTv.text = searchData.title
             speciality.text = searchData.specialty
             searchNum.text = searchData.num
