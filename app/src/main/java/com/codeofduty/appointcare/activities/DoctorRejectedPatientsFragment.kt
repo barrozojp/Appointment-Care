@@ -161,6 +161,7 @@ class DoctorRejectedPatientsFragment : Fragment(),BookingStatusListener {
             mListRejected.add(
                 RejectedBookingsData(
                     "Status: ${schedule.status}",
+                    schedule.imageData,
                     "${schedule.fullName}",
                     "${schedule.number}",
                     "Email: ${schedule.email}",

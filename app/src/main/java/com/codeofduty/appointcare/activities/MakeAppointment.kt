@@ -64,6 +64,7 @@ class MakeAppointment : Fragment() {
         val lname = sharedPreferences.getString("lname", null)
         val number = sharedPreferences.getString("number", null)
         val email = sharedPreferences.getString("email", null)
+        val imageData = sharedPreferences.getString("imageData", null)
 
         // Concatenate first name and last name
         val fullName = "$fname $lname"
@@ -331,6 +332,8 @@ class MakeAppointment : Fragment() {
             Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
             return
         }
+        val imageData = sharedPreferences.getString("imageData", null)
+
 
         // Construct the appointment object
         val appointment = BookAppointment(
@@ -341,7 +344,8 @@ class MakeAppointment : Fragment() {
             online = online,
             f2f = f2f,
             date = date,
-            time = time
+            time = time,
+            imageData = imageData ?: ""
         )
 
         // Call the bookAppointment function, passing the BookAppointment object and the userId

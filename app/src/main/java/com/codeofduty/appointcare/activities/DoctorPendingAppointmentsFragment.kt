@@ -167,6 +167,7 @@ class DoctorPendingAppointmentsFragment : Fragment(), BookingStatusListener  {
             mList.add(
                 DoctorBookingsData(
                     "Status: ${schedule.status}",
+                    schedule.imageData,
                     "${schedule.fullName}",
                     "${schedule.number}",
                     "Email: ${schedule.email}",

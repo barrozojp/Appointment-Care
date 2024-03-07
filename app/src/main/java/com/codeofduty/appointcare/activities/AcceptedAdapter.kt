@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.codeofduty.appointcare.R
 
 
@@ -60,6 +61,11 @@ class AcceptedAdapter(var mListAccepted: List<AcceptedBookingsData>) :
 
 
         fun bind(acceptedBookingsData: AcceptedBookingsData) {
+            Glide.with(itemView)
+                .load(acceptedBookingsData.imageData) // Use the imageData URL directly
+                .placeholder(R.drawable.baseline_account_circle_24) // Placeholder image
+                .into(profilePic)
+
 
             statusBookings.text = acceptedBookingsData.status
             patientName.text = acceptedBookingsData.fullName

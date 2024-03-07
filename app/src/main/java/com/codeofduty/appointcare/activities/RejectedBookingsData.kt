@@ -2,6 +2,7 @@ package com.codeofduty.appointcare.activities
 
 data class RejectedBookingsData(
     val status: String? = null,
+    val imageData: String?,
     val fullName: String? = null,
     val number: String? = null,
     val email: String? = null,

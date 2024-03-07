@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.codeofduty.appointcare.R
 
 class BookingsAdapter(var mList: List<DoctorBookingsData>, private val listener: DoctorPendingAppointmentsFragment) :
@@ -41,6 +42,11 @@ class BookingsAdapter(var mList: List<DoctorBookingsData>, private val listener:
 
 
         fun bind(doctorBookingsData: DoctorBookingsData) {
+
+            Glide.with(itemView)
+                .load(doctorBookingsData.imageData) // Use the imageData URL directly
+                .placeholder(R.drawable.baseline_account_circle_24) // Placeholder image
+                .into(profilePic)
 
             statusBookings.text = doctorBookingsData.status
             patientName.text = doctorBookingsData.fullName

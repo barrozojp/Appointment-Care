@@ -15,7 +15,7 @@ data class Schedule(
     val patientId: String? = null,
     val status: String? = null,
     val time: String? = null,
-    val imageData: ImageData?,
+    val imageData: String?,
 
 
     //CONSULTATION DETAILS

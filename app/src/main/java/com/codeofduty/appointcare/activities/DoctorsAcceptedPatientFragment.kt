@@ -117,6 +117,7 @@ class DoctorsAcceptedPatientFragment : Fragment() {
             mListAccepted.add(
                 AcceptedBookingsData(
                     "Status: ${schedule.status}",
+                    schedule.imageData,
                     "${schedule.fullName}",
                     "${schedule.number}",
                     "Email: ${schedule.email}",

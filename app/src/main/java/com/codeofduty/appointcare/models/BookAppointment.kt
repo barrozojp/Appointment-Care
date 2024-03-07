@@ -8,6 +8,7 @@ data class BookAppointment(
     val number: String,
     val online: String,
     val f2f: String,
-    val time: String
+    val time: String,
+    val imageData: String
 
 )
