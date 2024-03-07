@@ -1,9 +1,15 @@
 package com.codeofduty.appointcare.activities
 
 import User
+import android.app.AlertDialog
+import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
+import android.database.Cursor
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -14,13 +20,25 @@ import com.codeofduty.appointcare.databinding.ActivityDoctorRegisterBinding
 import com.google.android.material.textfield.TextInputLayout
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.io.FileNotFoundException
+
 class DoctorRegister : AppCompatActivity() {
     private lateinit var binding: ActivityDoctorRegisterBinding
     private var f2fChecked = false
     private var onlineChecked = false
+    private var selectedImageUri: Uri? = null
+    private val disposables = CompositeDisposable()
+    private var imageFile: File? = null // Declare imageFile here
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -257,9 +275,39 @@ class DoctorRegister : AppCompatActivity() {
             onlineChecked = isChecked
         }
 
+        binding.btnUploadPicture.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(intent, IMAGE_PICK_CODE)
+        }
+
 
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == IMAGE_PICK_CODE && resultCode == RESULT_OK) {
+            data?.data?.let { uri ->
+                try {
+                    selectedImageUri = uri
+                    binding.imageView.setImageURI(uri)
+                    binding.imageView.visibility = View.VISIBLE
+                } catch (e: FileNotFoundException) {
+                    Toast.makeText(this, "Selected image not found", Toast.LENGTH_SHORT).show()
+                    selectedImageUri = null
+                }
+            } ?: run {
+                Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
+                selectedImageUri = null
+            }
+        }
+    }
     private fun registerDoctor() {
+
+
+        // Show loading dialog
+        val loadingDialog = createLoadingDialog()
+        loadingDialog.show()
+
+
         val FName = binding.FNameRegEditText.text.toString().trim()
         val LName = binding.LNameRegEditText.text.toString().trim()
         val phoneNumber = binding.PhoneNumRegEditText.text.toString().trim()
@@ -274,47 +322,115 @@ class DoctorRegister : AppCompatActivity() {
         val barangay = binding.brgyEditText.text.toString().trim()
         val hn = binding.hnEditText.text.toString().trim()
         val password = binding.PasswordRegEditText.text.toString().trim()
+        val f2f = f2fChecked
+        val online = onlineChecked
 
-        val user = User(
-            role = "Doctor",
-            Fname = FName,
-            Lname = LName,
-            number = phoneNumber,
-            gender = gender,
-            age = age,
-            specialty = specialty,
-            md = md,
-            consultPrice = consultPrice,
-            province = province,
-            municipality = municipality,
-            barangay = barangay,
-            hn = hn,
-            email = email,
-            password = password,
-            f2f = f2fChecked,
-            online = onlineChecked,
-            status = "Pending"
-        )
 
-        val call = RetrofitClient.getService().registerDoctor(user)
-        call.enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@DoctorRegister, "Doctor registered successfully", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@DoctorRegister, UserLogin::class.java))
-                    finish()
-                } else {
-                    Toast.makeText(this@DoctorRegister, "Registration failed", Toast.LENGTH_SHORT).show()
+        selectedImageUri?.let { uri ->
+            // Get the file path from the URI
+            val imagePath = uri.getPathFromURI(this)
+            imagePath?.let { path ->
+                // Create a file object from the file path
+                val imageFile = File(path)
+                // Display the image
+                binding.imageView.setImageURI(uri)
+                binding.imageView.visibility = View.VISIBLE
+
+                // Check if imageFile is null before making the API call
+                imageFile?.let { file ->
+                    val mediaType = "image/png"
+                    val fileName = "photo_${System.currentTimeMillis()}.png"
+                    val reqFile = file.asRequestBody(mediaType.toMediaTypeOrNull())
+                    val imagePart = MultipartBody.Part.createFormData("image", fileName, reqFile)
+
+                    // Make the API call
+                    val call = RetrofitClient.getService().registerDoctor(
+                        role = RequestBody.create("text/plain".toMediaTypeOrNull(), "Patient"),
+                        fName = RequestBody.create("text/plain".toMediaTypeOrNull(), FName),
+                        lName = RequestBody.create("text/plain".toMediaTypeOrNull(), LName),
+                        phoneNumber = RequestBody.create("text/plain".toMediaTypeOrNull(), phoneNumber),
+                        gender = RequestBody.create("text/plain".toMediaTypeOrNull(), gender),
+                        email = RequestBody.create("text/plain".toMediaTypeOrNull(), email),
+                        age = RequestBody.create("text/plain".toMediaTypeOrNull(), age.toString()),
+                        specialty = RequestBody.create("text/plain".toMediaTypeOrNull(), specialty),
+                        md = RequestBody.create("text/plain".toMediaTypeOrNull(), md.toString()),
+                        consultPrice = RequestBody.create("text/plain".toMediaTypeOrNull(), consultPrice.toString()),
+                        province = RequestBody.create("text/plain".toMediaTypeOrNull(), province),
+                        municipality = RequestBody.create("text/plain".toMediaTypeOrNull(), municipality),
+                        barangay = RequestBody.create("text/plain".toMediaTypeOrNull(), barangay),
+                        hn = RequestBody.create("text/plain".toMediaTypeOrNull(), hn.toString()),
+                        password = RequestBody.create("text/plain".toMediaTypeOrNull(), password),
+                        f2f = RequestBody.create("text/plain".toMediaTypeOrNull(), f2f.toString()), // Pass f2f here
+                        online = RequestBody.create("text/plain".toMediaTypeOrNull(), online.toString()), // Pass online here
+                        image = imagePart
+                    )
+
+                    call.enqueue(object : Callback<User> {
+                        override fun onResponse(call: Call<User>, response: Response<User>) {
+                            if (response.isSuccessful) {
+                                Toast.makeText(this@DoctorRegister, "Patient registered successfully", Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this@DoctorRegister, UserLogin::class.java))
+                                finish()
+                            } else {
+                                val errorMessage = "Registration failed: ${response.errorBody()?.string()}"
+                                Toast.makeText(this@DoctorRegister, errorMessage, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<User>, t: Throwable) {
+                            Toast.makeText(this@DoctorRegister, "Registration Successful", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@DoctorRegister, UserLogin::class.java))
+                            finish()
+                        }
+                    })
                 }
             }
-
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(this@DoctorRegister, "Registration Successful", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@DoctorRegister, UserLogin::class.java))
-                finish()
-            }
-        })
+        }
     }
+    private fun createLoadingDialog(): AlertDialog {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_loading, null)
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false) // Prevent dialog dismissal on outside touch or back press
+
+        val alertDialog = builder.create()
+
+        alertDialog.window?.setBackgroundDrawableResource(R.drawable.dialog_loading_background)
+
+
+        return alertDialog
+
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposables.dispose()
+    }
+
+    companion object {
+        private const val IMAGE_PICK_CODE = 1000
+    }
+    private fun Uri.getPathFromURI(context: Context): String? {
+        var realPath: String? = null
+        val uriScheme = this.scheme
+        if (uriScheme == null)
+            realPath = this.path
+        else if (ContentResolver.SCHEME_CONTENT == uriScheme) {
+            val cursor: Cursor? = context.contentResolver.query(this, null, null, null, null)
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    val column_index: Int = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                    realPath = cursor.getString(column_index)
+                }
+                cursor.close()
+            }
+        } else if (uriScheme == ContentResolver.SCHEME_FILE) {
+            realPath = this.path
+        }
+        return realPath
+    }
+
 
 
     private fun showToast(gender: String) {

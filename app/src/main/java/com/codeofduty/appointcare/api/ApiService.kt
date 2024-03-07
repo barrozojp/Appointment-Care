@@ -33,8 +33,28 @@ interface ApiService {
 
 
     // SIGN UP DOCTOR
+    @Multipart
     @POST("auth/Signup")
-    fun registerDoctor(@Body user: User): Call<User>
+    fun registerDoctor(
+        @Part("role") role: RequestBody,
+        @Part("Fname") fName: RequestBody,
+        @Part("Lname") lName: RequestBody,
+        @Part("number") phoneNumber: RequestBody,
+        @Part("gender") gender: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("age") age: RequestBody,
+        @Part("specialty") specialty: RequestBody,
+        @Part("md") md: RequestBody,
+        @Part("consultPrice") consultPrice: RequestBody?,
+        @Part("province") province: RequestBody?,
+        @Part("municipality") municipality: RequestBody?,
+        @Part("barangay") barangay: RequestBody?,
+        @Part("hn") hn: RequestBody?,
+        @Part("password") password: RequestBody,
+        @Part("f2f") f2f: RequestBody?,
+        @Part("online") online: RequestBody?,
+        @Part image: MultipartBody.Part?
+    ): Call<User>
 
     // SIGN UP PATIENT
     @Multipart

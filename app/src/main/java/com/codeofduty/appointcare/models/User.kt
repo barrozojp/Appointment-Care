@@ -1,4 +1,5 @@
 import com.google.gson.annotations.SerializedName
+import okhttp3.MultipartBody
 
 data class User(
     @SerializedName("_id")
@@ -63,4 +64,7 @@ data class User(
 
     @SerializedName("__v")
     val version: Int? = null,
+
+    @SerializedName("image")
+    val image: MultipartBody.Part? = null
 )

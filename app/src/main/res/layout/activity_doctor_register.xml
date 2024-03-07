@@ -512,13 +512,44 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btnUploadPicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ConfirmPasswordRegLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Upload Picture"
+            android:backgroundTint="#409297"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageCARD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="75dp"
+            app:cardElevation="4dp"
+            android:layout_below="@id/btnUploadPicture"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp">
+
+          <ImageView
+              android:id="@+id/imageView"
+              android:layout_width="150dp"
+              android:layout_height="150dp"
+              android:scaleType="centerCrop"
+              android:visibility="gone" />
+
+        </androidx.cardview.widget.CardView>
+
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnRegister"
             android:layout_width="350dp"
             android:layout_height="80dp"
-            android:layout_below="@id/f2fonline"
+            android:layout_below="@id/imageCARD"
             android:layout_marginTop="11dp"
             android:text="@string/register"
             style="@style/ButtonColor3"
