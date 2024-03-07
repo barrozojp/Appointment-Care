@@ -129,12 +129,16 @@ class DoctorPendingAppointmentsFragment : Fragment(), BookingStatusListener  {
                         } else {
                             // Update failed, show an error message
                             showToast("Failed to update booking status")
+                            loadingDialog.dismiss()
+
                         }
                     }
 
                     override fun onFailure(call: Call<MyBookings>, t: Throwable) {
                         // Failure in API call, show an error message
                         showToast("Failed to update booking status: ${t.message}")
+                        loadingDialog.dismiss()
+
                     }
 
                     private fun showToast(message: String) {

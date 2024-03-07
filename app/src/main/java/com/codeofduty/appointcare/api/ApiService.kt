@@ -53,6 +53,7 @@ interface ApiService {
         @Part("password") password: RequestBody,
         @Part("f2f") f2f: RequestBody?,
         @Part("online") online: RequestBody?,
+        @Part("status") status: RequestBody,
         @Part image: MultipartBody.Part?
     ): Call<User>
 

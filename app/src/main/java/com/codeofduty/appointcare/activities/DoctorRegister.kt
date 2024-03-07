@@ -345,7 +345,7 @@ class DoctorRegister : AppCompatActivity() {
 
                     // Make the API call
                     val call = RetrofitClient.getService().registerDoctor(
-                        role = RequestBody.create("text/plain".toMediaTypeOrNull(), "Patient"),
+                        role = RequestBody.create("text/plain".toMediaTypeOrNull(), "Doctor"),
                         fName = RequestBody.create("text/plain".toMediaTypeOrNull(), FName),
                         lName = RequestBody.create("text/plain".toMediaTypeOrNull(), LName),
                         phoneNumber = RequestBody.create("text/plain".toMediaTypeOrNull(), phoneNumber),
@@ -361,6 +361,7 @@ class DoctorRegister : AppCompatActivity() {
                         hn = RequestBody.create("text/plain".toMediaTypeOrNull(), hn.toString()),
                         password = RequestBody.create("text/plain".toMediaTypeOrNull(), password),
                         f2f = RequestBody.create("text/plain".toMediaTypeOrNull(), f2f.toString()), // Pass f2f here
+                        status = RequestBody.create("text/plain".toMediaTypeOrNull(), "Pending"),
                         online = RequestBody.create("text/plain".toMediaTypeOrNull(), online.toString()), // Pass online here
                         image = imagePart
                     )
@@ -374,12 +375,15 @@ class DoctorRegister : AppCompatActivity() {
                             } else {
                                 val errorMessage = "Registration failed: ${response.errorBody()?.string()}"
                                 Toast.makeText(this@DoctorRegister, errorMessage, Toast.LENGTH_SHORT).show()
+                                loadingDialog.dismiss()
+
                             }
                         }
 
                         override fun onFailure(call: Call<User>, t: Throwable) {
                             Toast.makeText(this@DoctorRegister, "Registration Successful", Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this@DoctorRegister, UserLogin::class.java))
+                            loadingDialog.dismiss()
                             finish()
                         }
                     })
