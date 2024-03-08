@@ -4,6 +4,7 @@ import DoctorUsers
 import User
 import com.codeofduty.appointcare.models.BookAppointment
 import com.codeofduty.appointcare.models.ChangePassword
+import com.codeofduty.appointcare.models.EditSchedule
 import com.codeofduty.appointcare.models.UserLoginResponse
 import com.codeofduty.appointcare.models.LoginUser
 import com.codeofduty.appointcare.models.MyBookings
@@ -118,6 +119,11 @@ interface ApiService {
     //ADD SYMPTOMS, CONSULTATION AND PRESCRIPTION
     @PUT("appoint/consult/{bookingId}")
     fun addSymptomsObsAndPres(@Path("bookingId") userId: String, @Body requestBody: UpdateSympConsPres): Call<MyBookings>
+
+    //EDIT SCHEDULE / RE-SCHEDULE
+    @PUT("appoint/edit/{bookingId}")
+    fun rescheduleBooking(@Path("bookingId") bookingId: String, @Body editSchedule: EditSchedule): Call<MyBookings>
+
 
     //DELETE APPOINTMENT
     @DELETE("appoint/delete/{bookingId}")

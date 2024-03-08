@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    tools:context=".activities.EditScheduleFragment">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ltAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/greenline_animation" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/appointmentCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#fff"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:contentPadding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reschedule Appointment"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dateEditLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/tv_book"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/rounded_corners"
+                android:textColorHint="#000">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#00FFFFFF"
+                    android:drawableEnd="@drawable/baseline_edit_calendar_24"
+                    android:drawablePadding="10dp"
+                    android:hint="Date (dd/mm/yyyy)"
+                    android:inputType="date"
+                    android:lines="1"
+                    android:paddingStart="10dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#016D73"
+                    android:textColorHint="#000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/timeEditLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/dateEditLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/rounded_corners"
+                android:textColorHint="#000">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/timeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#00FFFFFF"
+                    android:drawableEnd="@drawable/baseline_access_time_24"
+                    android:drawablePadding="10dp"
+                    android:hint="Time"
+                    android:inputType="time"
+                    android:lines="1"
+                    android:paddingStart="10dp"
+                    android:paddingTop="5dp"
+                    android:textColor="#016D73"
+                    android:textColorHint="#000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/f2fonline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@id/timeEditLayout"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Appointment Type: "
+                    android:textColor="#016D73"
+                    android:textStyle="bold"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_f2f"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="F2F"
+                    android:textColor="#016D73"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="16dp" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Online"
+                    android:textColor="#016D73"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@id/f2fonline"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/cancel_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:backgroundTint="#E8E8E8"
+                    android:text="Cancel"
+                    android:layout_margin="10dp"
+                    android:textColor="#000"/>
+                <Button
+                    android:id="@+id/resched_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:backgroundTint="#007E85"
+                    android:text="Re-schedule Appointment"
+                    android:layout_margin="10dp"
+                    android:textColor="#fff"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/bookingIdTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Booking Id: "
+                android:visibility="gone"
+                android:layout_below="@id/buttons"
+                android:textColor="#016D73"
+                android:textStyle="bold"/>
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

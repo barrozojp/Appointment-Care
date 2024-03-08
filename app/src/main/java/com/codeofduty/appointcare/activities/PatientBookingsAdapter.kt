@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codeofduty.appointcare.R
@@ -21,10 +22,11 @@ import retrofit2.Response
 
 class PatientBookingsAdapter(
     var mListBookings: List<PatientBookingsData>,
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val fragmentManager: FragmentManager, // Add FragmentManager parameter
+    private val rescheduleClickListener: OnRescheduleClickListener // Add OnRescheduleClickListener parameter
 ) :
     RecyclerView.Adapter<PatientBookingsAdapter.patientBookingsViewHolder>(){
-
 
     inner class patientBookingsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -42,6 +44,8 @@ class PatientBookingsAdapter(
         val address: TextView = itemView.findViewById(R.id.tv_location)
         val bookingId: TextView = itemView.findViewById(R.id.tv_bookID)
         val cancelBTN: Button = itemView.findViewById(R.id.cancelBTN)
+        val reschedBTN: Button = itemView.findViewById(R.id.reschedBTN)
+
 
 
         //LOGGED IN USER INFO
@@ -93,6 +97,11 @@ class PatientBookingsAdapter(
                     negativeButton.setTextColor(ContextCompat.getColor(itemView.context, R.color.neongreen))
                 }
             }
+            reschedBTN.setOnClickListener {
+                // Call the interface method passing the booking ID
+                rescheduleClickListener.onRescheduleClick(mListBookings[adapterPosition]._id ?: "")
+            }
+
         }
 
 

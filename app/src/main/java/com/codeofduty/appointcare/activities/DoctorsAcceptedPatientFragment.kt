@@ -69,7 +69,7 @@ class DoctorsAcceptedPatientFragment : Fragment() {
                             val myBookings = response.body()
 
                             myBookings?.let { bookings ->
-                                val acceptedSchedules = bookings.schedules.filter { it.status == "Accepted" }
+                                val acceptedSchedules = bookings.schedules.filter { it.status == "Accepted" || it.status == "Request"}
                                 if (acceptedSchedules.isNotEmpty()) {
                                     populateList(acceptedSchedules)
                                     showToast("Accepted Bookings fetched successfully")

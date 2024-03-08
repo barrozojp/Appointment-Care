@@ -50,7 +50,31 @@ class PatientBookingsFragment : Fragment() {
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = PatientBookingsAdapter(mListBookings, apiService)
+
+        adapter = PatientBookingsAdapter(mListBookings, apiService, childFragmentManager, object : OnRescheduleClickListener {
+            override fun onRescheduleClick(bookingId: String) {
+                // Pass the booking ID to the EditScheduleFragment
+                val fragment = EditScheduleFragment().apply {
+                    arguments = Bundle().apply {
+                        putString("bookingId", bookingId)
+                    }
+                }
+                val transaction = fragmentManager?.beginTransaction()
+                if (transaction != null) {
+                    transaction.replace(R.id.fragment_container, fragment)
+                }
+                if (transaction != null) {
+                    transaction.addToBackStack(null)
+                }
+                if (transaction != null) {
+                    transaction.commit()
+                }
+            }
+        })
+
+
+
+
         recyclerView.adapter = adapter
 
         // Initialize the ApiService
@@ -74,7 +98,7 @@ class PatientBookingsFragment : Fragment() {
                             myBookings?.let { bookings ->
                                 var hasSpecificStatusBookings = false // Flag to track if any bookings have the specified statuses
                                 for (schedule in bookings.schedules) {
-                                    if (schedule.status == "Pending" || schedule.status == "Accepted" || schedule.status == "Rejected" || schedule.status == "Delete") {
+                                    if (schedule.status == "Pending" || schedule.status == "Accepted" || schedule.status == "Rejected" || schedule.status == "Delete" || schedule.status == "Request") {
                                         hasSpecificStatusBookings = true
                                         populateList(schedule)
                                     }
@@ -118,7 +142,7 @@ class PatientBookingsFragment : Fragment() {
 
 
     private fun populateList(schedule: Schedule) {
-        if (schedule.status == "Pending" || schedule.status == "Accepted" || schedule.status == "Rejected" || schedule.status == "Delete") {
+        if (schedule.status == "Pending" || schedule.status == "Accepted" || schedule.status == "Rejected" || schedule.status == "Delete" || schedule.status == "Request") {
             // Fetch doctor details
             apiService.getDoctorDetails(schedule.doctorId ?: "").enqueue(object :
                 Callback<DoctorUsers> {

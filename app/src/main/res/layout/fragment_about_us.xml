@@ -13,7 +13,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="980dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/ltAnimation"
@@ -79,23 +80,20 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#fff"
+                android:layout_margin="20dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="8dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15sp"
-                android:layout_marginBottom="80dp"
-                android:backgroundTint="#fff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/upangIMGCARD"
-                app:layout_constraintVertical_bias="0.073"
                 tools:layout_editor_absoluteX="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <TextView
@@ -103,35 +101,35 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:textColor="#007E85"
+                        android:layout_marginBottom="10dp"
                         android:text="Developers"
                         android:textAlignment="center"
+                        android:textColor="#007E85"
                         android:textSize="23sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="10dp"/>
+                        android:textStyle="bold" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/dev_1"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        app:cardCornerRadius="15dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="20dp"
-                        android:backgroundTint="#FCFFF9">
+                        android:backgroundTint="#FCFFF9"
+                        app:cardCornerRadius="15dp">
 
                         <LinearLayout
                             android:id="@+id/dev_container_1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="15dp"
-                                android:src="@drawable/baseline_account_circle_24"/>
+                                android:src="@drawable/baseline_account_circle_24" />
 
                             <TextView
                                 android:id="@+id/tv_dev_1"
@@ -139,8 +137,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Lance Kian F. Flores ↗"
-                                android:textSize="20sp"
-                                android:textColor="#000000"/>
+                                android:textColor="#000000"
+                                android:textSize="20sp" />
 
                         </LinearLayout>
 
@@ -150,24 +148,24 @@
                         android:id="@+id/dev_2"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        app:cardCornerRadius="15dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="20dp"
-                        android:backgroundTint="#FCFFF9">
+                        android:backgroundTint="#FCFFF9"
+                        app:cardCornerRadius="15dp">
 
                         <LinearLayout
                             android:id="@+id/dev_container_2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="15dp"
-                                android:src="@drawable/baseline_account_circle_24"/>
+                                android:src="@drawable/baseline_account_circle_24" />
 
                             <TextView
                                 android:id="@+id/tv_dev_2"
@@ -175,8 +173,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Christer Dale Reyes ↗"
-                                android:textSize="20sp"
-                                android:textColor="#000000"/>
+                                android:textColor="#000000"
+                                android:textSize="20sp" />
 
                         </LinearLayout>
 
@@ -186,24 +184,24 @@
                         android:id="@+id/dev_3"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        app:cardCornerRadius="15dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="20dp"
-                        android:backgroundTint="#FCFFF9">
+                        android:backgroundTint="#FCFFF9"
+                        app:cardCornerRadius="15dp">
 
                         <LinearLayout
                             android:id="@+id/dev_container_3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="15dp"
-                                android:src="@drawable/baseline_account_circle_24"/>
+                                android:src="@drawable/baseline_account_circle_24" />
 
                             <TextView
                                 android:id="@+id/tv_dev_3"
@@ -211,8 +209,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="John Paul Barrozo ↗"
-                                android:textSize="20sp"
-                                android:textColor="#000000"/>
+                                android:textColor="#000000"
+                                android:textSize="20sp" />
 
                         </LinearLayout>
 
@@ -222,24 +220,24 @@
                         android:id="@+id/dev_4"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        app:cardCornerRadius="15dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="20dp"
-                        android:backgroundTint="#FCFFF9">
+                        android:backgroundTint="#FCFFF9"
+                        app:cardCornerRadius="15dp">
 
                         <LinearLayout
                             android:id="@+id/dev_container_4"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="15dp"
-                                android:src="@drawable/baseline_account_circle_24"/>
+                                android:src="@drawable/baseline_account_circle_24" />
 
                             <TextView
                                 android:id="@+id/tv_dev_4"
@@ -247,8 +245,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Mart Renzu Ragudo ↗"
-                                android:textSize="20sp"
-                                android:textColor="#000000"/>
+                                android:textColor="#000000"
+                                android:textSize="20sp" />
 
                         </LinearLayout>
 
@@ -258,24 +256,24 @@
                         android:id="@+id/dev_5"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        app:cardCornerRadius="15dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="20dp"
-                        android:backgroundTint="#FCFFF9">
+                        android:backgroundTint="#FCFFF9"
+                        app:cardCornerRadius="15dp">
 
                         <LinearLayout
                             android:id="@+id/dev_container_5"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="15dp"
-                                android:src="@drawable/baseline_account_circle_24"/>
+                                android:src="@drawable/baseline_account_circle_24" />
 
                             <TextView
                                 android:id="@+id/tv_dev_5"
@@ -283,14 +281,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
                                 android:text="Carl Jhester Royupa ↗"
-                                android:textSize="20sp"
-                                android:textColor="#000000" />
+                                android:textColor="#000000"
+                                android:textSize="20sp" />
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
-
-
 
 
                 </LinearLayout>

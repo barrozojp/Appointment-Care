@@ -12,11 +12,11 @@
       android:id="@+id/img_logo_register"
       android:layout_width="150dp"
       android:layout_height="150dp"
-      android:src="@drawable/splashscreenlogo"
       android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
       android:layout_alignParentEnd="true"
-      android:layout_marginTop="30dp"
-      />
+      android:layout_marginTop="70dp"
+      android:src="@drawable/splashscreenlogo" />
 
   <TextView
       android:id="@+id/registerTitle"
@@ -34,29 +34,31 @@
       android:id="@+id/btn_RegDoctor"
       android:layout_width="350dp"
       android:layout_height="80dp"
-      android:layout_below="@id/registerTitle"
-      android:layout_centerInParent="true"
+      android:layout_above="@+id/orText"
+      android:layout_centerHorizontal="true"
       android:layout_marginTop="80dp"
+      android:layout_marginBottom="5dp"
       android:backgroundTint="#007E85"
       android:text="@string/register_as_doctor"
       android:textColor="#FFF"
       android:textSize="20sp" />
+
   <TextView
       android:id="@+id/orText"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/btn_RegDoctor"
+      android:layout_above="@+id/btn_RegPatient"
       android:text="@string/or_signInRegister"
-      android:textColor="#007E85"
-      android:textAlignment="center"/>
+      android:textAlignment="center"
+      android:textColor="#007E85" />
 
   <Button
       android:id="@+id/btn_RegPatient"
       android:layout_width="350dp"
       android:layout_height="80dp"
-      android:layout_below="@id/btn_RegDoctor"
-      android:layout_centerInParent="true"
-      android:layout_marginTop="20dp"
+      android:layout_above="@+id/alreadyhaveaccount"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="5dp"
       android:backgroundTint="#007E85"
       android:text="@string/register_as_patient"
       android:textColor="#FFF"
