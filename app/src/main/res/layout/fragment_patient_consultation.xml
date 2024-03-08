@@ -24,10 +24,10 @@
 
             <TextView
                 android:visibility="gone"
-                android:id="@+id/tv_myConsultation"
+                android:id="@+id/tv_myAppointments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="My Consultation"
+                android:text="My Prescription"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="25sp"
@@ -46,7 +46,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.517"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_myConsultation"
+                app:layout_constraintTop_toBottomOf="@+id/tv_myAppointments"
                 app:layout_constraintVertical_bias="0.0"
                 />
 
@@ -55,7 +55,7 @@
     </ScrollView>
 
     <RelativeLayout
-        android:id="@+id/relativeMyAppointments"
+        android:id="@+id/relativeMyConsultation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -83,29 +83,29 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/img_consultation"
+                    android:id="@+id/img_bookings"
                     android:layout_width="wrap_content"
                     android:layout_height="280dp"
                     android:src="@drawable/consultation_img" />
 
                 <TextView
-                    android:id="@+id/tv_noConsultation"
+                    android:id="@+id/tv_noBookings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/img_consultation"
-                    android:text="No Prescription"
+                    android:layout_below="@id/img_bookings"
+                    android:text="No Presciption"
                     android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_noConsultationdesc"
+                    android:id="@+id/tv_nobookingsdesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_noConsultation"
+                    android:layout_below="@id/tv_noBookings"
                     android:layout_marginBottom="20dp"
-                    android:text="You have no prescription at the moment. Book an Appointment"
+                    android:text="You have no bookings at the moment."
                     android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="18sp" />
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                android:text="Loading Prescriptions..."
+                android:text="Loading Consultations..."
                 android:textAlignment="center"
                 android:textColor="@color/primarycolor"
                 android:textSize="25sp"

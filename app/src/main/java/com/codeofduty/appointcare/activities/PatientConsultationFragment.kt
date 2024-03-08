@@ -24,6 +24,7 @@ import retrofit2.Response
 import java.util.ArrayList
 
 class PatientConsultationFragment : Fragment() {
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PatientConsultationAdapter
     private var mListConsultation = ArrayList<PatientConsultationData>()
@@ -41,7 +42,7 @@ class PatientConsultationFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.recyclerViewMyConsultation)
         loadingCARD = view.findViewById(R.id.loadingCARD)
-        tv_myAppointments = view.findViewById(R.id.tv_myConsultation)
+        tv_myAppointments = view.findViewById(R.id.tv_myAppointments)
         noAppointsCARD = view.findViewById(R.id.noConsultationCARD)
 
 
@@ -132,10 +133,9 @@ class PatientConsultationFragment : Fragment() {
                                 it.imageData,
                                 "",
                                 "",
-                                "",
-                                "",
-                                symptoms = null
-
+                                schedule.symptoms,
+                                "Observation: ${schedule.observation}",
+                                "Prescription: ${schedule.prescription}"
                             )
                         )
                         adapter.notifyDataSetChanged()

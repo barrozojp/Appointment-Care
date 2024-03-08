@@ -319,14 +319,13 @@
 
             <TextView
                 android:id="@+id/personEmail"
-                android:layout_width="wrap_content"
+                android:layout_width="210dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:drawableStart="@drawable/baseline_mail_outline_24"
                 android:drawablePadding="5dp"
                 android:drawableTint="#191919"
-                android:drawableStart="@drawable/baseline_mail_outline_24"
-                android:layout_marginStart="20dp"
                 android:text="Person eMAIL"
-                android:textAlignment="center"
                 android:textColor="#1B1B1B"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/cardViewPerson"
@@ -334,15 +333,14 @@
 
             <TextView
                 android:id="@+id/personNumber"
-                android:layout_width="wrap_content"
+                android:layout_width="210dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:drawableStart="@drawable/baseline_phone_24"
                 android:drawablePadding="5dp"
                 android:drawableTint="#191919"
-                android:drawableStart="@drawable/baseline_phone_24"
                 android:text="Person Number"
-                android:layout_marginStart="20dp"
                 android:textColor="#0E0E0E"
-                android:textAlignment="center"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/cardViewPerson"
                 app:layout_constraintTop_toBottomOf="@+id/personEmail" />
@@ -351,13 +349,13 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/consultationCARD"
             android:layout_width="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#fff"
+            android:layout_margin="10dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutPeson">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutPeson"
+            tools:layout_editor_absoluteX="16dp">
 
 
             <LinearLayout
@@ -409,10 +407,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/symptomsCARD"
             android:layout_width="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:backgroundTint="#fff"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
@@ -648,7 +644,7 @@
             android:layout_marginStart="10dp"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/symptomsCARD" />
+            app:layout_constraintTop_toBottomOf="@id/consultationCARD" />
 
         <TextView
             android:id="@+id/tv_patientID"
@@ -675,17 +671,17 @@
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/primarycolor"
-            android:text="Delete"
+            android:backgroundTint="#E85834"
+            android:text="Delete Consultation"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:textColor="#fff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_patientID"
+            app:layout_constraintTop_toBottomOf="@+id/symptomsCARD"
             app:layout_constraintVertical_bias="0.0" />
-
+        =
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

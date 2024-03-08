@@ -21,8 +21,7 @@ data class PatientConsultationData(
     val _id: String? = null,
 
     //CONSULTATION DETAILS
+    val symptoms: List<String>? = null,
     val observation: String? = null,
-    val prescription: String? = null,
-    val symptoms: List<String>? = null
-
-    )
+    val prescription: String? = null
+)

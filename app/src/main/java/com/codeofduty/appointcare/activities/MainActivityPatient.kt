@@ -40,7 +40,7 @@ class MainActivityPatient : AppCompatActivity(), NavigationView.OnNavigationItem
             when(item.itemId){
                 R.id.bottom_home -> openFragment(HomeFragment())
                 R.id.bottom_bookings -> openFragment(PatientBookingsFragment())
-                R.id.bottom_consultation -> openFragment(MyConsultationFragment())
+                R.id.bottom_consultation -> openFragment(PatientConsultationFragment())
                 R.id.bottom_search -> openFragment(SearchFragment())
                 R.id.bottom_profile -> openFragment(ProfileFragment())
             }
