@@ -45,10 +45,12 @@ class PatientBookingsFragment : Fragment() {
         tv_myAppointments = view.findViewById(R.id.tv_myAppointments)
         noAppointsCARD = view.findViewById(R.id.noAppointsCARD)
 
+        // Initialize the ApiService
+        apiService = RetrofitClient.getService()
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = PatientBookingsAdapter(mListBookings)
+        adapter = PatientBookingsAdapter(mListBookings, apiService)
         recyclerView.adapter = adapter
 
         // Initialize the ApiService
@@ -106,7 +108,7 @@ class PatientBookingsFragment : Fragment() {
 
     private fun populateList(schedules: List<Schedule>) {
         for (schedule in schedules) {
-            if (schedule.status == "Pending" || schedule.status == "Accepted" || schedule.status == "Rejected") {
+            if (schedule.status == "Pending" || schedule.status == "Accepted" || schedule.status == "Rejected" || schedule.status == "Delete") {
                 // Fetch doctor details
                 apiService.getDoctorDetails(schedule.doctorId ?: "").enqueue(object :
                     Callback<DoctorUsers> {
@@ -132,6 +134,8 @@ class PatientBookingsFragment : Fragment() {
                                     "",
                                     "",
                                     it.imageData,
+                                    "",
+                                    schedule._id
                                 )
                             )
                             adapter.notifyDataSetChanged()

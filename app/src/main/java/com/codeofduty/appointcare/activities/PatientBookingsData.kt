@@ -17,6 +17,6 @@ data class PatientBookingsData(
     val localDate: Any? = null,
     val localTime: Any? = null,
     val imageData: String?,
-    val __v: Int? = null,
-    val _id: String? = null,
+    val __v: String? = null,
+    val _id: String? = null, //THIS IS BOOKINGS ID
 )

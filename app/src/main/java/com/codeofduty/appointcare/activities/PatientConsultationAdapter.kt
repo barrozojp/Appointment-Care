@@ -1,5 +1,6 @@
 package com.codeofduty.appointcare.activities
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codeofduty.appointcare.R
@@ -22,6 +24,8 @@ class PatientConsultationAdapter(
     private val listener: PatientConsultationFragment,
     private val apiService: ApiService // Pass ApiService as a parameter
 ) : RecyclerView.Adapter<PatientConsultationAdapter.patientConsultationViewHolder>() {
+
+
 
     inner class patientConsultationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -47,26 +51,48 @@ class PatientConsultationAdapter(
             // Add click listener to delete button
             btn_Delete.setOnClickListener {
                 val bookingId = mListConsultation[adapterPosition]._id ?: ""
-                // Call deleteBooking function
-                apiService.deleteBooking(bookingId).enqueue(object : Callback<MyBookings> {
-                    override fun onResponse(call: Call<MyBookings>, response: Response<MyBookings>) {
-                        if (response.isSuccessful) {
-                            // Remove the item from the list on successful deletion
-                            mListConsultation.toMutableList().removeAt(adapterPosition)
-                            notifyItemRemoved(adapterPosition)
-                            notifyItemRangeChanged(adapterPosition, mListConsultation.size)
-                            Toast.makeText(itemView.context, "Booking deleted successfully", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(itemView.context, "Failed to delete booking", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                val builder = AlertDialog.Builder(itemView.context)
+                builder.setTitle("Delete")
+                    .setMessage("Are you sure you want to delete this booking?")
+                    .setPositiveButton("Yes") { dialog, which ->
+                        // Call deleteBooking function
+                        apiService.deleteBooking(bookingId).enqueue(object : Callback<MyBookings> {
+                            override fun onResponse(call: Call<MyBookings>, response: Response<MyBookings>) {
+                                if (response.isSuccessful) {
+                                    // Remove the item from the list on successful deletion
+                                    mListConsultation.toMutableList().removeAt(adapterPosition)
+                                    notifyItemRemoved(adapterPosition)
+                                    notifyItemRangeChanged(adapterPosition, mListConsultation.size)
+                                    Toast.makeText(itemView.context, "Booking deleted successfully", Toast.LENGTH_SHORT).show()
 
-                    override fun onFailure(call: Call<MyBookings>, t: Throwable) {
-                        Toast.makeText(itemView.context, "Failed to delete booking: ${t.message}", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(itemView.context, "Failed to delete booking", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
+                            override fun onFailure(call: Call<MyBookings>, t: Throwable) {
+                                Toast.makeText(itemView.context, "Failed to delete booking: ${t.message}", Toast.LENGTH_SHORT).show()
+                            }
+                        })
                     }
-                })
+                    .setNegativeButton("No") { dialog, which ->
+                        dialog.dismiss()
+                    }
+                    .show()
+
+                // Customize AlertDialog background and button style
+                val dialog = builder.create()
+                dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+                dialog.setOnShowListener {
+                    val positiveButton = (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                    val negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    positiveButton.setTextColor(ContextCompat.getColor(itemView.context, R.color.reddish))
+                    negativeButton.setTextColor(ContextCompat.getColor(itemView.context, R.color.neongreen))
+                }
             }
         }
+
+
         //SYMPTOMS
         var tv_Cough: TextView = itemView.findViewById(R.id.tv_Cough)
         var tv_PainInBone: TextView = itemView.findViewById(R.id.tv_PainInBone)

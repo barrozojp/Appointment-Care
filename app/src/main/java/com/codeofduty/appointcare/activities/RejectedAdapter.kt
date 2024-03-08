@@ -67,6 +67,14 @@ class RejectedAdapter(var mListRejected: List<RejectedBookingsData>,private val 
                     listener.onUpdateBookingStatus("Pending", loadingDialog, bookingId)
                 }
             }
+            deleteBTN.setOnClickListener {
+                // Handle Accept Button Click
+                val loadingDialog = showLoadingDialog(itemView.context)
+                val bookingId = rejectedBookingsData.bookingsID // Replace doctorBookingData.bookingId with the actual way to retrieve the booking ID
+                if (bookingId != null) {
+                    listener.onUpdateBookingStatus("Delete", loadingDialog, bookingId)
+                }
+            }
         }
     }
 
