@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codeofduty.appointcare.R
 
-class PatientConsultationAdapter(var mListConsultation: List<PatientConsultationData>) :
+class PatientConsultationAdapter(var mListConsultation: List<PatientConsultationData>,private val listener: PatientConsultationFragment) :
     RecyclerView.Adapter<PatientConsultationAdapter.patientConsultationViewHolder>(){
 
 

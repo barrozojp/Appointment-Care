@@ -48,7 +48,7 @@ class PatientConsultationFragment : Fragment() {
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = PatientConsultationAdapter(mListConsultation)
+        adapter = PatientConsultationAdapter(mListConsultation, this)
         recyclerView.adapter = adapter
 
         // Initialize the ApiService
@@ -106,48 +106,51 @@ class PatientConsultationFragment : Fragment() {
 
     private fun populateList(schedules: List<Schedule>) {
         for (schedule in schedules) {
-            // Fetch doctor details
-            apiService.getDoctorDetails(schedule.doctorId ?: "").enqueue(object :
-                Callback<DoctorUsers> {
-                override fun onResponse(call: Call<DoctorUsers>, response: Response<DoctorUsers>) {
-                    val doctor = response.body()
-                    doctor?.let {
-
-                        mListConsultation.add(
-                            PatientConsultationData(
-                                "Status: ${schedule.status}",
-                                "${it.Fname} ${it.Lname}",
-                                it.specialty, // Use doctor's specialty
-                                "MD since ${it.md}", // Use doctor's MD year
-                                it.email,
-                                it.number,
-                                "₱${it.consultPrice}",
-                                if (it.f2f == true) "Face-to-Face Consultation" else "Online Consultation",
-                                // Include "Online Consultation" string only when online is true
-                                "Date: ${schedule.date}",
-                                "Time: ${schedule.time}",
-                                "# ${it.hn}, ${it.barangay}. ${it.municipality}, ${it.province}",
-                                "DoctorId: ${schedule.doctorId}",
-                                "",
-                                "",
-                                it.imageData,
-                                "",
-                                "",
-                                schedule.symptoms,
-                                "Observation: ${schedule.observation}",
-                                "Prescription: ${schedule.prescription}"
+            if (schedule.status == "Done") {
+                // Fetch doctor details
+                apiService.getDoctorDetails(schedule.doctorId ?: "").enqueue(object :
+                    Callback<DoctorUsers> {
+                    override fun onResponse(call: Call<DoctorUsers>, response: Response<DoctorUsers>) {
+                        val doctor = response.body()
+                        doctor?.let {
+                            mListConsultation.add(
+                                PatientConsultationData(
+                                    "Status: ${schedule.status}",
+                                    "${it.Fname} ${it.Lname}",
+                                    it.specialty, // Use doctor's specialty
+                                    "MD since ${it.md}", // Use doctor's MD year
+                                    it.email,
+                                    it.number,
+                                    "₱${it.consultPrice}",
+                                    if (it.f2f == true) "Face-to-Face Consultation" else "Online Consultation",
+                                    // Include "Online Consultation" string only when online is true
+                                    "Date: ${schedule.date}",
+                                    "Time: ${schedule.time}",
+                                    "# ${it.hn}, ${it.barangay}. ${it.municipality}, ${it.province}",
+                                    "DoctorId: ${schedule.doctorId}",
+                                    "",
+                                    "",
+                                    it.imageData,
+                                    "",
+                                    "",
+                                    "",
+                                    schedule.symptoms,
+                                    "Observation: ${schedule.observation}",
+                                    "Prescription: ${schedule.prescription}"
+                                )
                             )
-                        )
-                        adapter.notifyDataSetChanged()
+                            adapter.notifyDataSetChanged()
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<DoctorUsers>, t: Throwable) {
-                    // Handle failure
-                }
-            })
+                    override fun onFailure(call: Call<DoctorUsers>, t: Throwable) {
+                        // Handle failure
+                    }
+                })
+            }
         }
     }
+
 
 
 

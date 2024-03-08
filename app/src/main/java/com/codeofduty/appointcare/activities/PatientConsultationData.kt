@@ -19,6 +19,7 @@ data class PatientConsultationData(
     val imageData: String?,
     val __v: String? = null,
     val _id: String? = null,
+    val bookingID: String? = null,
 
     //CONSULTATION DETAILS
     val symptoms: List<String>? = null,
