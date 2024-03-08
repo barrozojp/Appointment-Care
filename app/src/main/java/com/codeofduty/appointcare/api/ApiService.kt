@@ -15,6 +15,7 @@ import okhttp3.RequestBody
 import patientRegister
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -117,6 +118,10 @@ interface ApiService {
     //ADD SYMPTOMS, CONSULTATION AND PRESCRIPTION
     @PUT("appoint/consult/{bookingId}")
     fun addSymptomsObsAndPres(@Path("bookingId") userId: String, @Body requestBody: UpdateSympConsPres): Call<MyBookings>
+
+    //DELETE APPOINTMENT
+    @DELETE("appoint/delete/{bookingId}")
+    fun deleteBooking(@Path("bookingId") userId: String): Call<MyBookings>
 
     //GET DOCTOR DETAILS
     @GET("person/users/{userId}")

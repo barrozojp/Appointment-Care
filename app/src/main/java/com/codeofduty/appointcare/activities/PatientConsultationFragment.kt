@@ -45,14 +45,13 @@ class PatientConsultationFragment : Fragment() {
         tv_myAppointments = view.findViewById(R.id.tv_myAppointments)
         noAppointsCARD = view.findViewById(R.id.noConsultationCARD)
 
+        // Initialize the ApiService
+        apiService = RetrofitClient.getService()
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = PatientConsultationAdapter(mListConsultation, this)
+        adapter = PatientConsultationAdapter(mListConsultation, this, apiService)
         recyclerView.adapter = adapter
-
-        // Initialize the ApiService
-        apiService = RetrofitClient.getService()
 
         fetchData()
 
@@ -132,8 +131,7 @@ class PatientConsultationFragment : Fragment() {
                                     "",
                                     it.imageData,
                                     "",
-                                    "",
-                                    "",
+                                    schedule._id, //THIS IS THE BOOKING ID
                                     schedule.symptoms,
                                     "Observation: ${schedule.observation}",
                                     "Prescription: ${schedule.prescription}"
@@ -150,9 +148,6 @@ class PatientConsultationFragment : Fragment() {
             }
         }
     }
-
-
-
 
     private fun getUserData(): UserX? {
         val sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)

@@ -7,13 +7,21 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codeofduty.appointcare.R
+import com.codeofduty.appointcare.api.ApiService
+import com.codeofduty.appointcare.models.MyBookings
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class PatientConsultationAdapter(var mListConsultation: List<PatientConsultationData>,private val listener: PatientConsultationFragment) :
-    RecyclerView.Adapter<PatientConsultationAdapter.patientConsultationViewHolder>(){
-
+class PatientConsultationAdapter(
+    var mListConsultation: List<PatientConsultationData>,
+    private val listener: PatientConsultationFragment,
+    private val apiService: ApiService // Pass ApiService as a parameter
+) : RecyclerView.Adapter<PatientConsultationAdapter.patientConsultationViewHolder>() {
 
     inner class patientConsultationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -35,6 +43,30 @@ class PatientConsultationAdapter(var mListConsultation: List<PatientConsultation
 
         val btn_Delete: Button = itemView.findViewById(R.id.deleteBTN)
 
+        init {
+            // Add click listener to delete button
+            btn_Delete.setOnClickListener {
+                val bookingId = mListConsultation[adapterPosition]._id ?: ""
+                // Call deleteBooking function
+                apiService.deleteBooking(bookingId).enqueue(object : Callback<MyBookings> {
+                    override fun onResponse(call: Call<MyBookings>, response: Response<MyBookings>) {
+                        if (response.isSuccessful) {
+                            // Remove the item from the list on successful deletion
+                            mListConsultation.toMutableList().removeAt(adapterPosition)
+                            notifyItemRemoved(adapterPosition)
+                            notifyItemRangeChanged(adapterPosition, mListConsultation.size)
+                            Toast.makeText(itemView.context, "Booking deleted successfully", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(itemView.context, "Failed to delete booking", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<MyBookings>, t: Throwable) {
+                        Toast.makeText(itemView.context, "Failed to delete booking: ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
+        }
         //SYMPTOMS
         var tv_Cough: TextView = itemView.findViewById(R.id.tv_Cough)
         var tv_PainInBone: TextView = itemView.findViewById(R.id.tv_PainInBone)
