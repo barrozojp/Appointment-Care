@@ -198,6 +198,7 @@ class EditProfilePatientFragmet : Fragment() {
             builder.setNegativeButton("No") { dialog, which ->
                 // Do nothing, just dismiss the dialog
                 dialog.dismiss()
+                loadingDialog.dismiss()
             }
 
             val dialog = builder.create()

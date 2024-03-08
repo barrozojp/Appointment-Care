@@ -93,6 +93,11 @@ interface ApiService {
     @GET("appoint/schedule/{userId}")
     fun getBookings(@Path("userId") userId: String): Call<MyBookings>
 
+    //GET MY BOOKINGS HISTORY
+    @GET("appoint/schedule/{userId}")
+    fun getBookingsHistoryPatient(@Path("userId") userId: String): Call<MyBookings>
+
+
     //GET PENDING BOOKINGS
     @GET("appoint/schedule/{userId}")
     fun getPendingBookings(@Path("userId") userId: String): Call<MyBookings>
@@ -106,12 +111,12 @@ interface ApiService {
     fun getAcceptedBookings(@Path("userId") userId: String): Call<MyBookings>
 
     //ACCEPT, REJECT, PENDING
-    @PUT("appoint/verify/{userId}")
-    fun updateBookingStatus(@Path("userId") userId: String, @Body requestBody: UpdateBookingStatusRequest): Call<MyBookings>
+    @PUT("appoint/verify/{bookingId}")
+    fun updateBookingStatus(@Path("bookingId") userId: String, @Body requestBody: UpdateBookingStatusRequest): Call<MyBookings>
 
     //ADD SYMPTOMS, CONSULTATION AND PRESCRIPTION
-    @PUT("appoint/consult/{userId}")
-    fun addSymptomsObsAndPres(@Path("userId") userId: String, @Body requestBody: UpdateSympConsPres): Call<MyBookings>
+    @PUT("appoint/consult/{bookingId}")
+    fun addSymptomsObsAndPres(@Path("bookingId") userId: String, @Body requestBody: UpdateSympConsPres): Call<MyBookings>
 
     //GET DOCTOR DETAILS
     @GET("person/users/{userId}")

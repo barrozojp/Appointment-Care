@@ -45,9 +45,8 @@ class BookingsAdapter(var mList: List<DoctorBookingsData>, private val listener:
 
             Glide.with(itemView)
                 .load(doctorBookingsData.imageData) // Use the imageData URL directly
-                .placeholder(R.drawable.baseline_account_circle_24) // Placeholder image
+                .placeholder(R.drawable.doctor_profile) // Placeholder image
                 .into(profilePic)
-
             statusBookings.text = doctorBookingsData.status
             patientName.text = doctorBookingsData.fullName
             number.text = doctorBookingsData.number
@@ -61,17 +60,22 @@ class BookingsAdapter(var mList: List<DoctorBookingsData>, private val listener:
 
             AcceptBTN.setOnClickListener {
                 // Handle Accept Button Click
-                val patientId = doctorBookingsData.patientId ?: ""
                 val loadingDialog = showLoadingDialog(itemView.context)
-                listener.onUpdateBookingStatus(patientId, "Accepted", loadingDialog)
+                val bookingId = doctorBookingsData.bookingsID
+                if (bookingId != null) {
+                    listener.onUpdateBookingStatus("Accepted", loadingDialog, bookingId)
+                }
             }
 
             RejectBTN.setOnClickListener {
                 // Handle Reject Button Click
-                val patientId = doctorBookingsData.patientId ?: ""
                 val loadingDialog = showLoadingDialog(itemView.context)
-                listener.onUpdateBookingStatus(patientId, "Rejected", loadingDialog)
+                val bookingId = doctorBookingsData.bookingsID
+                if (bookingId != null) {
+                    listener.onUpdateBookingStatus("Rejected", loadingDialog, bookingId)
+                }
             }
+
 
         }
     }

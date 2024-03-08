@@ -2,7 +2,7 @@ package com.codeofduty.appointcare.models
 
 data class Schedule(
     val __v: Int? = null,
-    val _id: String? = null,
+    val _id: String? = null, // this is the BOOKING ID
     val date: String? = null,
     val doctorId: String? = null,
     val email: String? = null,

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".activities.PatientConsultationFragment">
+
+    <ScrollView
+        android:id="@+id/scrollViewConsultation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_myConsultation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Consultation"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:layout_marginTop="80dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMyConsultation"
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:layout_marginBottom="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.517"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_myConsultation"
+                app:layout_constraintVertical_bias="0.0"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relativeMyAppointments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollViewConsultation"
+        app:layout_constraintTop_toTopOf="@+id/scrollViewConsultation"
+        tools:layout_editor_absoluteX="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/noConsultationCARD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_margin="25dp"
+            android:visibility="gone"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#fff"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_consultation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="280dp"
+                    android:src="@drawable/consultation_img" />
+
+                <TextView
+                    android:id="@+id/tv_noConsultation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/img_consultation"
+                    android:text="No Prescription"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_noConsultationdesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_noConsultation"
+                    android:layout_marginBottom="20dp"
+                    android:text="You have no prescription at the moment. Book an Appointment"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/loadingCARD"
+            android:layout_width="match_parent"
+            android:backgroundTint="#fff"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:text="Loading Prescriptions..."
+                android:textAlignment="center"
+                android:textColor="@color/primarycolor"
+                android:textSize="25sp"
+                android:textStyle="bold"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/ltAnimation"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/animation_loading" />
+        </androidx.cardview.widget.CardView>
+
+
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

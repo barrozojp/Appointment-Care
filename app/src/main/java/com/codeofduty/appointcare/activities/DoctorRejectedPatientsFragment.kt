@@ -107,39 +107,34 @@ class DoctorRejectedPatientsFragment : Fragment(),BookingStatusListener {
         }
     }
 
-    override fun onUpdateBookingStatus(patientId: String, status: String, loadingDialog: AlertDialog) {
-        // Create an instance of UpdateBookingStatusRequest with the provided patientId and status
-        val requestBody = UpdateBookingStatusRequest(patientId, status)
+    override fun onUpdateBookingStatus(status: String, loadingDialog: AlertDialog, bookingId: String) {
+        // Create an instance of UpdateBookingStatusRequest with the provided status
+        val requestBody = UpdateBookingStatusRequest(status)
 
-        // Get the user data
-        val userData = getUserData()
-        userData?.let { user ->
-            val userId = user._id
-            userId?.let {
-                // Call the API to update the booking status
-                apiService.updateBookingStatus(it, requestBody).enqueue(object : Callback<MyBookings> {
-                    override fun onResponse(call: Call<MyBookings>, response: Response<MyBookings>) {
-                        if (response.isSuccessful) {
-                            showToast("Booking status updated successfully")
-                            navigateToHomeFragment()
-                            loadingDialog.dismiss()
-                        } else {
-                            // Update failed, show an error message
-                            showToast("Failed to update booking status")
-                        }
-                    }
-
-                    override fun onFailure(call: Call<MyBookings>, t: Throwable) {
-                        // Failure in API call, show an error message
-                        showToast("Failed to update booking status: ${t.message}")
-                    }
-
-                    private fun showToast(message: String) {
-                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                    }
-                })
+        // Call the API to update the booking status
+        apiService.updateBookingStatus(bookingId, requestBody).enqueue(object : Callback<MyBookings> {
+            override fun onResponse(call: Call<MyBookings>, response: Response<MyBookings>) {
+                if (response.isSuccessful) {
+                    showToast("Booking status updated successfully")
+                    navigateToHomeFragment()
+                    loadingDialog.dismiss()
+                } else {
+                    // Update failed, show an error message
+                    showToast("No Rejected Bookings")
+                    loadingDialog.dismiss()
+                }
             }
-        }
+
+            override fun onFailure(call: Call<MyBookings>, t: Throwable) {
+                // Failure in API call, show an error message
+                showToast("Failed to update booking status: ${t.message}")
+                loadingDialog.dismiss()
+            }
+
+            private fun showToast(message: String) {
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun navigateToHomeFragment() {
@@ -168,7 +163,7 @@ class DoctorRejectedPatientsFragment : Fragment(),BookingStatusListener {
                     consultationType,
                     "${schedule.date}",
                     "Time: ${schedule.time}",
-                    "BookingID: ${schedule._id}",
+                    schedule._id,
                     "${schedule.patientId}",
                     "",
                 )

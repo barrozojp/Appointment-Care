@@ -29,26 +29,25 @@ class AcceptedAdapter(var mListAccepted: List<AcceptedBookingsData>) :
         val patientID: TextView = itemView.findViewById(R.id.tv_patientID)
         val consultBTN: Button = itemView.findViewById(R.id.consultBTN)
 
+
+
         init {
             consultBTN.setOnClickListener {
                 // Get the patient ID from the current item
-                val patientId = mListAccepted[adapterPosition].patientId
+                val bookingID = mListAccepted[adapterPosition].bookingsID
+                val patientName = patientName?.text.toString()
+                val patientEmail = email?.text.toString()
+                val patientNumber = number?.text.toString()
 
-                // Start ConsultationFragment and pass patient details as arguments
-                val fragment = patientId?.let { it1 ->
-                    patientName?.let { it2 ->
-                        email?.let { it3 ->
-                            number?.let { it4 ->
-                                ConsultationFragment.newInstance(
-                                    it1,
-                                    it2.text.toString(),
-                                    it3.text.toString(),
-                                    it4.text.toString()
-                                )
-                            }
-                        }
-                    }
+                val fragment = bookingID?.let {
+                    ConsultationFragment.newInstance(
+                        it,
+                        patientName,
+                        patientEmail,
+                        patientNumber
+                    )
                 }
+
                 val fragmentManager = (itemView.context as AppCompatActivity).supportFragmentManager
                 if (fragment != null) {
                     fragmentManager.beginTransaction()

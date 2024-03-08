@@ -1,5 +1,6 @@
 package com.codeofduty.appointcare.activities
 
+import DoctorUsers
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -22,32 +23,31 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
 
-
-class DoctorsAcceptedPatientFragment : Fragment() {
+class PatientConsultationFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AcceptedAdapter
-    private var mListAccepted = ArrayList<AcceptedBookingsData>()
+    private lateinit var adapter: PatientConsultationAdapter
+    private var mListConsultation = ArrayList<PatientConsultationData>()
     private lateinit var apiService: ApiService
     private lateinit var loadingCARD: CardView
-    private lateinit var noAcceptedAppointsCARD: CardView
-    private lateinit var tv_AcceptedAppointments: TextView
+    private lateinit var noAppointsCARD: CardView
+    private lateinit var tv_myAppointments: TextView
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_doctors_accepted_patient, container, false)
+        val view = inflater.inflate(R.layout.fragment_patient_consultation, container, false)
 
-        recyclerView = view.findViewById(R.id.recyclerViewAcceptedAppoints)
+        recyclerView = view.findViewById(R.id.recyclerViewMyConsultation)
         loadingCARD = view.findViewById(R.id.loadingCARD)
-        tv_AcceptedAppointments = view.findViewById(R.id.tv_acceptedAppointments)
-        noAcceptedAppointsCARD = view.findViewById(R.id.noAcceptedAppointsCARD)
+        tv_myAppointments = view.findViewById(R.id.tv_myConsultation)
+        noAppointsCARD = view.findViewById(R.id.noConsultationCARD)
 
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = AcceptedAdapter(mListAccepted)
+        adapter = PatientConsultationAdapter(mListConsultation)
         recyclerView.adapter = adapter
 
         // Initialize the ApiService
@@ -63,37 +63,35 @@ class DoctorsAcceptedPatientFragment : Fragment() {
         user?.let { userData ->
             val userId = userData._id
             userId?.let { _id ->
-                apiService.getAcceptedBookings(_id).enqueue(object : Callback<MyBookings> {
+                apiService.getBookings(_id).enqueue(object : Callback<MyBookings> {
                     override fun onResponse(call: Call<MyBookings>, response: Response<MyBookings>) {
                         if (response.isSuccessful) {
                             val myBookings = response.body()
 
                             myBookings?.let { bookings ->
-                                val acceptedSchedules = bookings.schedules.filter { it.status == "Accepted" }
-                                if (acceptedSchedules.isNotEmpty()) {
-                                    populateList(acceptedSchedules)
-                                    showToast("Accepted Bookings fetched successfully")
+                                if (bookings.schedules.isNotEmpty()) {
+                                    populateList(bookings.schedules)
+                                    showToast("Bookings fetched successfully")
                                     loadingCARD.visibility = View.GONE
                                     recyclerView.visibility = View.VISIBLE
-                                    tv_AcceptedAppointments.visibility = View.VISIBLE
+                                    tv_myAppointments.visibility = View.VISIBLE
                                 } else {
-                                    showToast("No Accepted Appointments")
-                                    noAcceptedAppointsCARD.visibility = View.VISIBLE
+                                    showToast("No Appointments")
+                                    tv_myAppointments.visibility = View.VISIBLE
                                     loadingCARD.visibility = View.GONE
                                     adapter.notifyDataSetChanged() // Refresh the RecyclerView
-
                                 }
                             }
                         } else {
                             showToast("Failed to fetch data")
-                            noAcceptedAppointsCARD.visibility = View.VISIBLE
+                            noAppointsCARD.visibility = View.VISIBLE
                             loadingCARD.visibility = View.GONE
                         }
                     }
 
                     override fun onFailure(call: Call<MyBookings>, t: Throwable) {
                         showToast("Failed to fetch data: ${t.message}")
-                        noAcceptedAppointsCARD.visibility = View.VISIBLE
+                        noAppointsCARD.visibility = View.VISIBLE
                         loadingCARD.visibility = View.GONE
                     }
 
@@ -107,32 +105,49 @@ class DoctorsAcceptedPatientFragment : Fragment() {
 
     private fun populateList(schedules: List<Schedule>) {
         for (schedule in schedules) {
+            // Fetch doctor details
+            apiService.getDoctorDetails(schedule.doctorId ?: "").enqueue(object :
+                Callback<DoctorUsers> {
+                override fun onResponse(call: Call<DoctorUsers>, response: Response<DoctorUsers>) {
+                    val doctor = response.body()
+                    doctor?.let {
 
-            val consultationType = if (schedule.online == true) {
-                "Online Consultation"
-            } else {
-                "Face-to-Face Consultation"
-            }
+                        mListConsultation.add(
+                            PatientConsultationData(
+                                "Status: ${schedule.status}",
+                                "${it.Fname} ${it.Lname}",
+                                it.specialty, // Use doctor's specialty
+                                "MD since ${it.md}", // Use doctor's MD year
+                                it.email,
+                                it.number,
+                                "₱${it.consultPrice}",
+                                if (it.f2f == true) "Face-to-Face Consultation" else "Online Consultation",
+                                // Include "Online Consultation" string only when online is true
+                                "Date: ${schedule.date}",
+                                "Time: ${schedule.time}",
+                                "# ${it.hn}, ${it.barangay}. ${it.municipality}, ${it.province}",
+                                "DoctorId: ${schedule.doctorId}",
+                                "",
+                                "",
+                                it.imageData,
+                                "",
+                                "",
+                                "",
+                                "",
+                                symptoms = null
 
-            mListAccepted.add(
-                AcceptedBookingsData(
-                    "Status: ${schedule.status}",
-                    schedule.imageData,
-                    "${schedule.fullName}",
-                    "${schedule.number}",
-                    "Email: ${schedule.email}",
-                    consultationType,
-                    "${schedule.date}",
-                    "Time: ${schedule.time}",
-                    schedule._id, //THIS IS BOOKING ID
-                    "${schedule.patientId}",
-                    "",
-                )
-            )
+                            )
+                        )
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+
+                override fun onFailure(call: Call<DoctorUsers>, t: Throwable) {
+                    // Handle failure
+                }
+            })
         }
-        adapter.notifyDataSetChanged()
     }
-
 
 
 

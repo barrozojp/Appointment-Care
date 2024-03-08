@@ -16,6 +16,7 @@ import com.codeofduty.appointcare.R
 import com.codeofduty.appointcare.api.ApiService
 import com.codeofduty.appointcare.api.RetrofitClient
 import com.codeofduty.appointcare.models.MyBookings
+import com.codeofduty.appointcare.models.UpdateBookingStatusRequest
 import com.codeofduty.appointcare.models.UpdateSympConsPres
 import com.codeofduty.appointcare.models.UserX
 import retrofit2.Call
@@ -26,37 +27,27 @@ import retrofit2.Response
 class ConsultationFragment : Fragment() {
 
     private lateinit var apiService: ApiService
-    private var user: UserX? = null // Property to store user data
 
 
     companion object {
-        private const val ARG_PATIENT_ID = "patient_id"
+        private const val ARG_BOOKING_ID = "booking_id"
         private const val ARG_PATIENT_NAME = "patient_name"
         private const val ARG_PATIENT_EMAIL = "patient_email"
         private const val ARG_PATIENT_NUMBER = "patient_number"
 
-        fun newInstance(patientId: String, patientName: String, patientEmail: String, patientNumber: String): ConsultationFragment {
+        fun newInstance(bookingId: String, patientName: String, patientEmail: String, patientNumber: String): ConsultationFragment {
             val fragment = ConsultationFragment()
             val args = Bundle()
-            args.putString(ARG_PATIENT_ID, patientId)
+            args.putString(ARG_BOOKING_ID, bookingId)
             args.putString(ARG_PATIENT_NAME, patientName)
             args.putString(ARG_PATIENT_EMAIL, patientEmail)
             args.putString(ARG_PATIENT_NUMBER, patientNumber)
             fragment.arguments = args
             return fragment
         }
-
     }
 
 
-    private var patientId: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            patientId = it.getString(ARG_PATIENT_ID)
-        }
-    }
 
 
     override fun onCreateView(
@@ -67,10 +58,10 @@ class ConsultationFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_consultation, container, false)
 
         // Retrieve arguments
-        val patientId = arguments?.getString(ARG_PATIENT_ID)
         val patientName = arguments?.getString(ARG_PATIENT_NAME)
         val patientEmail = arguments?.getString(ARG_PATIENT_EMAIL)
         val patientNumber = arguments?.getString(ARG_PATIENT_NUMBER)
+        val bookingId = arguments?.getString(ARG_BOOKING_ID)
 
         // Set patient details in the layout
         view.findViewById<TextView>(R.id.patientName).text = patientName
@@ -79,9 +70,6 @@ class ConsultationFragment : Fragment() {
 
         // Initialize ApiService
         apiService = RetrofitClient.getService()
-
-        // Retrieve user data
-        user = getUserData()
 
         // Find the button
         val postConsultationButton = view.findViewById<Button>(R.id.PostConsultation)
@@ -174,24 +162,28 @@ class ConsultationFragment : Fragment() {
             if (bruising.isChecked) symptoms.add("bruising")
         }
 
+
         // Call the method to update consultation details
-        updateConsultation(observation, prescription, symptoms.toList())
+        val bookingId = arguments?.getString(ARG_BOOKING_ID)
+        if (bookingId != null) {
+            updateConsultation(observation, prescription, symptoms.toList())
+
+            // After updating the consultation, update the booking status to "Done"
+            updateBookingStatus(bookingId)
+        } else {
+            showToast("Booking ID not found")
+        }
     }
 
     // Function to update consultation details
     private fun updateConsultation(observation: String, prescription: String, symptoms: List<String>) {
-        val userId = user?._id
-        val patientId = arguments?.getString(ARG_PATIENT_ID)
+        val bookingId = arguments?.getString(ARG_BOOKING_ID)
 
-        if (userId != null && patientId != null) {
-            if (!::apiService.isInitialized) {
-                apiService = RetrofitClient.getService()
-            }
+        if (bookingId != null) {
             val loadingDialog = showLoadingDialog(requireContext())
 
-
-            val updateData = UpdateSympConsPres(observation, patientId, prescription, symptoms)
-            apiService.addSymptomsObsAndPres(userId, updateData).enqueue(object : Callback<MyBookings> {
+            val updateData = UpdateSympConsPres(observation, prescription, symptoms)
+            apiService.addSymptomsObsAndPres(bookingId, updateData).enqueue(object : Callback<MyBookings> {
                 override fun onResponse(call: Call<MyBookings>, response: Response<MyBookings>) {
                     loadingDialog.dismiss()
                     if (response.isSuccessful) {
@@ -214,9 +206,32 @@ class ConsultationFragment : Fragment() {
                 }
             })
         } else {
-            showToast("Patient ID not found or user data not available")
+            showToast("Booking ID not found")
         }
     }
+    // Function to update booking status
+    private fun updateBookingStatus(bookingId: String) {
+        val requestBody = UpdateBookingStatusRequest("Done") // Set the status to "Done"
+
+        apiService.updateBookingStatus(bookingId, requestBody).enqueue(object : Callback<MyBookings> {
+            override fun onResponse(call: Call<MyBookings>, response: Response<MyBookings>) {
+                // Handle response
+                if (response.isSuccessful) {
+                    showToast("Booking status updated successfully to Done")
+                } else {
+                    showToast("Failed to update booking status")
+                }
+            }
+
+            override fun onFailure(call: Call<MyBookings>, t: Throwable) {
+                // Handle failure
+                showToast("Failed to update booking status: ${t.message}")
+            }
+        })
+    }
+
+
+
 
 
 
@@ -227,15 +242,5 @@ class ConsultationFragment : Fragment() {
     }
 
 
-    // Function to get user data from SharedPreferences
-    private fun getUserData(): UserX? {
-        val sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
-        val _id = sharedPreferences.getString("_id", null)
-        return if (_id != null) {
-            UserX(_id = _id)
-        } else {
-            null
-        }
-    }
 
 }
